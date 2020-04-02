@@ -10,7 +10,7 @@ import com.meng.TaiHunDanmaku.task.*;
 import com.meng.TaiHunDanmaku.ui.*;
 import com.badlogic.gdx.math.*;
 
-import java.util.ArrayList;
+import java.util.ArrayArrayList;
 
 public class normal1 extends BaseNormalDanmaku {
     private TaskManagerEnemyPlane taskManager;
@@ -41,7 +41,7 @@ public class normal1 extends BaseNormalDanmaku {
         laser2.distance = 190;
         FightScreen.instence.laserManager.addLaser(laser2);
 */
-        ArrayList<Task> arrayList = new ArrayList<Task>();
+        ArrayArrayList<Task> arrayArrayList = new ArrayArrayList<Task>();
         shooters = new BulletShooter[]{
                 new BulletShooter().init()
                         .setEnemyPlane(boss)
@@ -53,7 +53,7 @@ public class normal1 extends BaseNormalDanmaku {
                         .setBulletStyle(BulletStyle.round)
                         .setBulletHighLight(true)
                         .setBulletAcceleration(new Vector2(0, -0.05f))
-                        .setBulletTasks(arrayList)
+                        .setBulletTasks(arrayArrayList)
         };
         taskManager = new TaskManagerEnemyPlane(baseBossPlane, TaskRepeatMode.repeatAll);
         taskManager.addTask(new TaskShoot(shooters));

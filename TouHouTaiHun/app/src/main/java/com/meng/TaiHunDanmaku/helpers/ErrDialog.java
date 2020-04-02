@@ -11,7 +11,7 @@ public class ErrDialog{
                 .setTitle(title)
                 .setMessage(message)
                 .setIcon(android.R.drawable.stat_sys_warning)
-                .setPositiveButton("Dismiss",new DialogInterface.OnClickListener(){
+                .setPositiveButton("Dismiss",new DialogInterface.OnClickArrayListener(){
                     @Override
                     public void onClick(DialogInterface arg0,int arg1){
                     }

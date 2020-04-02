@@ -16,6 +16,8 @@ public abstract class BaseSpellCard{
 
     public int waitFrameSpell=60;
 
+	public float hp;
+	
     public abstract void init(BaseBossPlane b);
 
     public void update(){

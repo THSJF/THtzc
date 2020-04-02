@@ -16,19 +16,19 @@ import com.meng.TaiHunDanmaku.task.TaskRepeatMode;
 import com.meng.TaiHunDanmaku.task.TaskShoot;
 import com.meng.TaiHunDanmaku.task.TaskWait;
 
-import java.util.ArrayList;
+import java.util.ArrayArrayList;
 
 public class normal2 extends BaseNormalDanmaku {
     private TaskManagerEnemyPlane taskManager;
 
     public void init(BaseBossPlane baseBossPlane) {
         boss = baseBossPlane;
-        ArrayList<Task> arrayList = new ArrayList<Task>();
-        arrayList.add(new TaskWait(100));
-        //  arrayList.add(new TaskMoveTo(10001, 10001));
-        arrayList.add(new TaskChangeAcceleration(-4f, 0, ChangeMode.scl));
-        arrayList.add(new TaskWait(30));
-        arrayList.add(new TaskChangeAcceleration(0.3f, 0, ChangeMode.scl));
+        ArrayArrayList<Task> arrayArrayList = new ArrayArrayList<Task>();
+        arrayArrayList.add(new TaskWait(100));
+        //  arrayArrayList.add(new TaskMoveTo(10001, 10001));
+        arrayArrayList.add(new TaskChangeAcceleration(-4f, 0, ChangeMode.scl));
+        arrayArrayList.add(new TaskWait(30));
+        arrayArrayList.add(new TaskChangeAcceleration(0.3f, 0, ChangeMode.scl));
         shooters = new BulletShooter[]{
                 new BulletShooter().init()
                         .setEnemyPlane(boss)
@@ -41,7 +41,7 @@ public class normal2 extends BaseNormalDanmaku {
                         .setBulletHighLight(true)
                         .setBulletLiveOutOfScreen(500)
                         .setBulletAcceleration(new Vector2(0, -0.05f))
-                        .setBulletTasks(arrayList)
+                        .setBulletTasks(arrayArrayList)
         };
         taskManager = new TaskManagerEnemyPlane(baseBossPlane, TaskRepeatMode.repeatAll);
         taskManager.addTask(new TaskShoot(shooters));

@@ -20,7 +20,7 @@ public class MainActivity extends AndroidApplication {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public booleanean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             switch (gameMain.screenFlag) {
                 case 1:

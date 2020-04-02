@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickArrayListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.meng.TaiHunDanmaku.control.ReplayManager;
 import com.meng.TaiHunDanmaku.helpers.ResourcesManager;
@@ -63,14 +63,14 @@ public class MainMenuScreen extends ScreenAdapter {
         Button quit = new Button(ResourcesManager.textures.get("menu18"), ResourcesManager.textures.get("menu18"));
         quit.setPosition(buttonX, buttonY - 128);
 
-        gameStart.addListener(new ClickListener() {
+        gameStart.addArrayListener(new ClickArrayListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 gameMain.onReplay = false;
                 gameMain.setSelectDiffScreen();
             }
         });
-        extraStart.addListener(new ClickListener() {
+        extraStart.addArrayListener(new ClickArrayListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 //        gameMain.difficultFlag = "Extra";
@@ -78,7 +78,7 @@ public class MainMenuScreen extends ScreenAdapter {
                 //         gameMain.setSelectCharScreen();
             }
         });
-        replay.addListener(new ClickListener() {
+        replay.addArrayListener(new ClickArrayListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (Gdx.files.external(gameMain.replayFileName).exists()) {
@@ -88,7 +88,7 @@ public class MainMenuScreen extends ScreenAdapter {
                 }
             }
         });
-        quit.addListener(new ClickListener() {
+        quit.addArrayListener(new ClickArrayListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 gameMain.androidApplication.finish();

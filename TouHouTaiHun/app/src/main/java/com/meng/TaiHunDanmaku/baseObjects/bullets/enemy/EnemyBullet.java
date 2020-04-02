@@ -8,15 +8,15 @@ import com.meng.TaiHunDanmaku.helpers.*;
 import com.meng.TaiHunDanmaku.task.*;
 import com.meng.TaiHunDanmaku.ui.*;
 
-import java.util.ArrayList;
+import java.util.ArrayArrayList;
 
 public class EnemyBullet extends BaseEnemyBullet{
 
-    public static void create(Vector2 center,Vector2 velocity,Vector2 acceleration,BulletForm bulletForm,BulletColor bulletColor,int life,int liveOutScreen,boolean highLight,int reflex,int reflexT,int reflexB,int reflexL,int reflexR,int through,int throughT,int throughB,int throughL,int throughR,ArrayList<Task> tasks){
+    public static void create(Vector2 center,Vector2 velocity,Vector2 acceleration,BulletForm bulletForm,BulletColor bulletColor,int life,int liveOutScreen,booleanean highLight,int reflex,int reflexT,int reflexB,int reflexL,int reflexR,int through,int throughT,int throughB,int throughL,int throughR,ArrayArrayList<Task> tasks){
         ObjectPools.enemyBulletPool.obtain().init(center,velocity,acceleration,bulletForm,bulletColor,life,liveOutScreen,highLight,reflex,reflexT,reflexB,reflexL,reflexR,through,throughT,throughB,throughL,throughR,tasks);
 	  }
 
-    public void init(Vector2 center,Vector2 velocity,Vector2 acceleration,BulletForm bulletForm,BulletColor bulletColor,int life,int lifeOutScreen,boolean highLight,int reflex,int reflexT,int reflexB,int reflexL,int reflexR,int through,int throughT,int throughB,int throughL,int throughR,ArrayList<Task> tasks){
+    public void init(Vector2 center,Vector2 velocity,Vector2 acceleration,BulletForm bulletForm,BulletColor bulletColor,int life,int lifeOutScreen,booleanean highLight,int reflex,int reflexT,int reflexB,int reflexL,int reflexR,int through,int throughT,int throughB,int throughL,int throughR,ArrayArrayList<Task> tasks){
         super.init();
         for(Task t : tasks){
             taskManager.addTask(t);

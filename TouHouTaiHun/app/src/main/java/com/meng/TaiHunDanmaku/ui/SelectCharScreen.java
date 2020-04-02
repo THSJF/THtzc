@@ -16,7 +16,7 @@ public class SelectCharScreen extends ScreenAdapter {
     public Stage stage;
     private int width = 386;
     private int height = 600;
-    private boolean A = false;
+    private booleanean A = false;
 
     public SelectCharScreen(final GameMain gameMain) {
         this.gameMain = gameMain;
@@ -37,7 +37,7 @@ public class SelectCharScreen extends ScreenAdapter {
         buttonA.setPosition(120, 200);
         Button buttonB = new Button(ResourcesManager.textures.get(TextureNameManager.ReimuSubPlaneBulletStraight), ResourcesManager.textures.get(TextureNameManager.ReimuSubPlaneBulletStraight));
         buttonB.setPosition(120, 150);
-        buttonA.addListener(new ClickListener() {
+        buttonA.addArrayListener(new ClickArrayListener() {
 				@Override
 				public void clicked(InputEvent event, float x, float y) {
 					gameMain.equipmentFlag = "A";
@@ -46,7 +46,7 @@ public class SelectCharScreen extends ScreenAdapter {
 					//  A=true;
 				}
 			});
-        buttonB.addListener(new ClickListener() {
+        buttonB.addArrayListener(new ClickArrayListener() {
 				@Override
 				public void clicked(InputEvent event, float x, float y) {
 					gameMain.equipmentFlag = "B";

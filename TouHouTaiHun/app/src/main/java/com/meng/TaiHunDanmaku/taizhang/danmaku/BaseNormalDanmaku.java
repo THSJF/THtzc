@@ -12,6 +12,8 @@ public abstract class BaseNormalDanmaku{
 
 	public int waitFrameNormal=60;
 
+	public float hp;
+	
     public abstract void init(BaseBossPlane boss);
 
     public void update(){

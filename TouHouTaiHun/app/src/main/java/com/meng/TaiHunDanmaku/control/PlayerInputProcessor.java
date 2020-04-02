@@ -13,7 +13,7 @@ public class PlayerInputProcessor extends InputAdapter {
     private Vector2 vct2_tmp1 = new Vector2();
 
     @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+    public booleanean touchDown(int screenX, int screenY, int pointer, int button) {
         if (ReplayManager.onReplay) return super.touchDown(screenX, screenY, pointer, button);
         if (pointer == 0) {
             vct2_downPosStage = FightScreen.instence.stage.screenToStageCoordinates(vct2_downPosStage.set(screenX, screenY));
@@ -34,7 +34,7 @@ public class PlayerInputProcessor extends InputAdapter {
     }
 
     @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+    public booleanean touchUp(int screenX, int screenY, int pointer, int button) {
         if (ReplayManager.onReplay) return super.touchUp(screenX, screenY, pointer, button);
         if (pointer == 1) {
             BaseMyPlane.instance.slow = false;
@@ -43,7 +43,7 @@ public class PlayerInputProcessor extends InputAdapter {
     }
 
     @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
+    public booleanean touchDragged(int screenX, int screenY, int pointer) {
         if (ReplayManager.onReplay) return super.touchDragged(screenX, screenY, pointer);
         if (pointer == 0) {
             vct2_tmp1 = FightScreen.instence.stage.screenToStageCoordinates(vct2_tmp1.set(screenX, screenY));

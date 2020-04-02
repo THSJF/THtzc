@@ -18,7 +18,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     public int time = 0;
     public float enemyLastX;
     public float hp = 10;
-    public boolean isKilled = false;
+    public booleanean isKilled = false;
 
     public int animFrom = 0;
     public int animTo = 7;
@@ -26,7 +26,7 @@ public abstract class BaseEnemyPlane extends BaseGameObject{
     public int curFrameNumber = 0;
     public MoveStatus status = MoveStatus.stay;
     public String objectName = "";
-    public boolean flip = false;
+    public booleanean flip = false;
     public int[][] animNum;
 
     public BulletShooter bulletShooter;

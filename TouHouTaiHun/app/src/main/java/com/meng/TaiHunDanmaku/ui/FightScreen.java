@@ -28,9 +28,9 @@ public class FightScreen extends ScreenAdapter {
     public Group groupHighLight;
     public HashSet<ReflexAndThrough> reflexAndThroughs;
     public BaseEnemyPlane[] enemys;
-    public boolean onBoss = false;
+    public booleanean onBoss = false;
     public int sleep = 0;
-    public boolean onSpellCard = false;
+    public booleanean onSpellCard = false;
     static int spellHeight = 450;
     private FitViewport fitViewport;
     private GameStage gameStage;

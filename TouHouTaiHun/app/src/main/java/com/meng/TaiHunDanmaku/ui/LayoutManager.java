@@ -16,7 +16,7 @@ import java.util.*;
 
 public class LayoutManager {
 
-    public ArrayList<partAgent> nextPart = new ArrayList<partAgent>();
+    public ArrayArrayList<partAgent> nextPart = new ArrayArrayList<partAgent>();
     public Image bossLifeImage;
     public float bossMaxHp = 1;
     public GameMain gameMain;

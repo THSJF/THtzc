@@ -14,10 +14,10 @@ public class SelectDiffScreen extends ScreenAdapter {
     private Stage stage;
     private Image background;
 
-    private boolean A = false;
-    private boolean B = false;
-    private boolean C = false;
-    private boolean D = false;
+    private booleanean A = false;
+    private booleanean B = false;
+    private booleanean C = false;
+    private booleanean D = false;
 
     public SelectDiffScreen(final GameMain gameMain) {
         this.gameMain = gameMain;
@@ -52,7 +52,7 @@ public class SelectDiffScreen extends ScreenAdapter {
         buttonL.setPosition(buttonX, buttonY + 50);
         Button buttonO = new Button(ResourcesManager.textures.get("overdrive"), ResourcesManager.textures.get("overdrive_c"));
         buttonO.setPosition(buttonX, buttonY);
-        buttonE.addListener(new ClickListener() {
+        buttonE.addArrayListener(new ClickArrayListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 A = true;
@@ -60,7 +60,7 @@ public class SelectDiffScreen extends ScreenAdapter {
                 //   gameMain.setSelectCharScreen();
             }
         });
-        buttonN.addListener(new ClickListener() {
+        buttonN.addArrayListener(new ClickArrayListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 B = true;
@@ -68,7 +68,7 @@ public class SelectDiffScreen extends ScreenAdapter {
                 //  gameMain.setSelectCharScreen();
             }
         });
-        buttonH.addListener(new ClickListener() {
+        buttonH.addArrayListener(new ClickArrayListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 C = true;
@@ -76,7 +76,7 @@ public class SelectDiffScreen extends ScreenAdapter {
                 //   gameMain.setSelectCharScreen();
             }
         });
-        buttonL.addListener(new ClickListener() {
+        buttonL.addArrayListener(new ClickArrayListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 D = true;
@@ -84,7 +84,7 @@ public class SelectDiffScreen extends ScreenAdapter {
                 //   gameMain.setSelectCharScreen();
             }
         });
-        buttonO.addListener(new ClickListener() {
+        buttonO.addArrayListener(new ClickArrayListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 gameMain.difficultFlag = "Overdrive";

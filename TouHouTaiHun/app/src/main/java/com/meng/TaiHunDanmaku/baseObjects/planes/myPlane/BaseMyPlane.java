@@ -19,15 +19,15 @@ public abstract class BaseMyPlane extends BaseGameObject {
     public static BaseMyPlane instance;
 
     public int unmatchedTime;
-    public boolean onUnmatched = false;
+    public booleanean onUnmatched = false;
     public int bombTime;
-    public boolean onBomb = false;
+    public booleanean onBomb = false;
 
     public JudgeCircleAnimation animation = null;
     public JudgeCircleAnimation2 animation2 = null;
 
     private float playerLastX = 270;
-    public boolean slow = false;
+    public booleanean slow = false;
     public AnimationManager animationManager;
     public BaseSubPlane subPlane1, subPlane2, subPlane3, subPlane4;
 

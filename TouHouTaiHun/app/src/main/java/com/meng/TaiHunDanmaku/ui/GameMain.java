@@ -11,7 +11,7 @@ public class GameMain extends Game {
     public SpriteBatch spriteBatch;
     public BitmapFont bitmapFont;
     public String replayFileName = "replay/th_taihunBin.rpy";
-    public boolean onReplay = false;
+    public booleanean onReplay = false;
 
     public int width = 386;//540;//386;
     public int height = 600;//720;//450;
