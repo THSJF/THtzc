@@ -1,7 +1,7 @@
 package com.meng.TaiHunDanmaku.ui;
 
 import com.badlogic.gdx.*;
-import com.badlogic.gdx.backends.android.AndroidApplication;
+import com.badlogic.gdx.backends.android.*;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.meng.TaiHunDanmaku.helpers.*;
@@ -11,7 +11,7 @@ public class GameMain extends Game {
     public SpriteBatch spriteBatch;
     public BitmapFont bitmapFont;
     public String replayFileName = "replay/th_taihunBin.rpy";
-    public booleanean onReplay = false;
+    public boolean onReplay = false;
 
     public int width = 386;//540;//386;
     public int height = 600;//720;//450;

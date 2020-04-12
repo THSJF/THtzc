@@ -1,22 +1,21 @@
 package com.meng.TaiHunDanmaku.ui;
 
 import com.badlogic.gdx.graphics.*;
-import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.meng.TaiHunDanmaku.baseObjects.bigFace.*;
-import com.meng.TaiHunDanmaku.taizhang.*;
 import com.meng.TaiHunDanmaku.baseObjects.bullets.*;
 import com.meng.TaiHunDanmaku.baseObjects.bullets.enemy.*;
 import com.meng.TaiHunDanmaku.baseObjects.dropItems.*;
-import com.meng.TaiHunDanmaku.baseObjects.effects.Effect;
+import com.meng.TaiHunDanmaku.baseObjects.effects.*;
 import com.meng.TaiHunDanmaku.baseObjects.planes.myPlane.*;
-
+import com.meng.TaiHunDanmaku.taizhang.*;
 import java.util.*;
 
 
 public class LayoutManager {
 
-    public ArrayArrayList<partAgent> nextPart = new ArrayArrayList<partAgent>();
+    public ArrayList<partAgent> nextPart = new ArrayList<>();
     public Image bossLifeImage;
     public float bossMaxHp = 1;
     public GameMain gameMain;

@@ -1,5 +1,8 @@
 package runner;
 
+import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.math.*;
+
 public class BarrageType {
     public String name;
     public Rectangle rect;

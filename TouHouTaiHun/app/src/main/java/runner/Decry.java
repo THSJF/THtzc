@@ -1,10 +1,6 @@
-﻿using System;
-using System.IO;
-using System.Security.Cryptography;
-using System.Text;
+package runner;
 
-namespace CrazyStorm_1._03 {
-    internal class Cry {
+public class Decry {
         private static byte[] Keys = new byte[16]
         {
       (byte) 79,
@@ -19,7 +15,7 @@ namespace CrazyStorm_1._03 {
       (byte) 193,
       (byte) 178,
       (byte) 163,
-      byte.MaxValue,
+      Byte.MAX_VALUE,
       (byte) 162,
       (byte) 5,
       (byte) 7

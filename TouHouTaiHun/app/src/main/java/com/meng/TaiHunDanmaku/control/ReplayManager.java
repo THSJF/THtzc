@@ -8,7 +8,7 @@ import com.meng.TaiHunDanmaku.helpers.*;
 import com.meng.TaiHunDanmaku.ui.*;
 
 public class ReplayManager {
-    public static booleanean onReplay = false;
+    public static boolean onReplay = false;
   	private static Replay replay;
 
     public static void init(GameMain gameMain, long seed) {

@@ -1,33 +1,28 @@
 package com.meng.TaiHunDanmaku.baseObjects.planes.myPlane;
 
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Align;
-import com.meng.TaiHunDanmaku.BaseGameObject;
-import com.meng.TaiHunDanmaku.baseObjects.bullets.BaseEnemyBullet;
-import com.meng.TaiHunDanmaku.helpers.Data;
-import com.meng.TaiHunDanmaku.baseObjects.planes.AnimationManager;
-import com.meng.TaiHunDanmaku.baseObjects.planes.JudgeCircleAnimation;
-import com.meng.TaiHunDanmaku.baseObjects.planes.JudgeCircleAnimation2;
-import com.meng.TaiHunDanmaku.baseObjects.planes.MoveStatus;
-import com.meng.TaiHunDanmaku.baseObjects.planes.subPlane.BaseSubPlane;
-import com.meng.TaiHunDanmaku.ui.FightScreen;
-import com.meng.TaiHunDanmaku.ui.GameMain;
+import com.badlogic.gdx.math.*;
+import com.badlogic.gdx.utils.*;
+import com.meng.TaiHunDanmaku.*;
+import com.meng.TaiHunDanmaku.baseObjects.bullets.*;
+import com.meng.TaiHunDanmaku.baseObjects.planes.*;
+import com.meng.TaiHunDanmaku.baseObjects.planes.subPlane.*;
+import com.meng.TaiHunDanmaku.helpers.*;
+import com.meng.TaiHunDanmaku.ui.*;
 
 public abstract class BaseMyPlane extends BaseGameObject {
 
     public static BaseMyPlane instance;
 
     public int unmatchedTime;
-    public booleanean onUnmatched = false;
+    public boolean onUnmatched = false;
     public int bombTime;
-    public booleanean onBomb = false;
+    public boolean onBomb = false;
 
     public JudgeCircleAnimation animation = null;
     public JudgeCircleAnimation2 animation2 = null;
 
     private float playerLastX = 270;
-    public booleanean slow = false;
+    public boolean slow = false;
     public AnimationManager animationManager;
     public BaseSubPlane subPlane1, subPlane2, subPlane3, subPlane4;
 
@@ -51,7 +46,7 @@ public abstract class BaseMyPlane extends BaseGameObject {
     }
 
     public void kill() {
-        
+
     }
 
     public void update() {

@@ -28,9 +28,9 @@ public class FightScreen extends ScreenAdapter {
     public Group groupHighLight;
     public HashSet<ReflexAndThrough> reflexAndThroughs;
     public BaseEnemyPlane[] enemys;
-    public booleanean onBoss = false;
+    public boolean onBoss = false;
     public int sleep = 0;
-    public booleanean onSpellCard = false;
+    public boolean onSpellCard = false;
     static int spellHeight = 450;
     private FitViewport fitViewport;
     private GameStage gameStage;
@@ -98,22 +98,22 @@ public class FightScreen extends ScreenAdapter {
         stage.draw();
         gameMain.spriteBatch.begin();
         layoutManager.update();
-     /*      gameMain.bitmapFont.draw(gameMain.spriteBatch, "FPS:" + nowFps + "\n" +
-                    (ReplayManager.onReplay ? "replay FPS:" + replayFPS + "\n" : "") +
+		/*      gameMain.bitmapFont.draw(gameMain.spriteBatch, "FPS:" + nowFps + "\n" +
+		 (ReplayManager.onReplay ? "replay FPS:" + replayFPS + "\n" : "") +
          "pos:"+BaseMyPlane.instance.objectCenter.x+" "+BaseMyPlane.instance.objectCenter.y+"\n"+
-                "MaxPoint:" + gameMain.maxPoint
-                   + "\nmiss:" + gameMain.miss + "\n"
-           + "\nbullet:" + BaseEnemyBullet.instances.size() + "\n"
-               + "memory:" + (Runtime.getRuntime().totalMemory() * 1.0 / (1024 * 1024))
-             + isKilled()
-               , 10, 590);*/
+		 "MaxPoint:" + gameMain.maxPoint
+		 + "\nmiss:" + gameMain.miss + "\n"
+		 + "\nbullet:" + BaseEnemyBullet.instances.size() + "\n"
+		 + "memory:" + (Runtime.getRuntime().totalMemory() * 1.0 / (1024 * 1024))
+		 + isKilled()
+		 , 10, 590);*/
         gameMain.bitmapFont.draw(gameMain.spriteBatch,
-                "FPS:" + nowFps +
-                        (ReplayManager.onReplay ? "\nreplay FPS:" + replayFPS : "") +
-                        "\nmiss:" + gameMain.miss
-                , 10, 590);
+								 "FPS:" + nowFps +
+								 (ReplayManager.onReplay ? "\nreplay FPS:" + replayFPS : "") +
+								 "\nmiss:" + gameMain.miss
+								 , 10, 590);
         gameMain.bitmapFont.draw(gameMain.spriteBatch,
-                "Player:未实装\nBomb:未实装\nGraze:未实装\n最大得点:未实装\nScore:未实装\nHiScore:未实装", 190, 590);
+								 "Player:未实装\nBomb:未实装\nGraze:未实装\n最大得点:未实装\nScore:未实装\nHiScore:未实装", 190, 590);
         gameMain.spriteBatch.end();
         for (ReflexAndThrough reflexAndThrough : reflexAndThroughs) {
             reflexAndThrough.update();
@@ -125,15 +125,15 @@ public class FightScreen extends ScreenAdapter {
         super.render(delta);
     }
 
-   /* private String isKilled() {
-        StringBuilder s = new StringBuilder();
-        for (int i = 0; i < 32; i++) {
-            if (enemys[i] != null) {
-                s.append("\nHp:").append(enemys[i].getHp());
-            }
-        }
-        return s.toString();
-    }*/
+	/* private String isKilled() {
+	 StringBuilder s = new StringBuilder();
+	 for (int i = 0; i < 32; i++) {
+	 if (enemys[i] != null) {
+	 s.append("\nHp:").append(enemys[i].getHp());
+	 }
+	 }
+	 return s.toString();
+	 }*/
 
     private void init() {
         instence = this;

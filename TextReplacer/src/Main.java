@@ -5,25 +5,58 @@ import java.util.*;
 public class Main {
 	public static void main(String[] args) {
 
-		ArrayArrayList<File> fs=new ArrayArrayList<>();
+		String[][] replace={
+//			{"bool","boolean"},
+//			{"string","String"},
+//			{"Math.Sin","Math.sin"},
+//			{"Math.Cos","Math.cos"},
+//			{"Math.Abs","Math.abs"},
+//			{"Math.Sqrt","Math.sqrt"},
+//			{"float.Parse","Float.parseFloat"},
+//			{"double.parse","Double.parseDouble"},
+//			{"int.Parse","Integer.parseInt"},
+//			{".Count",".size()"},
+//			{"List","ArrayList"},
+//			{"@event","_event"},
+//			{"==\"",".equals(\""},
+//			{"Hashtable","HashMap<String.Integer>"},
+//			{"new Hashtable();","new HashMap<>();"},
+//			{"Split","split"},
+//			{"'","\""},
+	//		{"\".ToCharArray()",""},
+		//		{".Clear()",".clear()"},
+		//	{"position.X","position.x"},
+		//	{"position.Y","position.y"},
+			//{"PointF","Vector2"}
+	//		{"Add","put"},
+	//		{"foreach","for"},
+	//		{" in "," : "}
+	//		{"byte.MaxValue","Byte.MAX_VALUE"}
+			{"Contains","contains"},
+			{"Rectangle?","Rectangle"},
+			{"RemoveAt","remove"},
+			{"Atan","atan"}
+	//		{"[this.parentid]",".get(parentid)"}
+	
+		};
+
+		ArrayList<File> fs=new ArrayList<>();
 		try {
-			getFiles("/storage/emulated/0/AppProjects/THtzc/", fs);
+			getFiles("/storage/emulated/0/AppProjects/THtzc/TouHouTaiHun/app/src/main/java/runner", fs);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		for (File f:fs) {
 			String s=readString(f);
-			/*
-			 getFragment(PersonInfoFragment.class)
-			*/
-			s = s.replace("ArrayList", "ArrayArrayList");
-			//System.out.println(s);
+			for (String[] sa:replace) {
+				s = s.replace(sa[0], sa[1]);
+			}
 			saveString(f, s);
 		}
 		System.out.println("ok");
 	}
 
-	public static void getFiles(String path, ArrayArrayList<File> list) throws Exception {
+	public static void getFiles(String path, ArrayList<File> list) throws Exception {
         //目标集合fileArrayList
         File file = new File(path);
         if (file.isDirectory()) {
@@ -32,7 +65,7 @@ public class Main {
                 if (fileIndex.isDirectory()) {
                     getFiles(fileIndex.getPath(), list);
                 } else {
-					if (fileIndex.getName().endsWith(".java") || fileIndex.getName().endsWith(".xml")) {
+					if (fileIndex.getName().endsWith(".java")) {
 						list.add(fileIndex);
 					}
                 }

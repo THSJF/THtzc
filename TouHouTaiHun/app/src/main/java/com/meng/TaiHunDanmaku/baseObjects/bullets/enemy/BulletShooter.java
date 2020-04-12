@@ -43,10 +43,10 @@ public class BulletShooter {
 
     public int shooterShootAfterFrames = 0;
     public float bulletRandomDegreeRange = 0;
-    public booleanean bulletHighLight = false;
+    public boolean bulletHighLight = false;
     public int bulletLife = 7200;
     public int bulletLiveOutOfScreen = 0;
-    public ArrayArrayList<Task> bulletTasks = new ArrayArrayList<Task>();
+    public ArrayList<Task> bulletTasks = new ArrayList<>();
 
 
     private float nowCenterX = 0;
@@ -163,12 +163,12 @@ public class BulletShooter {
         return this;
     }
 
-    public BulletShooter setBulletHighLight(booleanean bulletHighLight) {
+    public BulletShooter setBulletHighLight(boolean bulletHighLight) {
         this.bulletHighLight = bulletHighLight;
         return this;
     }
 
-    public BulletShooter setBulletTasks(ArrayArrayList<Task> bulletTasks) {
+    public BulletShooter setBulletTasks(ArrayList<Task> bulletTasks) {
         this.bulletTasks = bulletTasks;
         return this;
     }

@@ -1,10 +1,22 @@
 package runner;
 
-    public class Barrage {
+import android.graphics.*;
+import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.math.*;
+import com.meng.TaiHunDanmaku.*;
+import java.util.*;
+import runner.*;
+import runner.layer.*;
+
+import com.badlogic.gdx.graphics.Color;
+import runner.layer.Batch;
+
+public class Barrage {
         public int id = -1;
         public int parentid = -2;
         public Shadows[] savesha = new Shadows[50];
-        public ArrayList<int> Covered = new ArrayList<int>();
+        public ArrayList<Integer> Covered = new ArrayList<>();
         public float dscale = 0.9f;
         private float[] conditions = new float[3];
         private float[] results = new float[21];
@@ -79,11 +91,7 @@ package runner;
         public Barrage() {
             NeedDelete=false;
             for(int index = 0;index<50;++index) {
-                savesha[index]=new Shadows {
-                    x=x,
-                    y=y,
-                    alpha=0.0f
-                };
+                savesha.get(index)=new Shadows(x,y,0);
             }
             Events=new ArrayList<Event>();
             Eventsexe=new ArrayList<BExecution>();
@@ -94,8 +102,8 @@ package runner;
             if(!IsLase&type!=-2) {
                 float x1 = x;
                 float y1 = y;
-                float x2 = Player.position.X;
-                float y2 = Player.position.Y;
+                float x2 = Player.position.x;
+                float y2 = Player.position.y;
                 int num1 = 0;
                 if(Mist) {
                     num1=15;
@@ -104,31 +112,31 @@ package runner;
                 if(type<=-1) {
                     type=-1;
                 }
-                if(type>=Main.bgset.Count) {
-                    type=Main.bgset.Count-1;
+                if(type>=Main.bgset.size()) {
+                    type=Main.bgset.size()-1;
                 }
                 if(time>15||!Mist) {
                     if(Mist&time==16||!Mist&time==1) {
                         if(fdirection==-99998.0) {
                             fdirection=MathHelper.ToDegrees(Main.Twopointangle(fx,fy,x,y));
                         } else if(fdirection==-99999.0) {
-                            fdirection=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                            fdirection=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                         } else if(this.fdirection==-100000.0) {
-                            fdirection=MathHelper.ToDegrees(Main.Twopointangle(fdirections.X,fdirections.Y,x,y));
+                            fdirection=MathHelper.ToDegrees(Main.Twopointangle(fdirections.x,fdirections.y,x,y));
                         }
                         speedd=!Bindwithspeedd ? (float)(fdirection+(double)randfdirection+(g-(float)((tiaos-1.0)/2.0))*(double)(range+randrange)/tiaos) : (float)(fdirection+(double)randfdirection+(g-(float)((tiaos-1.0)/2.0))*(double)(range+randrange)/tiaos)+bindspeedd;
                         if(sonaspeedd==-99998.0) {
                             sonaspeedd=MathHelper.ToDegrees(Main.Twopointangle(fx,fy,x,y));
                         } else if(sonaspeedd==-99999.0) {
-                            sonaspeedd=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                            sonaspeedd=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                         } else if(sonaspeedd==-100000.0) {
-                            sonaspeedd=MathHelper.ToDegrees(Main.Twopointangle(sonaspeedds.X,sonaspeedds.Y,x,y));
+                            sonaspeedd=MathHelper.ToDegrees(Main.Twopointangle(sonaspeedds.x,sonaspeedds.y,x,y));
                         }
                         aspeedd=sonaspeedd+randsonaspeedd;
-                        speedx=xscale*speed*(float)Math.Cos(MathHelper.ToRadians(speedd));
-                        speedy=yscale*speed*(float)Math.Sin(MathHelper.ToRadians(speedd));
-                        aspeedx=xscale*aspeed*(float)Math.Cos(MathHelper.ToRadians(aspeedd));
-                        aspeedy=yscale*aspeed*(float)Math.Sin(MathHelper.ToRadians(aspeedd));
+                        speedx=xscale*speed*(float)Math.cos(MathHelper.ToRadians(speedd));
+                        speedy=yscale*speed*(float)Math.sin(MathHelper.ToRadians(speedd));
+                        aspeedx=xscale*aspeed*(float)Math.cos(MathHelper.ToRadians(aspeedd));
+                        aspeedy=yscale*aspeed*(float)Math.sin(MathHelper.ToRadians(aspeedd));
                         if(Withspeedd) {
                             head=speedd+90f;
                         }
@@ -141,7 +149,7 @@ package runner;
                     }
                     if(speed!=0.0) {
                         if(speedy!=0.0) {
-                            vf=1.570796f-(float)Math.Atan(speedx/(double)xscale/(speedy/(double)yscale));
+                            vf=1.570796f-(float)Math.atan(speedx/(double)xscale/(speedy/(double)yscale));
                             if(speedy<0.0) {
                                 vf+=3.141593f;
                             }
@@ -198,27 +206,27 @@ package runner;
                     results[18]=0.0f;
                     results[19]=0.0f;
                     results[20]=0.0f;
-                    foreach(Event @event in Events) {
-                        if(@event.t<=0) {
-                            @event.t=1;
+                    for(Event _event : Events) {
+                        if(_event.t<=0) {
+                            _event.t=1;
                         }
-                        if((time-num1)%@event.t==0) {
-                            ++@event.loop;
+                        if((time-num1)%_event.t==0) {
+                            ++_event.loop;
                         }
-                        foreach(EventRead result in @event.results) {
+                        for(EventRead result : _event.results) {
                             if(result.special2==1) {
                                 conditions[0]=Time.now;
                             }
-                            if(result.opreator==">") {
-                                if(result.opreator2==">") {
-                                    if(result.collector=="且") {
-                                        if(conditions[result.contype]>float.Parse(result.condition)+(double)(@event.loop*@event.addtime)&conditions[result.contype2]>float.Parse(result.condition2)+(double)(@event.loop*@event.addtime)) {
+                            if(result.opreator.equals(">")) {
+                                if(result.opreator2.equals(">")) {
+                                    if(result.collector.equals("且")) {
+                                        if(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==10) {
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 }
                                                 if(result.changevalue==12) {
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 }
                                             }
                                             BExecution bexecution = new BExecution();
@@ -232,21 +240,21 @@ package runner;
                                                 bexecution.changetype=result.changetype;
                                                 bexecution.changevalue=result.changevalue;
                                                 bexecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                                bexecution.region=results[result.changename].ToString();
+                                                bexecution.region=results[result.changename]+"";
                                                 bexecution.time=result.times;
                                                 bexecution.ctime=bexecution.time;
-                                                Eventsexe.Add(bexecution);
+                                                Eventsexe.add(bexecution);
                                             } else {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]>float.Parse(result.condition)+(double)(@event.loop*@event.addtime)||conditions[result.contype2]>float.Parse(result.condition2)+(double)(@event.loop*@event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==10) {
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                             if(result.changevalue==12) {
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                         }
                                         BExecution bexecution = new BExecution();
@@ -260,23 +268,23 @@ package runner;
                                             bexecution.changetype=result.changetype;
                                             bexecution.changevalue=result.changevalue;
                                             bexecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                            bexecution.region=results[result.changename].ToString();
+                                            bexecution.region=results[result.changename]+"";
                                             bexecution.time=result.times;
                                             bexecution.ctime=bexecution.time;
-                                            Eventsexe.Add(bexecution);
+                                            Eventsexe.add(bexecution);
                                         } else {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="=") {
-                                    if(result.collector=="且") {
-                                        if(conditions[result.contype]>(double)float.Parse(result.condition)+@event.loop*@event.addtime&conditions[result.contype2]==(double)float.Parse(result.condition2)+@event.loop*@event.addtime) {
+                                } else if(result.opreator2.equals("=")) {
+                                    if(result.collector.equals("且")) {
+                                        if(conditions[result.contype]>(double)Float.parseFloat(result.condition)+_event.loop*_event.addtime&conditions[result.contype2]==(double)Float.parseFloat(result.condition2)+_event.loop*_event.addtime) {
                                             if(result.special==4) {
                                                 if(result.changevalue==10) {
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 }
                                                 if(result.changevalue==12) {
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 }
                                             }
                                             BExecution bexecution = new BExecution();
@@ -290,21 +298,21 @@ package runner;
                                                 bexecution.changetype=result.changetype;
                                                 bexecution.changevalue=result.changevalue;
                                                 bexecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                                bexecution.region=results[result.changename].ToString();
+                                                bexecution.region=results[result.changename]+"";
                                                 bexecution.time=result.times;
                                                 bexecution.ctime=bexecution.time;
-                                                Eventsexe.Add(bexecution);
+                                                Eventsexe.add(bexecution);
                                             } else {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]>(double)float.Parse(result.condition)+@event.loop*@event.addtime||conditions[result.contype2]==(double)float.Parse(result.condition2)+@event.loop*@event.addtime)) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]>(double)Float.parseFloat(result.condition)+_event.loop*_event.addtime||conditions[result.contype2]==(double)Float.parseFloat(result.condition2)+_event.loop*_event.addtime)) {
                                         if(result.special==4) {
                                             if(result.changevalue==10) {
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                             if(result.changevalue==12) {
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                         }
                                         BExecution bexecution = new BExecution();
@@ -318,23 +326,23 @@ package runner;
                                             bexecution.changetype=result.changetype;
                                             bexecution.changevalue=result.changevalue;
                                             bexecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                            bexecution.region=results[result.changename].ToString();
+                                            bexecution.region=results[result.changename]+"";
                                             bexecution.time=result.times;
                                             bexecution.ctime=bexecution.time;
-                                            Eventsexe.Add(bexecution);
+                                            Eventsexe.add(bexecution);
                                         } else {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="<") {
-                                    if(result.collector=="且") {
-                                        if(conditions[result.contype]>float.Parse(result.condition)+(double)(@event.loop*@event.addtime)&conditions[result.contype2]<float.Parse(result.condition2)+(double)(@event.loop*@event.addtime)) {
+                                } else if(result.opreator2.equals("<")) {
+                                    if(result.collector.equals("且")) {
+                                        if(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==10) {
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 }
                                                 if(result.changevalue==12) {
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 }
                                             }
                                             BExecution bexecution = new BExecution();
@@ -348,21 +356,21 @@ package runner;
                                                 bexecution.changetype=result.changetype;
                                                 bexecution.changevalue=result.changevalue;
                                                 bexecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                                bexecution.region=results[result.changename].ToString();
+                                                bexecution.region=results[result.changename]+"";
                                                 bexecution.time=result.times;
                                                 bexecution.ctime=bexecution.time;
-                                                Eventsexe.Add(bexecution);
+                                                Eventsexe.add(bexecution);
                                             } else {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]>float.Parse(result.condition)+(double)(@event.loop*@event.addtime)||conditions[result.contype2]<float.Parse(result.condition2)+(double)(@event.loop*@event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==10) {
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                             if(result.changevalue==12) {
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                         }
                                         BExecution bexecution = new BExecution();
@@ -376,21 +384,21 @@ package runner;
                                             bexecution.changetype=result.changetype;
                                             bexecution.changevalue=result.changevalue;
                                             bexecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                            bexecution.region=results[result.changename].ToString();
+                                            bexecution.region=results[result.changename]+"";
                                             bexecution.time=result.times;
                                             bexecution.ctime=bexecution.time;
-                                            Eventsexe.Add(bexecution);
+                                            Eventsexe.add(bexecution);
                                         } else {
                                             continue;
                                         }
                                     }
-                                } else if(conditions[result.contype]>float.Parse(result.condition)+(double)(@event.loop*@event.addtime)) {
+                                } else if(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)) {
                                     if(result.special==4) {
                                         if(result.changevalue==10) {
-                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                         }
                                         if(result.changevalue==12) {
-                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                         }
                                     }
                                     BExecution bexecution = new BExecution();
@@ -404,25 +412,25 @@ package runner;
                                         bexecution.changetype=result.changetype;
                                         bexecution.changevalue=result.changevalue;
                                         bexecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                        bexecution.region=results[result.changename].ToString();
+                                        bexecution.region=results[result.changename]+"";
                                         bexecution.time=result.times;
                                         bexecution.ctime=bexecution.time;
-                                        Eventsexe.Add(bexecution);
+                                        Eventsexe.add(bexecution);
                                     } else {
                                         continue;
                                     }
                                 }
                             }
-                            if(result.opreator=="=") {
-                                if(result.opreator2==">") {
-                                    if(result.collector=="且") {
-                                        if(conditions[result.contype]==float.Parse(result.condition)+(double)(@event.loop*@event.addtime)&conditions[result.contype2]>float.Parse(result.condition2)+(double)(@event.loop*@event.addtime)) {
+                            if(result.opreator.equals("=")) {
+                                if(result.opreator2.equals(">")) {
+                                    if(result.collector.equals("且")) {
+                                        if(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==10) {
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 }
                                                 if(result.changevalue==12) {
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 }
                                             }
                                             BExecution bexecution = new BExecution();
@@ -436,21 +444,21 @@ package runner;
                                                 bexecution.changetype=result.changetype;
                                                 bexecution.changevalue=result.changevalue;
                                                 bexecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                                bexecution.region=results[result.changename].ToString();
+                                                bexecution.region=results[result.changename]+"";
                                                 bexecution.time=result.times;
                                                 bexecution.ctime=bexecution.time;
-                                                Eventsexe.Add(bexecution);
+                                                Eventsexe.add(bexecution);
                                             } else {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]==float.Parse(result.condition)+(double)(@event.loop*@event.addtime)||conditions[result.contype2]>float.Parse(result.condition2)+(double)(@event.loop*@event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==10) {
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                             if(result.changevalue==12) {
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                         }
                                         BExecution bexecution = new BExecution();
@@ -464,23 +472,23 @@ package runner;
                                             bexecution.changetype=result.changetype;
                                             bexecution.changevalue=result.changevalue;
                                             bexecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                            bexecution.region=results[result.changename].ToString();
+                                            bexecution.region=results[result.changename]+"";
                                             bexecution.time=result.times;
                                             bexecution.ctime=bexecution.time;
-                                            Eventsexe.Add(bexecution);
+                                            Eventsexe.add(bexecution);
                                         } else {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="=") {
-                                    if(result.collector=="且") {
-                                        if(conditions[result.contype]==float.Parse(result.condition)+(double)(@event.loop*@event.addtime)&conditions[result.contype2]==float.Parse(result.condition2)+(double)(@event.loop*@event.addtime)) {
+                                } else if(result.opreator2.equals("=")) {
+                                    if(result.collector.equals("且")) {
+                                        if(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==10) {
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 }
                                                 if(result.changevalue==12) {
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 }
                                             }
                                             BExecution bexecution = new BExecution();
@@ -494,21 +502,21 @@ package runner;
                                                 bexecution.changetype=result.changetype;
                                                 bexecution.changevalue=result.changevalue;
                                                 bexecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                                bexecution.region=results[result.changename].ToString();
+                                                bexecution.region=results[result.changename]+"";
                                                 bexecution.time=result.times;
                                                 bexecution.ctime=bexecution.time;
-                                                Eventsexe.Add(bexecution);
+                                                Eventsexe.add(bexecution);
                                             } else {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]==float.Parse(result.condition)+(double)(@event.loop*@event.addtime)||conditions[result.contype2]==float.Parse(result.condition2)+(double)(@event.loop*@event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==10) {
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                             if(result.changevalue==12) {
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                         }
                                         BExecution bexecution = new BExecution();
@@ -522,23 +530,23 @@ package runner;
                                             bexecution.changetype=result.changetype;
                                             bexecution.changevalue=result.changevalue;
                                             bexecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                            bexecution.region=results[result.changename].ToString();
+                                            bexecution.region=results[result.changename]+"";
                                             bexecution.time=result.times;
                                             bexecution.ctime=bexecution.time;
-                                            Eventsexe.Add(bexecution);
+                                            Eventsexe.add(bexecution);
                                         } else {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="<") {
-                                    if(result.collector=="且") {
-                                        if(conditions[result.contype]==float.Parse(result.condition)+(double)(@event.loop*@event.addtime)&conditions[result.contype2]<float.Parse(result.condition2)+(double)(@event.loop*@event.addtime)) {
+                                } else if(result.opreator2.equals("<")) {
+                                    if(result.collector.equals("且")) {
+                                        if(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==10) {
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 }
                                                 if(result.changevalue==12) {
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 }
                                             }
                                             BExecution bexecution = new BExecution();
@@ -552,21 +560,21 @@ package runner;
                                                 bexecution.changetype=result.changetype;
                                                 bexecution.changevalue=result.changevalue;
                                                 bexecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                                bexecution.region=results[result.changename].ToString();
+                                                bexecution.region=results[result.changename]+"";
                                                 bexecution.time=result.times;
                                                 bexecution.ctime=bexecution.time;
-                                                Eventsexe.Add(bexecution);
+                                                Eventsexe.add(bexecution);
                                             } else {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]==float.Parse(result.condition)+(double)(@event.loop*@event.addtime)||conditions[result.contype2]<float.Parse(result.condition2)+(double)(@event.loop*@event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==10) {
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                             if(result.changevalue==12) {
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                         }
                                         BExecution bexecution = new BExecution();
@@ -580,21 +588,21 @@ package runner;
                                             bexecution.changetype=result.changetype;
                                             bexecution.changevalue=result.changevalue;
                                             bexecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                            bexecution.region=results[result.changename].ToString();
+                                            bexecution.region=results[result.changename]+"";
                                             bexecution.time=result.times;
                                             bexecution.ctime=bexecution.time;
-                                            Eventsexe.Add(bexecution);
+                                            Eventsexe.add(bexecution);
                                         } else {
                                             continue;
                                         }
                                     }
-                                } else if(conditions[result.contype]==float.Parse(result.condition)+(double)(@event.loop*@event.addtime)) {
+                                } else if(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)) {
                                     if(result.special==4) {
                                         if(result.changevalue==10) {
-                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                         }
                                         if(result.changevalue==12) {
-                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                         }
                                     }
                                     BExecution bexecution = new BExecution();
@@ -608,25 +616,25 @@ package runner;
                                         bexecution.changetype=result.changetype;
                                         bexecution.changevalue=result.changevalue;
                                         bexecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                        bexecution.region=results[result.changename].ToString();
+                                        bexecution.region=results[result.changename]+"";
                                         bexecution.time=result.times;
                                         bexecution.ctime=bexecution.time;
-                                        Eventsexe.Add(bexecution);
+                                        Eventsexe.add(bexecution);
                                     } else {
                                         continue;
                                     }
                                 }
                             }
-                            if(result.opreator=="<") {
-                                if(result.opreator2==">") {
-                                    if(result.collector=="且") {
-                                        if(conditions[result.contype]<float.Parse(result.condition)+(double)(@event.loop*@event.addtime)&conditions[result.contype2]>float.Parse(result.condition2)+(double)(@event.loop*@event.addtime)) {
+                            if(result.opreator.equals("<")) {
+                                if(result.opreator2.equals(">")) {
+                                    if(result.collector.equals("且")) {
+                                        if(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==10) {
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 }
                                                 if(result.changevalue==12) {
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 }
                                             }
                                             BExecution bexecution = new BExecution();
@@ -640,21 +648,21 @@ package runner;
                                                 bexecution.changetype=result.changetype;
                                                 bexecution.changevalue=result.changevalue;
                                                 bexecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                                bexecution.region=results[result.changename].ToString();
+                                                bexecution.region=results[result.changename]+"";
                                                 bexecution.time=result.times;
                                                 bexecution.ctime=bexecution.time;
-                                                Eventsexe.Add(bexecution);
+                                                Eventsexe.add(bexecution);
                                             } else {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]<float.Parse(result.condition)+(double)(@event.loop*@event.addtime)||conditions[result.contype2]>float.Parse(result.condition2)+(double)(@event.loop*@event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==10) {
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                             if(result.changevalue==12) {
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                         }
                                         BExecution bexecution = new BExecution();
@@ -668,23 +676,23 @@ package runner;
                                             bexecution.changetype=result.changetype;
                                             bexecution.changevalue=result.changevalue;
                                             bexecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                            bexecution.region=results[result.changename].ToString();
+                                            bexecution.region=results[result.changename]+"";
                                             bexecution.time=result.times;
                                             bexecution.ctime=bexecution.time;
-                                            Eventsexe.Add(bexecution);
+                                            Eventsexe.add(bexecution);
                                         } else {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="=") {
-                                    if(result.collector=="且") {
-                                        if(conditions[result.contype]<(double)float.Parse(result.condition)+@event.loop*@event.addtime&conditions[result.contype2]==float.Parse(result.condition2)+(double)(@event.loop*@event.addtime)) {
+                                } else if(result.opreator2.equals("=")) {
+                                    if(result.collector.equals("且")) {
+                                        if(conditions[result.contype]<(double)Float.parseFloat(result.condition)+_event.loop*_event.addtime&conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==10) {
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 }
                                                 if(result.changevalue==12) {
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 }
                                             }
                                             BExecution bexecution = new BExecution();
@@ -698,21 +706,21 @@ package runner;
                                                 bexecution.changetype=result.changetype;
                                                 bexecution.changevalue=result.changevalue;
                                                 bexecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                                bexecution.region=results[result.changename].ToString();
+                                                bexecution.region=results[result.changename]+"";
                                                 bexecution.time=result.times;
                                                 bexecution.ctime=bexecution.time;
-                                                Eventsexe.Add(bexecution);
+                                                Eventsexe.add(bexecution);
                                             } else {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]<float.Parse(result.condition)+(double)(@event.loop*@event.addtime)||conditions[result.contype2]==float.Parse(result.condition2)+(double)(@event.loop*@event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==10) {
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                             if(result.changevalue==12) {
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                         }
                                         BExecution bexecution = new BExecution();
@@ -726,23 +734,23 @@ package runner;
                                             bexecution.changetype=result.changetype;
                                             bexecution.changevalue=result.changevalue;
                                             bexecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                            bexecution.region=results[result.changename].ToString();
+                                            bexecution.region=results[result.changename]+"";
                                             bexecution.time=result.times;
                                             bexecution.ctime=bexecution.time;
-                                            Eventsexe.Add(bexecution);
+                                            Eventsexe.add(bexecution);
                                         } else {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="<") {
-                                    if(result.collector=="且") {
-                                        if(conditions[result.contype]<float.Parse(result.condition)+(double)(@event.loop*@event.addtime)&conditions[result.contype2]<float.Parse(result.condition2)+(double)(@event.loop*@event.addtime)) {
+                                } else if(result.opreator2.equals("<")) {
+                                    if(result.collector.equals("且")) {
+                                        if(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==10) {
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 }
                                                 if(result.changevalue==12) {
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 }
                                             }
                                             BExecution bexecution = new BExecution();
@@ -756,21 +764,21 @@ package runner;
                                                 bexecution.changetype=result.changetype;
                                                 bexecution.changevalue=result.changevalue;
                                                 bexecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                                bexecution.region=results[result.changename].ToString();
+                                                bexecution.region=results[result.changename]+"";
                                                 bexecution.time=result.times;
                                                 bexecution.ctime=bexecution.time;
-                                                Eventsexe.Add(bexecution);
+                                                Eventsexe.add(bexecution);
                                             } else {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]<float.Parse(result.condition)+(double)(@event.loop*@event.addtime)||conditions[result.contype2]<float.Parse(result.condition2)+(double)(@event.loop*@event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==10) {
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                             if(result.changevalue==12) {
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                         }
                                         BExecution bexecution = new BExecution();
@@ -784,21 +792,21 @@ package runner;
                                             bexecution.changetype=result.changetype;
                                             bexecution.changevalue=result.changevalue;
                                             bexecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                            bexecution.region=results[result.changename].ToString();
+                                            bexecution.region=results[result.changename]+"";
                                             bexecution.time=result.times;
                                             bexecution.ctime=bexecution.time;
-                                            Eventsexe.Add(bexecution);
+                                            Eventsexe.add(bexecution);
                                         } else {
                                             continue;
                                         }
                                     }
-                                } else if(conditions[result.contype]<float.Parse(result.condition)+(double)(@event.loop*@event.addtime)) {
+                                } else if(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)) {
                                     if(result.special==4) {
                                         if(result.changevalue==10) {
-                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                         }
                                         if(result.changevalue==12) {
-                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                         }
                                     }
                                     BExecution bexecution = new BExecution();
@@ -812,10 +820,10 @@ package runner;
                                         bexecution.changetype=result.changetype;
                                         bexecution.changevalue=result.changevalue;
                                         bexecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                        bexecution.region=results[result.changename].ToString();
+                                        bexecution.region=results[result.changename]+"";
                                         bexecution.time=result.times;
                                         bexecution.ctime=bexecution.time;
-                                        Eventsexe.Add(bexecution);
+                                        Eventsexe.add(bexecution);
                                     } else {
                                         continue;
                                     }
@@ -830,15 +838,15 @@ package runner;
                             }
                         }
                     }
-                    for(int index = 0;index<Eventsexe.Count;++index) {
-                        if(!Eventsexe[index].NeedDelete) {
-                            Eventsexe[index].Update(this);
+                    for(int index = 0;index<Eventsexe.size();++index) {
+                        if(!Eventsexe.get(index).NeedDelete) {
+                            Eventsexe.get(index).Update(this);
                         } else {
-                            Eventsexe.RemoveAt(index);
+                            Eventsexe.remove(index);
                             --index;
                         }
                     }
-                    if(Main.Missable&!Dis&!Player.Dis&alpha>95.0&type>=0&&Judge(x1,y1,x,y,x2,y2,Player.position.X,Player.position.Y,wscale,hscale,Main.bgset[type].pdr0,head)) {
+                    if(Main.Missable&!Dis&!Player.Dis&alpha>95.0&type>=0&&Judge(x1,y1,x,y,x2,y2,Player.position.x,Player.position.y,wscale,hscale,Main.bgset.get(type).pdr0,head)) {
                         if(!Invincible) {
                             time=1+num1+life;
                             Dis=true;
@@ -847,7 +855,7 @@ package runner;
                         }
                         Player.Dis=true;
                     }
-                    if(Main.Missable&!Dis&&Math.Sqrt((x-(double)Player.position.X)*(x-(double)Player.position.X)+(y-(double)Player.position.Y)*(y-(double)Player.position.Y))<Math.Abs(Player.time*15)&&!Invincible) {
+                    if(Main.Missable&!Dis&&Math.sqrt((x-(double)Player.position.x)*(x-(double)Player.position.x)+(y-(double)Player.position.y)*(y-(double)Player.position.y))<Math.abs(Player.time*15)&&!Invincible) {
                         time=1+num1+life;
                         Dis=true;
                         Blend=true;
@@ -855,7 +863,7 @@ package runner;
                     }
                     if(time>num1+life) {
                         if(Dispel&type>=0) {
-                            if(Main.bgset[type].rect.Width<=32) {
+                            if(Main.bgset.get(type).rect.width<=32) {
                                 fadeout+=5;
                                 alpha-=5f;
                                 if(alpha<=0.0) {
@@ -882,21 +890,21 @@ package runner;
                             NeedDelete=true;
                         }
                     }
-                } else if(!Invincible&&Math.Sqrt((x-(double)Player.position.X)*(x-(double)Player.position.X)+(y-(double)Player.position.Y)*(y-(double)Player.position.Y))<=10.0) {
+                } else if(!Invincible&&Math.sqrt((x-(double)Player.position.x)*(x-(double)Player.position.x)+(y-(double)Player.position.y)*(y-(double)Player.position.y))<=10.0) {
                     NeedDelete=true;
                 }
                 int num2 = 0;
-                foreach(Shadows shadows in savesha) {
+                for(Shadows shadows : savesha) {
                     if(shadows.alpha<=0.0)
                         ++num2;
                 }
                 if(Outdispel) {
-                    if(num2==savesha.Length) {
+                    if(num2==savesha.length) {
                         if(x<0||x>630||(y<0||y>480)) {
                             NeedDelete=true;
                         }
                     }
-                } else if(num2==savesha.Length) {
+                } else if(num2==savesha.length) {
                     if(x<-110.0||x>740.0||(y<-250.0||y>730.0)) {
                         NeedDelete=true;
                     }
@@ -913,41 +921,41 @@ package runner;
                 return;
             }
             if(time<=15&Mist) {
-                if(Main.bgset[type].rect.Width<=48) {
-                    if(Main.bgset[type].color!=-1) {
-                        s.Draw(Main.mist,new Vector2(x,y),new Rectangle?(new Rectangle(Main.bgset[type].color*32,0,32,30)),new Color(R/byte.MaxValue,G/byte.MaxValue,this.B/(float)byte.MaxValue,(float)(time/15.0*(alpha/100.0))),0.0f,new Vector2(16f,15f),(float)(Main.bgset[type].rect.Width/30.0+1.5*(15.0-time)/15.0),SpriteEffects.None,0.0f);
+                if(Main.bgset.get(type).rect.width<=48) {
+                    if(Main.bgset.get(type).color!=-1) {
+                        s.Draw(Main.mist,new Vector2(x,y),new Rectangle(new Rectangle(Main.bgset.get(type).color*32,0,32,30)),new Color(R/Byte.MAX_VALUE,G/Byte.MAX_VALUE,this.B/(float)Byte.MAX_VALUE,(float)(time/15.0*(alpha/100.0))),0.0f,new Vector2(16f,15f),(float)(Main.bgset.get(type).rect.width/30.0+1.5*(15.0-time)/15.0),SpriteEffects.None,0.0f);
                     } else if(type<228) {
-                        s.Draw(Main.barrages,new Vector2(x,y),new Rectangle?(Main.bgset[type].rect),new Color(R/byte.MaxValue,G/byte.MaxValue,B/byte.MaxValue,(float)(time/15.0*(alpha/100.0))),MathHelper.ToRadians(head)+1.570796f,new Vector2(Main.bgset[type].origin.X,Main.bgset[type].origin.Y),new Vector2(wscale,hscale),SpriteEffects.None,0.0f);
+                        s.Draw(Main.barrages,new Vector2(x,y),new Rectangle(Main.bgset.get(type).rect),new Color(R/Byte.MAX_VALUE,G/Byte.MAX_VALUE,B/Byte.MAX_VALUE,(float)(time/15.0*(alpha/100.0))),MathHelper.ToRadians(head)+1.570796f,new Vector2(Main.bgset.get(type).origin.X,Main.bgset.get(type).origin.Y),new Vector2(wscale,hscale),SpriteEffects.None,0.0f);
                     } else {
-                        s.Draw(Main.barrages2,new Vector2(x,y),new Rectangle?(Main.bgset[type].rect),new Color(R/byte.MaxValue,G/byte.MaxValue,B/byte.MaxValue,(float)(time/15.0*(alpha/100.0))),MathHelper.ToRadians(head)+1.570796f,new Vector2(Main.bgset[type].origin.X,Main.bgset[type].origin.Y),new Vector2(this.wscale,this.hscale),SpriteEffects.None,0.0f);
+                        s.Draw(Main.barrages2,new Vector2(x,y),new Rectangle(Main.bgset.get(type).rect),new Color(R/Byte.MAX_VALUE,G/Byte.MAX_VALUE,B/Byte.MAX_VALUE,(float)(time/15.0*(alpha/100.0))),MathHelper.ToRadians(head)+1.570796f,new Vector2(Main.bgset.get(type).origin.X,Main.bgset.get(type).origin.Y),new Vector2(this.wscale,this.hscale),SpriteEffects.None,0.0f);
                     }
                 } else if(type<228) {
-                    s.Draw(Main.barrages,new Vector2(x,y),new Rectangle?(Main.bgset[type].rect),new Color(R/byte.MaxValue,G/byte.MaxValue,B/byte.MaxValue,(float)(time/15.0*(alpha/100.0))),MathHelper.ToRadians(head)+1.570796f,new Vector2(Main.bgset[type].origin.X,Main.bgset[type].origin.Y),new Vector2(wscale+(float)((15.0-time)/15.0),hscale+(float)((15.0-time)/15.0)),SpriteEffects.None,0.0f);
+                    s.Draw(Main.barrages,new Vector2(x,y),new Rectangle(Main.bgset.get(type).rect),new Color(R/Byte.MAX_VALUE,G/Byte.MAX_VALUE,B/Byte.MAX_VALUE,(float)(time/15.0*(alpha/100.0))),MathHelper.ToRadians(head)+1.570796f,new Vector2(Main.bgset.get(type).origin.X,Main.bgset.get(type).origin.Y),new Vector2(wscale+(float)((15.0-time)/15.0),hscale+(float)((15.0-time)/15.0)),SpriteEffects.None,0.0f);
                 } else {
-                    s.Draw(Main.barrages2,new Vector2(x,y),new Rectangle?(Main.bgset[type].rect),new Color(R/byte.MaxValue,G/byte.MaxValue,B/byte.MaxValue,(float)(time/15.0*(alpha/100.0))),MathHelper.ToRadians(head)+1.570796f,new Vector2(Main.bgset[type].origin.X,Main.bgset[type].origin.Y),new Vector2(wscale+(float)((15.0-time)/15.0),hscale+(float)((15.0-time)/15.0)),SpriteEffects.None,0.0f);
+                    s.Draw(Main.barrages2,new Vector2(x,y),new Rectangle(Main.bgset.get(type).rect),new Color(R/Byte.MAX_VALUE,G/Byte.MAX_VALUE,B/Byte.MAX_VALUE,(float)(time/15.0*(alpha/100.0))),MathHelper.ToRadians(head)+1.570796f,new Vector2(Main.bgset.get(type).origin.X,Main.bgset.get(type).origin.Y),new Vector2(wscale+(float)((15.0-time)/15.0),hscale+(float)((15.0-time)/15.0)),SpriteEffects.None,0.0f);
                 }
             } else {
                 if(type<228) {
                     s.Draw(Main.barrages,new Vector2(x,y),
-                        new Rectangle?(Main.bgset[type].rect),new Color(R/byte.MaxValue,G/byte.MaxValue,B/byte.MaxValue,alpha/100f),
-                        MathHelper.ToRadians(head)+1.570796f,new Vector2(Main.bgset[type].origin.X,Main.bgset[type].origin.Y),new Vector2(wscale,hscale),SpriteEffects.None,0.0f);
+                        new Rectangle(Main.bgset.get(type).rect),new Color(R/Byte.MAX_VALUE,G/Byte.MAX_VALUE,B/Byte.MAX_VALUE,alpha/100f),
+                        MathHelper.ToRadians(head)+1.570796f,new Vector2(Main.bgset.get(type).origin.X,Main.bgset.get(type).origin.Y),new Vector2(wscale,hscale),SpriteEffects.None,0.0f);
                 } else {
                     s.Draw(Main.barrages2,new Vector2(x,y),
-                        new Rectangle?(Main.bgset[type].rect),new Color(R/byte.MaxValue,G/byte.MaxValue,B/byte.MaxValue,alpha/100f),
-                        MathHelper.ToRadians(head)+1.570796f,new Vector2(Main.bgset[type].origin.X,Main.bgset[type].origin.Y),new Vector2(wscale,hscale),SpriteEffects.None,0.0f);
+                        new Rectangle(Main.bgset.get(type).rect),new Color(R/Byte.MAX_VALUE,G/Byte.MAX_VALUE,B/Byte.MAX_VALUE,alpha/100f),
+                        MathHelper.ToRadians(head)+1.570796f,new Vector2(Main.bgset.get(type).origin.X,Main.bgset.get(type).origin.Y),new Vector2(wscale,hscale),SpriteEffects.None,0.0f);
                 }
                 if(Afterimage) {
-                    foreach(Shadows shadows in savesha) {
+                    for(Shadows shadows : savesha) {
                         if(shadows.alpha>0.0) {
                             shadows.alpha-=0.02f;
                             if(type<228) {
                                 s.Draw(Main.barrages,new Vector2(shadows.x,+shadows.y),
-                                    new Rectangle?(Main.bgset[type].rect),new Color(R/byte.MaxValue,G/byte.MaxValue,B/byte.MaxValue,shadows.alpha),
-                                    MathHelper.ToRadians(shadows.d)+1.570796f,new Vector2(Main.bgset[type].origin.X,Main.bgset[type].origin.Y),new Vector2(wscale,hscale),SpriteEffects.None,0.0f);
+                                    new Rectangle(Main.bgset.get(type).rect),new Color(R/Byte.MAX_VALUE,G/Byte.MAX_VALUE,B/Byte.MAX_VALUE,shadows.alpha),
+                                    MathHelper.ToRadians(shadows.d)+1.570796f,new Vector2(Main.bgset.get(type).origin.X,Main.bgset.get(type).origin.Y),new Vector2(wscale,hscale),SpriteEffects.None,0.0f);
                             } else {
                                 s.Draw(Main.barrages2,new Vector2(shadows.x,+shadows.y),
-                                    new Rectangle?(Main.bgset[type].rect),new Color(R/byte.MaxValue,G/byte.MaxValue,B/byte.MaxValue,shadows.alpha),
-                                    MathHelper.ToRadians(shadows.d)+1.570796f,new Vector2(Main.bgset[type].origin.X,Main.bgset[type].origin.Y),new Vector2(wscale,hscale),SpriteEffects.None,0.0f);
+                                    new Rectangle(Main.bgset.get(type).rect),new Color(R/Byte.MAX_VALUE,G/Byte.MAX_VALUE,B/Byte.MAX_VALUE,shadows.alpha),
+                                    MathHelper.ToRadians(shadows.d)+1.570796f,new Vector2(Main.bgset.get(type).origin.X,Main.bgset.get(type).origin.Y),new Vector2(wscale,hscale),SpriteEffects.None,0.0f);
                             }
                         }
                     }
@@ -959,8 +967,8 @@ package runner;
             if(IsLase&type!=-1) {
                 float x1 = x;
                 float y1 = y;
-                float x2 = Player.position.X;
-                float y2 = Player.position.Y;
+                float x2 = Player.position.x;
+                float y2 = Player.position.y;
                 ++time;
                 if(time<=life) {
                     conditions[0]=time;
@@ -978,21 +986,21 @@ package runner;
                     results[11]=0.0f;
                     results[12]=0.0f;
                     results[13]=0.0f;
-                    foreach(Event @event in Events) {
-                        if(@event.t<=0)
-                            @event.t=1;
-                        if(time%@event.t==0)
-                            ++@event.loop;
-                        foreach(EventRead result in @event.results) {
-                            if(result.opreator==">") {
-                                if(result.opreator2==">") {
-                                    if(result.collector=="且") {
-                                        if(conditions[result.contype]>float.Parse(result.condition)+(double)(@event.loop*@event.addtime)&conditions[result.contype2]>float.Parse(result.condition2)+(double)(@event.loop*@event.addtime)) {
+                    for(Event _event : Events) {
+                        if(_event.t<=0)
+                            _event.t=1;
+                        if(time%_event.t==0)
+                            ++_event.loop;
+                        for(EventRead result : _event.results) {
+                            if(result.opreator.equals(">")){
+                                if(result.opreator2.equals(">")){
+                                    if(result.collector.equals("且")){
+                                        if(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==6)
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 if(result.changevalue==8)
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                             BLExecution blExecution = new BLExecution();
                                             if(!result.noloop) {
@@ -1005,20 +1013,20 @@ package runner;
                                                 blExecution.changetype=result.changetype;
                                                 blExecution.changevalue=result.changevalue;
                                                 blExecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                                blExecution.region=results[result.changename].ToString();
+                                                blExecution.region=results[result.changename]+"";
                                                 blExecution.time=result.times;
                                                 blExecution.ctime=blExecution.time;
-                                                LEventsexe.Add(blExecution);
+                                                LEventsexe.add(blExecution);
                                             } else {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]>float.Parse(result.condition)+(double)(@event.loop*@event.addtime)||conditions[result.contype2]>float.Parse(result.condition2)+(double)(@event.loop*@event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==6)
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             if(result.changevalue==8)
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                         }
                                         BLExecution blExecution = new BLExecution();
                                         if(!result.noloop) {
@@ -1031,22 +1039,22 @@ package runner;
                                             blExecution.changetype=result.changetype;
                                             blExecution.changevalue=result.changevalue;
                                             blExecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                            blExecution.region=results[result.changename].ToString();
+                                            blExecution.region=results[result.changename]+"";
                                             blExecution.time=result.times;
                                             blExecution.ctime=blExecution.time;
-                                            LEventsexe.Add(blExecution);
+                                            LEventsexe.add(blExecution);
                                         } else {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="=") {
-                                    if(result.collector=="且") {
-                                        if(conditions[result.contype]>float.Parse(result.condition)+(double)(@event.loop*@event.addtime)&conditions[result.contype2]==float.Parse(result.condition2)+(double)(@event.loop*@event.addtime)) {
+                                } else if(result.opreator2.equals("=")){
+                                    if(result.collector.equals("且")){
+                                        if(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==6)
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 if(result.changevalue==8)
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                             BLExecution blExecution = new BLExecution();
                                             if(!result.noloop) {
@@ -1059,20 +1067,20 @@ package runner;
                                                 blExecution.changetype=result.changetype;
                                                 blExecution.changevalue=result.changevalue;
                                                 blExecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                                blExecution.region=results[result.changename].ToString();
+                                                blExecution.region=results[result.changename]+"";
                                                 blExecution.time=result.times;
                                                 blExecution.ctime=blExecution.time;
-                                                LEventsexe.Add(blExecution);
+                                                LEventsexe.add(blExecution);
                                             } else {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]>float.Parse(result.condition)+(double)(@event.loop*@event.addtime)||conditions[result.contype2]==float.Parse(result.condition2)+(double)(@event.loop*@event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==6)
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             if(result.changevalue==8)
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                         }
                                         BLExecution blExecution = new BLExecution();
                                         if(!result.noloop) {
@@ -1085,22 +1093,22 @@ package runner;
                                             blExecution.changetype=result.changetype;
                                             blExecution.changevalue=result.changevalue;
                                             blExecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                            blExecution.region=results[result.changename].ToString();
+                                            blExecution.region=results[result.changename]+"";
                                             blExecution.time=result.times;
                                             blExecution.ctime=blExecution.time;
-                                            LEventsexe.Add(blExecution);
+                                            LEventsexe.add(blExecution);
                                         } else {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="<") {
-                                    if(result.collector=="且") {
-                                        if(conditions[result.contype]>float.Parse(result.condition)+(double)(@event.loop*@event.addtime)&conditions[result.contype2]<float.Parse(result.condition2)+(double)(@event.loop*@event.addtime)) {
+                                } else if(result.opreator2.equals("<")){
+                                    if(result.collector.equals("且")){
+                                        if(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==6)
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 if(result.changevalue==8)
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                             BLExecution blExecution = new BLExecution();
                                             if(!result.noloop) {
@@ -1113,20 +1121,20 @@ package runner;
                                                 blExecution.changetype=result.changetype;
                                                 blExecution.changevalue=result.changevalue;
                                                 blExecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                                blExecution.region=results[result.changename].ToString();
+                                                blExecution.region=results[result.changename]+"";
                                                 blExecution.time=result.times;
                                                 blExecution.ctime=blExecution.time;
-                                                LEventsexe.Add(blExecution);
+                                                LEventsexe.add(blExecution);
                                             } else {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]>float.Parse(result.condition)+(double)(@event.loop*@event.addtime)||conditions[result.contype2]<float.Parse(result.condition2)+(double)(@event.loop*@event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==6)
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             if(result.changevalue==8)
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                         }
                                         BLExecution blExecution = new BLExecution();
                                         if(!result.noloop) {
@@ -1139,20 +1147,20 @@ package runner;
                                             blExecution.changetype=result.changetype;
                                             blExecution.changevalue=result.changevalue;
                                             blExecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                            blExecution.region=results[result.changename].ToString();
+                                            blExecution.region=results[result.changename]+"";
                                             blExecution.time=result.times;
                                             blExecution.ctime=blExecution.time;
-                                            LEventsexe.Add(blExecution);
+                                            LEventsexe.add(blExecution);
                                         } else {
                                             continue;
                                         }
                                     }
-                                } else if(conditions[result.contype]>float.Parse(result.condition)+(double)(@event.loop*@event.addtime)) {
+                                } else if(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)) {
                                     if(result.special==4) {
                                         if(result.changevalue==6)
-                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                         if(result.changevalue==8)
-                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                     }
                                     BLExecution blExecution = new BLExecution();
                                     if(!result.noloop) {
@@ -1165,24 +1173,24 @@ package runner;
                                         blExecution.changetype=result.changetype;
                                         blExecution.changevalue=result.changevalue;
                                         blExecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                        blExecution.region=results[result.changename].ToString();
+                                        blExecution.region=results[result.changename]+"";
                                         blExecution.time=result.times;
                                         blExecution.ctime=blExecution.time;
-                                        LEventsexe.Add(blExecution);
+                                        LEventsexe.add(blExecution);
                                     } else {
                                         continue;
                                     }
                                 }
                             }
-                            if(result.opreator=="=") {
-                                if(result.opreator2==">") {
-                                    if(result.collector=="且") {
-                                        if(conditions[result.contype]==float.Parse(result.condition)+(double)(@event.loop*@event.addtime)&conditions[result.contype2]>float.Parse(result.condition2)+(double)(@event.loop*@event.addtime)) {
+                            if(result.opreator.equals("=")){
+                                if(result.opreator2.equals(">")){
+                                    if(result.collector.equals("且")){
+                                        if(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==6)
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 if(result.changevalue==8)
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                             BLExecution blExecution = new BLExecution();
                                             if(!result.noloop) {
@@ -1195,20 +1203,20 @@ package runner;
                                                 blExecution.changetype=result.changetype;
                                                 blExecution.changevalue=result.changevalue;
                                                 blExecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                                blExecution.region=results[result.changename].ToString();
+                                                blExecution.region=results[result.changename]+"";
                                                 blExecution.time=result.times;
                                                 blExecution.ctime=blExecution.time;
-                                                LEventsexe.Add(blExecution);
+                                                LEventsexe.add(blExecution);
                                             } else {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]==float.Parse(result.condition)+(double)(@event.loop*@event.addtime)||conditions[result.contype2]>float.Parse(result.condition2)+(double)(@event.loop*@event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==6)
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             if(result.changevalue==8)
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                         }
                                         BLExecution blExecution = new BLExecution();
                                         if(!result.noloop) {
@@ -1221,22 +1229,22 @@ package runner;
                                             blExecution.changetype=result.changetype;
                                             blExecution.changevalue=result.changevalue;
                                             blExecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                            blExecution.region=results[result.changename].ToString();
+                                            blExecution.region=results[result.changename]+"";
                                             blExecution.time=result.times;
                                             blExecution.ctime=blExecution.time;
-                                            LEventsexe.Add(blExecution);
+                                            LEventsexe.add(blExecution);
                                         } else {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="=") {
-                                    if(result.collector=="且") {
-                                        if(conditions[result.contype]==float.Parse(result.condition)+(double)(@event.loop*@event.addtime)&conditions[result.contype2]==float.Parse(result.condition2)+(double)(@event.loop*@event.addtime)) {
+                                } else if(result.opreator2.equals("=")){
+                                    if(result.collector.equals("且")){
+                                        if(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==6)
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 if(result.changevalue==8)
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                             BLExecution blExecution = new BLExecution();
                                             if(!result.noloop) {
@@ -1249,20 +1257,20 @@ package runner;
                                                 blExecution.changetype=result.changetype;
                                                 blExecution.changevalue=result.changevalue;
                                                 blExecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                                blExecution.region=results[result.changename].ToString();
+                                                blExecution.region=results[result.changename]+"";
                                                 blExecution.time=result.times;
                                                 blExecution.ctime=blExecution.time;
-                                                LEventsexe.Add(blExecution);
+                                                LEventsexe.add(blExecution);
                                             } else {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]==float.Parse(result.condition)+(double)(@event.loop*@event.addtime)||conditions[result.contype2]==float.Parse(result.condition2)+(double)(@event.loop*@event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==6)
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             if(result.changevalue==8)
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                         }
                                         BLExecution blExecution = new BLExecution();
                                         if(!result.noloop) {
@@ -1275,22 +1283,22 @@ package runner;
                                             blExecution.changetype=result.changetype;
                                             blExecution.changevalue=result.changevalue;
                                             blExecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                            blExecution.region=results[result.changename].ToString();
+                                            blExecution.region=results[result.changename]+"";
                                             blExecution.time=result.times;
                                             blExecution.ctime=blExecution.time;
-                                            LEventsexe.Add(blExecution);
+                                            LEventsexe.add(blExecution);
                                         } else {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="<") {
-                                    if(result.collector=="且") {
-                                        if(conditions[result.contype]==float.Parse(result.condition)+(double)(@event.loop*@event.addtime)&conditions[result.contype2]<float.Parse(result.condition2)+(double)(@event.loop*@event.addtime)) {
+                                } else if(result.opreator2.equals("<")){
+                                    if(result.collector.equals("且")){
+                                        if(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==6)
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 if(result.changevalue==8)
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                             BLExecution blExecution = new BLExecution();
                                             if(!result.noloop) {
@@ -1303,20 +1311,20 @@ package runner;
                                                 blExecution.changetype=result.changetype;
                                                 blExecution.changevalue=result.changevalue;
                                                 blExecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                                blExecution.region=results[result.changename].ToString();
+                                                blExecution.region=results[result.changename]+"";
                                                 blExecution.time=result.times;
                                                 blExecution.ctime=blExecution.time;
-                                                LEventsexe.Add(blExecution);
+                                                LEventsexe.add(blExecution);
                                             } else {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]==float.Parse(result.condition)+(double)(@event.loop*@event.addtime)||conditions[result.contype2]<float.Parse(result.condition2)+(double)(@event.loop*@event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==6)
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             if(result.changevalue==8)
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                         }
                                         BLExecution blExecution = new BLExecution();
                                         if(!result.noloop) {
@@ -1329,20 +1337,20 @@ package runner;
                                             blExecution.changetype=result.changetype;
                                             blExecution.changevalue=result.changevalue;
                                             blExecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                            blExecution.region=results[result.changename].ToString();
+                                            blExecution.region=results[result.changename]+"";
                                             blExecution.time=result.times;
                                             blExecution.ctime=blExecution.time;
-                                            LEventsexe.Add(blExecution);
+                                            LEventsexe.add(blExecution);
                                         } else {
                                             continue;
                                         }
                                     }
-                                } else if(conditions[result.contype]==float.Parse(result.condition)+(double)(@event.loop*@event.addtime)) {
+                                } else if(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)) {
                                     if(result.special==4) {
                                         if(result.changevalue==6)
-                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                         if(result.changevalue==8)
-                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                     }
                                     BLExecution blExecution = new BLExecution();
                                     if(!result.noloop) {
@@ -1355,24 +1363,24 @@ package runner;
                                         blExecution.changetype=result.changetype;
                                         blExecution.changevalue=result.changevalue;
                                         blExecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                        blExecution.region=results[result.changename].ToString();
+                                        blExecution.region=results[result.changename]+"";
                                         blExecution.time=result.times;
                                         blExecution.ctime=blExecution.time;
-                                        LEventsexe.Add(blExecution);
+                                        LEventsexe.add(blExecution);
                                     } else {
                                         continue;
                                     }
                                 }
                             }
-                            if(result.opreator=="<") {
-                                if(result.opreator2==">") {
-                                    if(result.collector=="且") {
-                                        if(conditions[result.contype]<(double)float.Parse(result.condition)+@event.loop*@event.addtime&conditions[result.contype2]>float.Parse(result.condition2)+(double)(@event.loop*@event.addtime)) {
+                            if(result.opreator.equals("<")){
+                                if(result.opreator2.equals(">")){
+                                    if(result.collector.equals("且")){
+                                        if(conditions[result.contype]<(double)Float.parseFloat(result.condition)+_event.loop*_event.addtime&conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==6)
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 if(result.changevalue==8)
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                             BLExecution blExecution = new BLExecution();
                                             if(!result.noloop) {
@@ -1385,20 +1393,20 @@ package runner;
                                                 blExecution.changetype=result.changetype;
                                                 blExecution.changevalue=result.changevalue;
                                                 blExecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                                blExecution.region=results[result.changename].ToString();
+                                                blExecution.region=results[result.changename]+"";
                                                 blExecution.time=result.times;
                                                 blExecution.ctime=blExecution.time;
-                                                LEventsexe.Add(blExecution);
+                                                LEventsexe.add(blExecution);
                                             } else {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]<float.Parse(result.condition)+(double)(@event.loop*@event.addtime)||conditions[result.contype2]>float.Parse(result.condition2)+(double)(@event.loop*@event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==6)
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             if(result.changevalue==8)
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                         }
                                         BLExecution blExecution = new BLExecution();
                                         if(!result.noloop) {
@@ -1411,22 +1419,22 @@ package runner;
                                             blExecution.changetype=result.changetype;
                                             blExecution.changevalue=result.changevalue;
                                             blExecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                            blExecution.region=results[result.changename].ToString();
+                                            blExecution.region=results[result.changename]+"";
                                             blExecution.time=result.times;
                                             blExecution.ctime=blExecution.time;
-                                            LEventsexe.Add(blExecution);
+                                            LEventsexe.add(blExecution);
                                         } else {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="=") {
-                                    if(result.collector=="且") {
-                                        if(conditions[result.contype]<float.Parse(result.condition)+(double)(@event.loop*@event.addtime)&conditions[result.contype2]==float.Parse(result.condition2)+(double)(@event.loop*@event.addtime)) {
+                                } else if(result.opreator2.equals("=")){
+                                    if(result.collector.equals("且")){
+                                        if(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==6)
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 if(result.changevalue==8)
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                             BLExecution blExecution = new BLExecution();
                                             if(!result.noloop) {
@@ -1439,20 +1447,20 @@ package runner;
                                                 blExecution.changetype=result.changetype;
                                                 blExecution.changevalue=result.changevalue;
                                                 blExecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                                blExecution.region=results[result.changename].ToString();
+                                                blExecution.region=results[result.changename]+"";
                                                 blExecution.time=result.times;
                                                 blExecution.ctime=blExecution.time;
-                                                LEventsexe.Add(blExecution);
+                                                LEventsexe.add(blExecution);
                                             } else {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]<float.Parse(result.condition)+(double)(@event.loop*@event.addtime)||conditions[result.contype2]==float.Parse(result.condition2)+(double)(@event.loop*@event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==6)
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             if(result.changevalue==8)
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                         }
                                         BLExecution blExecution = new BLExecution();
                                         if(!result.noloop) {
@@ -1465,22 +1473,22 @@ package runner;
                                             blExecution.changetype=result.changetype;
                                             blExecution.changevalue=result.changevalue;
                                             blExecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                            blExecution.region=results[result.changename].ToString();
+                                            blExecution.region=results[result.changename]+"";
                                             blExecution.time=result.times;
                                             blExecution.ctime=blExecution.time;
-                                            LEventsexe.Add(blExecution);
+                                            LEventsexe.add(blExecution);
                                         } else {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="<") {
-                                    if(result.collector=="且") {
-                                        if(conditions[result.contype]<float.Parse(result.condition)+(double)(@event.loop*@event.addtime)&conditions[result.contype2]<float.Parse(result.condition2)+(double)(@event.loop*@event.addtime)) {
+                                } else if(result.opreator2.equals("<")){
+                                    if(result.collector.equals("且")){
+                                        if(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==6)
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                                 if(result.changevalue==8)
-                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                    result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             }
                                             BLExecution blExecution = new BLExecution();
                                             if(!result.noloop) {
@@ -1493,20 +1501,20 @@ package runner;
                                                 blExecution.changetype=result.changetype;
                                                 blExecution.changevalue=result.changevalue;
                                                 blExecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                                blExecution.region=results[result.changename].ToString();
+                                                blExecution.region=results[result.changename]+"";
                                                 blExecution.time=result.times;
                                                 blExecution.ctime=blExecution.time;
-                                                LEventsexe.Add(blExecution);
+                                                LEventsexe.add(blExecution);
                                             } else {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]<float.Parse(result.condition)+(double)(@event.loop*@event.addtime)||conditions[result.contype2]<float.Parse(result.condition2)+(double)(@event.loop*@event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==6)
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                             if(result.changevalue==8)
-                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                                result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                         }
                                         BLExecution blExecution = new BLExecution();
                                         if(!result.noloop) {
@@ -1519,20 +1527,20 @@ package runner;
                                             blExecution.changetype=result.changetype;
                                             blExecution.changevalue=result.changevalue;
                                             blExecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                            blExecution.region=results[result.changename].ToString();
+                                            blExecution.region=results[result.changename]+"";
                                             blExecution.time=result.times;
                                             blExecution.ctime=blExecution.time;
-                                            LEventsexe.Add(blExecution);
+                                            LEventsexe.add(blExecution);
                                         } else {
                                             continue;
                                         }
                                     }
-                                } else if(conditions[result.contype]<float.Parse(result.condition)+(double)(@event.loop*@event.addtime)) {
+                                } else if(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)) {
                                     if(result.special==4) {
                                         if(result.changevalue==6)
-                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                         if(result.changevalue==8)
-                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,x,y));
+                                            result.res=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
                                     }
                                     BLExecution blExecution = new BLExecution();
                                     if(!result.noloop) {
@@ -1545,10 +1553,10 @@ package runner;
                                         blExecution.changetype=result.changetype;
                                         blExecution.changevalue=result.changevalue;
                                         blExecution.value=result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
-                                        blExecution.region=results[result.changename].ToString();
+                                        blExecution.region=results[result.changename]+"";
                                         blExecution.time=result.times;
                                         blExecution.ctime=blExecution.time;
-                                        LEventsexe.Add(blExecution);
+                                        LEventsexe.add(blExecution);
                                     } else {
                                         continue;
                                     }
@@ -1560,18 +1568,18 @@ package runner;
                             }
                         }
                     }
-                    for(int index = 0;index<LEventsexe.Count;++index) {
-                        if(!LEventsexe[index].NeedDelete) {
-                            LEventsexe[index].Update(this);
+                    for(int index = 0;index<LEventsexe.size();++index) {
+                        if(!LEventsexe.get(index).NeedDelete) {
+                            LEventsexe.get(index).Update(this);
                         } else {
-                            LEventsexe.RemoveAt(index);
+                            LEventsexe.remove(index);
                             --index;
                         }
                     }
                     rwscale=wscale;
                     if(!IsRay) {
                         if(speedy!=0.0) {
-                            vf=1.570796f-(float)Math.Atan(speedx/(double)speedy);
+                            vf=1.570796f-(float)Math.atan(speedx/(double)speedy);
                             if(speedy<0.0) {
                                 vf+=3.141593f;
                             }
@@ -1605,12 +1613,12 @@ package runner;
                             }
                         }
                         if(Main.Missable&!Player.Dis&alpha>95.0) {
-                            float bx = (float)((x1+(double)x1+rlongs*Math.Cos(MathHelper.ToRadians(speedd)))/2.0);
-                            float by = (float)((y1+(double)y1+rlongs*Math.Sin(MathHelper.ToRadians(speedd)))/2.0);
-                            float x3 = (float)((x+(double)x+rlongs*Math.Cos(MathHelper.ToRadians(speedd)))/2.0);
-                            float y3 = (float)((y+(double)y+rlongs*Math.Sin(MathHelper.ToRadians(speedd)))/2.0);
+                            float bx = (float)((x1+(double)x1+rlongs*Math.cos(MathHelper.ToRadians(speedd)))/2.0);
+                            float by = (float)((y1+(double)y1+rlongs*Math.sin(MathHelper.ToRadians(speedd)))/2.0);
+                            float x3 = (float)((x+(double)x+rlongs*Math.cos(MathHelper.ToRadians(speedd)))/2.0);
+                            float y3 = (float)((y+(double)y+rlongs*Math.sin(MathHelper.ToRadians(speedd)))/2.0);
                             float hs = rlongs/6f;
-                            if(Judge(bx,by,x3,y3,x2,y2,Player.position.X,Player.position.Y,wscale,hs,2f,head)&wscale>=0.5) {
+                            if(Judge(bx,by,x3,y3,x2,y2,Player.position.x,Player.position.y,wscale,hs,2f,head)&wscale>=0.5) {
                                 if(!Invincible) {
                                     time=1+life;
                                     Dis=true;
@@ -1619,7 +1627,7 @@ package runner;
                                 Player.Dis=true;
                             }
                         }
-                        if(Main.Missable&!Dis&&Math.Sqrt((x-(double)Player.position.X)*(x-(double)Player.position.X)+(y-(double)Player.position.Y)*(y-(double)Player.position.Y))<Math.Abs(Player.time*15)&&!Invincible) {
+                        if(Main.Missable&!Dis&&Math.sqrt((x-(double)Player.position.x)*(x-(double)Player.position.x)+(y-(double)Player.position.y)*(y-(double)Player.position.y))<Math.abs(Player.time*15)&&!Invincible) {
                             time=1+life;
                             Dis=true;
                             randf=10f*(float)Main.rand.NextDouble();
@@ -1632,12 +1640,12 @@ package runner;
                         x+=speedx*Time.stop;
                         y+=speedy*Time.stop;
                         if(Main.Missable&!Dis&!Player.Dis&alpha>95.0) {
-                            float bx = (float)((x1+(double)x1+rlongs*Math.Cos(MathHelper.ToRadians(speedd)))/2.0);
-                            float by = (float)((y1+(double)y1+rlongs*Math.Sin(MathHelper.ToRadians(speedd)))/2.0);
-                            float x3 = (float)((x+(double)x+rlongs*Math.Cos(MathHelper.ToRadians(speedd)))/2.0);
-                            float y3 = (float)((y+(double)y+rlongs*Math.Sin(MathHelper.ToRadians(speedd)))/2.0);
+                            float bx = (float)((x1+(double)x1+rlongs*Math.cos(MathHelper.ToRadians(speedd)))/2.0);
+                            float by = (float)((y1+(double)y1+rlongs*Math.sin(MathHelper.ToRadians(speedd)))/2.0);
+                            float x3 = (float)((x+(double)x+rlongs*Math.cos(MathHelper.ToRadians(speedd)))/2.0);
+                            float y3 = (float)((y+(double)y+rlongs*Math.sin(MathHelper.ToRadians(speedd)))/2.0);
                             float hs = rlongs/6f;
-                            if(Judge(bx,by,x3,y3,x2,y2,Player.position.X,Player.position.Y,wscale,hs,2f,head)&wscale>=0.5) {
+                            if(Judge(bx,by,x3,y3,x2,y2,Player.position.x,Player.position.y,wscale,hs,2f,head)&wscale>=0.5) {
                                 if(!Invincible) {
                                     time=1+life;
                                     Dis=true;
@@ -1646,7 +1654,7 @@ package runner;
                                 Player.Dis=true;
                             }
                         }
-                        if(Main.Missable&!Dis&&Math.Sqrt((x-(double)Player.position.X)*(x-(double)Player.position.X)+(y-(double)Player.position.Y)*(y-(double)Player.position.Y))<Math.Abs(Player.time*15)&&!Invincible) {
+                        if(Main.Missable&!Dis&&Math.sqrt((x-(double)Player.position.x)*(x-(double)Player.position.x)+(y-(double)Player.position.y)*(y-(double)Player.position.y))<Math.abs(Player.time*15)&&!Invincible) {
                             time=1+life;
                             Dis=true;
                             randf=10f*(float)Main.rand.NextDouble();
@@ -1679,11 +1687,11 @@ package runner;
                             NeedDelete=true;
                         }
                     }
-                    for(int index = 0;index<LEventsexe.Count;++index) {
-                        if(!LEventsexe[index].NeedDelete) {
-                            LEventsexe[index].Update(this);
+                    for(int index = 0;index<LEventsexe.size();++index) {
+                        if(!LEventsexe.get(index).NeedDelete) {
+                            LEventsexe.get(index).Update(this);
                         } else {
-                            LEventsexe.RemoveAt(index);
+                            LEventsexe.remove(index);
                             --index;
                         }
                     }
@@ -1699,9 +1707,9 @@ package runner;
             if(!(IsLase&type!=-1))
                 return;
             if(((time<=life ? 1 : 0)&((double)rlongs<longs&!Alreadylong ? 1 : (IsRay ? 1 : 0)))!=0) {
-                s.Draw(Main.mist,new Vector2(x,y),new Rectangle?(new Rectangle(Main.bgset[32+type].color*32,0,32,30)),new Color(1f,1f,1f,0.8f),MathHelper.ToDegrees(time*5),new Vector2(16f,15f),1f,SpriteEffects.None,0.0f);
+                s.Draw(Main.mist,new Vector2(x,y),new Rectangle(new Rectangle(Main.bgset[32+type].color*32,0,32,30)),new Color(1f,1f,1f,0.8f),MathHelper.ToDegrees(time*5),new Vector2(16f,15f),1f,SpriteEffects.None,0.0f);
             }
-            s.Draw(Main.barrages,new Vector2(x,y),new Rectangle?(Main.bgset[32+type].rect),new Color(1f,1f,1f,alpha/100f),MathHelper.ToRadians(head)-1.570796f,new Vector2(Main.bgset[32+type].rect.Width/2,0.0f),new Vector2(wscale,rlongs/Main.bgset[32+type].rect.Height),SpriteEffects.None,0.0f);
+            s.Draw(Main.barrages,new Vector2(x,y),new Rectangle(Main.bgset[32+type].rect),new Color(1f,1f,1f,alpha/100f),MathHelper.ToRadians(head)-1.570796f,new Vector2(Main.bgset[32+type].rect.width/2,0.0f),new Vector2(wscale,rlongs/Main.bgset[32+type].rect.Height),SpriteEffects.None,0.0f);
         }
 
         private boolean Judge(float bx,float by,float x,float y,float bpx,float bpy,float px,float py,float ws,float hs,float pdr,float dr) {
@@ -1721,14 +1729,14 @@ package runner;
                     num3=x;
                     num4=py;
                 }
-                if(Math.Abs(Math.Abs(px-num3)+Math.Abs(bpx-num3)-Math.Abs(px-bpx))>0.0) {
+                if(Math.abs(Math.abs(px-num3)+Math.abs(bpx-num3)-Math.abs(px-bpx))>0.0) {
                     num3=px;
                     num4=py;
                 }
             } else if(num2!=0.0) {
                 num3=px;
                 num4=y;
-                if(Math.Abs(Math.Abs(py-num4)+Math.Abs(bpy-num4)-Math.Abs(py-bpy))>0.0) {
+                if(Math.abs(Math.abs(py-num4)+Math.abs(bpy-num4)-Math.abs(py-bpy))>0.0) {
                     num3=px;
                     num4=py;
                 }
@@ -1739,16 +1747,16 @@ package runner;
             dr=MathHelper.ToRadians(dr);
             double num6;
             if((double)num3-x!=0.0) {
-                num6=Math.Atan((num4-(double)y)/(num3-(double)x));
+                num6=Math.atan((num4-(double)y)/(num3-(double)x));
                 if((double)num3-x<0.0) {
                     num6+=3.14159274101257;
                 }
             } else {
                 num6=num4-(double)y<=0.0 ? -1.57079637050629 : 1.57079637050629;
             }
-            float num7 = (float)Math.Sqrt((x-(double)num3)*(x-(double)num3)+(y-(double)num4)*(y-(double)num4));
-            float num8 = x+num7*(float)Math.Cos(num6-dr);
-            float num9 = y+num7*(float)Math.Sin(num6-dr);
+            float num7 = (float)Math.sqrt((x-(double)num3)*(x-(double)num3)+(y-(double)num4)*(y-(double)num4));
+            float num8 = x+num7*(float)Math.cos(num6-dr);
+            float num9 = y+num7*(float)Math.sin(num6-dr);
             x=(float)(((double)x-num8)*(x-(double)num8));
             y=(float)(((double)y-num9)*(y-(double)num9));
             float num10 = (float)(pdr*(double)ws*pdr*ws);

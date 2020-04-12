@@ -1,4 +1,4 @@
-package runner.Layer;
+package runner.layer;
 
 public class EventRead implements Cloneable {
 	public float rand;
@@ -24,5 +24,13 @@ public class EventRead implements Cloneable {
 	@Override
 	protected EventRead clone() throws CloneNotSupportedException {
 		return (EventRead)super.clone();
-	}   
+	}
+
+	public EventRead Copy() {
+		try {
+			return clone();
+		} catch (CloneNotSupportedException e) {
+			return null;
+		}
+	}
 }

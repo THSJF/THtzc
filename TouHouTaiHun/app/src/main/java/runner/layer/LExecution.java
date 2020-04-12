@@ -1,5 +1,5 @@
-package runner.Layer;
-    public class LExecution {
+package runner.layer;
+public class LExecution {
         public int parentid;
         public int id;
         public int change;
@@ -105,8 +105,8 @@ package runner.Layer;
                             objects.speed+=this.value/(float)this.time;
                         else if(this.change==2)
                             objects.speed-=this.value/(float)this.time;
-                        objects.speedx=objects.speed*(float)Math.Cos((double)MathHelper.ToRadians(objects.speedd));
-                        objects.speedy=objects.speed*(float)Math.Sin((double)MathHelper.ToRadians(objects.speedd));
+                        objects.speedx=objects.speed*(float)Math.cos((double)MathHelper.ToRadians(objects.speedd));
+                        objects.speedy=objects.speed*(float)Math.sin((double)MathHelper.ToRadians(objects.speedd));
                         break;
                     case 7:
                         if(this.change==0)
@@ -115,8 +115,8 @@ package runner.Layer;
                             objects.speedd+=this.value/(float)this.time;
                         else if(this.change==2)
                             objects.speedd-=this.value/(float)this.time;
-                        objects.speedx=objects.speed*(float)Math.Cos((double)MathHelper.ToRadians(objects.speedd));
-                        objects.speedy=objects.speed*(float)Math.Sin((double)MathHelper.ToRadians(objects.speedd));
+                        objects.speedx=objects.speed*(float)Math.cos((double)MathHelper.ToRadians(objects.speedd));
+                        objects.speedy=objects.speed*(float)Math.sin((double)MathHelper.ToRadians(objects.speedd));
                         break;
                     case 8:
                         if(this.change==0)
@@ -125,8 +125,8 @@ package runner.Layer;
                             objects.aspeed+=this.value/(float)this.time;
                         else if(this.change==2)
                             objects.aspeed-=this.value/(float)this.time;
-                        objects.aspeedx=objects.aspeed*(float)Math.Cos((double)MathHelper.ToRadians(objects.aspeedd));
-                        objects.aspeedy=objects.aspeed*(float)Math.Sin((double)MathHelper.ToRadians(objects.aspeedd));
+                        objects.aspeedx=objects.aspeed*(float)Math.cos((double)MathHelper.ToRadians(objects.aspeedd));
+                        objects.aspeedy=objects.aspeed*(float)Math.sin((double)MathHelper.ToRadians(objects.aspeedd));
                         break;
                     case 9:
                         if(this.change==0)
@@ -135,8 +135,8 @@ package runner.Layer;
                             objects.aspeedd+=this.value/(float)this.time;
                         else if(this.change==2)
                             objects.aspeedd-=this.value/(float)this.time;
-                        objects.aspeedx=objects.aspeed*(float)Math.Cos((double)MathHelper.ToRadians(objects.aspeedd));
-                        objects.aspeedy=objects.aspeed*(float)Math.Sin((double)MathHelper.ToRadians(objects.aspeedd));
+                        objects.aspeedx=objects.aspeed*(float)Math.cos((double)MathHelper.ToRadians(objects.aspeedd));
+                        objects.aspeedy=objects.aspeed*(float)Math.sin((double)MathHelper.ToRadians(objects.aspeedd));
                         break;
                     case 10:
                         if(this.change==0) {
@@ -410,8 +410,8 @@ package runner.Layer;
                             objects.speed+=this.value;
                         else if(this.change==2)
                             objects.speed-=this.value;
-                        objects.speedx=objects.speed*(float)Math.Cos((double)MathHelper.ToRadians(objects.speedd));
-                        objects.speedy=objects.speed*(float)Math.Sin((double)MathHelper.ToRadians(objects.speedd));
+                        objects.speedx=objects.speed*(float)Math.cos((double)MathHelper.ToRadians(objects.speedd));
+                        objects.speedy=objects.speed*(float)Math.sin((double)MathHelper.ToRadians(objects.speedd));
                         break;
                     case 7:
                         if(this.change==0)
@@ -420,8 +420,8 @@ package runner.Layer;
                             objects.speedd+=this.value;
                         else if(this.change==2)
                             objects.speedd-=this.value;
-                        objects.speedx=objects.speed*(float)Math.Cos((double)MathHelper.ToRadians(objects.speedd));
-                        objects.speedy=objects.speed*(float)Math.Sin((double)MathHelper.ToRadians(objects.speedd));
+                        objects.speedx=objects.speed*(float)Math.cos((double)MathHelper.ToRadians(objects.speedd));
+                        objects.speedy=objects.speed*(float)Math.sin((double)MathHelper.ToRadians(objects.speedd));
                         break;
                     case 8:
                         if(this.change==0)
@@ -430,8 +430,8 @@ package runner.Layer;
                             objects.aspeed+=this.value;
                         else if(this.change==2)
                             objects.aspeed-=this.value;
-                        objects.aspeedx=objects.aspeed*(float)Math.Cos((double)MathHelper.ToRadians(objects.aspeedd));
-                        objects.aspeedy=objects.aspeed*(float)Math.Sin((double)MathHelper.ToRadians(objects.aspeedd));
+                        objects.aspeedx=objects.aspeed*(float)Math.cos((double)MathHelper.ToRadians(objects.aspeedd));
+                        objects.aspeedy=objects.aspeed*(float)Math.sin((double)MathHelper.ToRadians(objects.aspeedd));
                         break;
                     case 9:
                         if(this.change==0)
@@ -440,8 +440,8 @@ package runner.Layer;
                             objects.aspeedd+=this.value;
                         else if(this.change==2)
                             objects.aspeedd-=this.value;
-                        objects.aspeedx=objects.aspeed*(float)Math.Cos((double)MathHelper.ToRadians(objects.aspeedd));
-                        objects.aspeedy=objects.aspeed*(float)Math.Sin((double)MathHelper.ToRadians(objects.aspeedd));
+                        objects.aspeedx=objects.aspeed*(float)Math.cos((double)MathHelper.ToRadians(objects.aspeedd));
+                        objects.aspeedy=objects.aspeed*(float)Math.sin((double)MathHelper.ToRadians(objects.aspeedd));
                         break;
                     case 10:
                         if(this.change==0) {
@@ -626,279 +626,279 @@ package runner.Layer;
                 switch(this.changevalue) {
                     case 0:
                         if(this.change==0) {
-                            objects.r=float.Parse(this.region)+(this.value-float.Parse(this.region))*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.r=Float.parseFloat(this.region)+(this.value-Float.parseFloat(this.region))*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==1) {
-                            objects.r=float.Parse(this.region)+this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.r=Float.parseFloat(this.region)+this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==2) {
-                            objects.r=float.Parse(this.region)-this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.r=Float.parseFloat(this.region)-this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         break;
                     case 1:
                         if(this.change==0) {
-                            objects.rdirection=float.Parse(this.region)+(this.value-float.Parse(this.region))*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.rdirection=Float.parseFloat(this.region)+(this.value-Float.parseFloat(this.region))*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==1) {
-                            objects.rdirection=float.Parse(this.region)+this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.rdirection=Float.parseFloat(this.region)+this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==2) {
-                            objects.rdirection=float.Parse(this.region)-this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.rdirection=Float.parseFloat(this.region)-this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         break;
                     case 2:
                         if(this.change==0) {
-                            objects.tiao=(int)((double)float.Parse(this.region)+((double)this.value-(double)float.Parse(this.region))*Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
+                            objects.tiao=(int)((double)Float.parseFloat(this.region)+((double)this.value-(double)Float.parseFloat(this.region))*Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
                             break;
                         }
                         if(this.change==1) {
-                            objects.tiao=(int)((double)float.Parse(this.region)+(double)this.value*Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
+                            objects.tiao=(int)((double)Float.parseFloat(this.region)+(double)this.value*Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
                             break;
                         }
                         if(this.change==2) {
-                            objects.tiao=(int)((double)float.Parse(this.region)-(double)this.value*Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
+                            objects.tiao=(int)((double)Float.parseFloat(this.region)-(double)this.value*Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
                             break;
                         }
                         break;
                     case 3:
                         if(this.change==0) {
-                            objects.t=(int)((double)float.Parse(this.region)+((double)this.value-(double)float.Parse(this.region))*Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
+                            objects.t=(int)((double)Float.parseFloat(this.region)+((double)this.value-(double)Float.parseFloat(this.region))*Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
                             break;
                         }
                         if(this.change==1) {
-                            objects.t=(int)((double)float.Parse(this.region)+(double)this.value*Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
+                            objects.t=(int)((double)Float.parseFloat(this.region)+(double)this.value*Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
                             break;
                         }
                         if(this.change==2) {
-                            objects.t=(int)((double)float.Parse(this.region)-(double)this.value*Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
+                            objects.t=(int)((double)Float.parseFloat(this.region)-(double)this.value*Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
                             break;
                         }
                         break;
                     case 4:
                         if(this.change==0) {
-                            objects.fdirection=float.Parse(this.region)+(this.value-float.Parse(this.region))*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.fdirection=Float.parseFloat(this.region)+(this.value-Float.parseFloat(this.region))*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==1) {
-                            objects.fdirection=float.Parse(this.region)+this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.fdirection=Float.parseFloat(this.region)+this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==2) {
-                            objects.fdirection=float.Parse(this.region)-this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.fdirection=Float.parseFloat(this.region)-this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         break;
                     case 5:
                         if(this.change==0) {
-                            objects.range=(int)((double)float.Parse(this.region)+((double)this.value-(double)float.Parse(this.region))*Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
+                            objects.range=(int)((double)Float.parseFloat(this.region)+((double)this.value-(double)Float.parseFloat(this.region))*Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
                             break;
                         }
                         if(this.change==1) {
-                            objects.range=(int)((double)float.Parse(this.region)+(double)this.value*Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
+                            objects.range=(int)((double)Float.parseFloat(this.region)+(double)this.value*Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
                             break;
                         }
                         if(this.change==2) {
-                            objects.range=(int)((double)float.Parse(this.region)-(double)this.value*Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
+                            objects.range=(int)((double)Float.parseFloat(this.region)-(double)this.value*Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
                             break;
                         }
                         break;
                     case 6:
                         if(this.change==0)
-                            objects.speed=float.Parse(this.region)+(this.value-float.Parse(this.region))*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.speed=Float.parseFloat(this.region)+(this.value-Float.parseFloat(this.region))*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                         else if(this.change==1)
-                            objects.speed=float.Parse(this.region)+this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.speed=Float.parseFloat(this.region)+this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                         else if(this.change==2)
-                            objects.speed=float.Parse(this.region)-this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
-                        objects.speedx=objects.speed*(float)Math.Cos((double)MathHelper.ToRadians(objects.speedd));
-                        objects.speedy=objects.speed*(float)Math.Sin((double)MathHelper.ToRadians(objects.speedd));
+                            objects.speed=Float.parseFloat(this.region)-this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                        objects.speedx=objects.speed*(float)Math.cos((double)MathHelper.ToRadians(objects.speedd));
+                        objects.speedy=objects.speed*(float)Math.sin((double)MathHelper.ToRadians(objects.speedd));
                         break;
                     case 7:
                         if(this.change==0)
-                            objects.speedd=float.Parse(this.region)+(this.value-float.Parse(this.region))*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.speedd=Float.parseFloat(this.region)+(this.value-Float.parseFloat(this.region))*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                         else if(this.change==1)
-                            objects.speedd=float.Parse(this.region)+this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.speedd=Float.parseFloat(this.region)+this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                         else if(this.change==2)
-                            objects.speedd=float.Parse(this.region)-this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
-                        objects.speedx=objects.speed*(float)Math.Cos((double)MathHelper.ToRadians(objects.speedd));
-                        objects.speedy=objects.speed*(float)Math.Sin((double)MathHelper.ToRadians(objects.speedd));
+                            objects.speedd=Float.parseFloat(this.region)-this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                        objects.speedx=objects.speed*(float)Math.cos((double)MathHelper.ToRadians(objects.speedd));
+                        objects.speedy=objects.speed*(float)Math.sin((double)MathHelper.ToRadians(objects.speedd));
                         break;
                     case 8:
                         if(this.change==0)
-                            objects.aspeed=float.Parse(this.region)+(this.value-float.Parse(this.region))*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.aspeed=Float.parseFloat(this.region)+(this.value-Float.parseFloat(this.region))*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                         else if(this.change==1)
-                            objects.aspeed=float.Parse(this.region)+this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.aspeed=Float.parseFloat(this.region)+this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                         else if(this.change==2)
-                            objects.aspeed=float.Parse(this.region)-this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
-                        objects.aspeedx=objects.aspeed*(float)Math.Cos((double)MathHelper.ToRadians(objects.aspeedd));
-                        objects.aspeedy=objects.aspeed*(float)Math.Sin((double)MathHelper.ToRadians(objects.aspeedd));
+                            objects.aspeed=Float.parseFloat(this.region)-this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                        objects.aspeedx=objects.aspeed*(float)Math.cos((double)MathHelper.ToRadians(objects.aspeedd));
+                        objects.aspeedy=objects.aspeed*(float)Math.sin((double)MathHelper.ToRadians(objects.aspeedd));
                         break;
                     case 9:
                         if(this.change==0)
-                            objects.aspeedd=float.Parse(this.region)+(this.value-float.Parse(this.region))*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.aspeedd=Float.parseFloat(this.region)+(this.value-Float.parseFloat(this.region))*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                         else if(this.change==1)
-                            objects.aspeedd=float.Parse(this.region)+this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.aspeedd=Float.parseFloat(this.region)+this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                         else if(this.change==2)
-                            objects.aspeedd=float.Parse(this.region)-this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
-                        objects.aspeedx=objects.aspeed*(float)Math.Cos((double)MathHelper.ToRadians(objects.aspeedd));
-                        objects.aspeedy=objects.aspeed*(float)Math.Sin((double)MathHelper.ToRadians(objects.aspeedd));
+                            objects.aspeedd=Float.parseFloat(this.region)-this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                        objects.aspeedx=objects.aspeed*(float)Math.cos((double)MathHelper.ToRadians(objects.aspeedd));
+                        objects.aspeedy=objects.aspeed*(float)Math.sin((double)MathHelper.ToRadians(objects.aspeedd));
                         break;
                     case 10:
                         if(this.change==0) {
-                            objects.sonlife=(int)((double)float.Parse(this.region)+((double)this.value-(double)float.Parse(this.region))*Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
+                            objects.sonlife=(int)((double)Float.parseFloat(this.region)+((double)this.value-(double)Float.parseFloat(this.region))*Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
                             break;
                         }
                         if(this.change==1) {
-                            objects.sonlife=(int)((double)float.Parse(this.region)+(double)this.value*Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
+                            objects.sonlife=(int)((double)Float.parseFloat(this.region)+(double)this.value*Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
                             break;
                         }
                         if(this.change==2) {
-                            objects.sonlife=(int)((double)float.Parse(this.region)-(double)this.value*Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
+                            objects.sonlife=(int)((double)Float.parseFloat(this.region)-(double)this.value*Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime)))));
                             break;
                         }
                         break;
                     case 11:
                         if(this.change==0) {
-                            objects.type=float.Parse(this.region)+(this.value-float.Parse(this.region))*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.type=Float.parseFloat(this.region)+(this.value-Float.parseFloat(this.region))*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==1) {
-                            objects.type=float.Parse(this.region)+this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.type=Float.parseFloat(this.region)+this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==2) {
-                            objects.type=float.Parse(this.region)-this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.type=Float.parseFloat(this.region)-this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         break;
                     case 12:
                         if(this.change==0) {
-                            objects.wscale=float.Parse(this.region)+(this.value-float.Parse(this.region))*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.wscale=Float.parseFloat(this.region)+(this.value-Float.parseFloat(this.region))*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==1) {
-                            objects.wscale=float.Parse(this.region)+this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.wscale=Float.parseFloat(this.region)+this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==2) {
-                            objects.wscale=float.Parse(this.region)-this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.wscale=Float.parseFloat(this.region)-this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         break;
                     case 13:
                         if(this.change==0) {
-                            objects.longs=float.Parse(this.region)+(this.value-float.Parse(this.region))*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.longs=Float.parseFloat(this.region)+(this.value-Float.parseFloat(this.region))*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==1) {
-                            objects.longs=float.Parse(this.region)+this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.longs=Float.parseFloat(this.region)+this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==2) {
-                            objects.longs=float.Parse(this.region)-this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.longs=Float.parseFloat(this.region)-this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         break;
                     case 14:
                         if(this.change==0) {
-                            objects.alpha=float.Parse(this.region)+(this.value-float.Parse(this.region))*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.alpha=Float.parseFloat(this.region)+(this.value-Float.parseFloat(this.region))*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==1) {
-                            objects.alpha=float.Parse(this.region)+this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.alpha=Float.parseFloat(this.region)+this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==2) {
-                            objects.alpha=float.Parse(this.region)-this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.alpha=Float.parseFloat(this.region)-this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         break;
                     case 15:
                         if(this.change==0) {
-                            objects.sonspeed=float.Parse(this.region)+(this.value-float.Parse(this.region))*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.sonspeed=Float.parseFloat(this.region)+(this.value-Float.parseFloat(this.region))*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==1) {
-                            objects.sonspeed=float.Parse(this.region)+this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.sonspeed=Float.parseFloat(this.region)+this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==2) {
-                            objects.sonspeed=float.Parse(this.region)-this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.sonspeed=Float.parseFloat(this.region)-this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         break;
                     case 16:
                         if(this.change==0) {
-                            objects.sonspeedd=float.Parse(this.region)+(this.value-float.Parse(this.region))*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.sonspeedd=Float.parseFloat(this.region)+(this.value-Float.parseFloat(this.region))*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==1) {
-                            objects.sonspeedd=float.Parse(this.region)+this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.sonspeedd=Float.parseFloat(this.region)+this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==2) {
-                            objects.sonspeedd=float.Parse(this.region)-this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.sonspeedd=Float.parseFloat(this.region)-this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         break;
                     case 17:
                         if(this.change==0) {
-                            objects.sonaspeed=float.Parse(this.region)+(this.value-float.Parse(this.region))*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.sonaspeed=Float.parseFloat(this.region)+(this.value-Float.parseFloat(this.region))*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==1) {
-                            objects.sonaspeed=float.Parse(this.region)+this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.sonaspeed=Float.parseFloat(this.region)+this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==2) {
-                            objects.sonaspeed=float.Parse(this.region)-this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.sonaspeed=Float.parseFloat(this.region)-this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         break;
                     case 18:
                         if(this.change==0) {
-                            objects.sonaspeedd=float.Parse(this.region)+(this.value-float.Parse(this.region))*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.sonaspeedd=Float.parseFloat(this.region)+(this.value-Float.parseFloat(this.region))*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==1) {
-                            objects.sonaspeedd=float.Parse(this.region)+this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.sonaspeedd=Float.parseFloat(this.region)+this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==2) {
-                            objects.sonaspeedd=float.Parse(this.region)-this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.sonaspeedd=Float.parseFloat(this.region)-this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         break;
                     case 19:
                         if(this.change==0) {
-                            objects.xscale=float.Parse(this.region)+(this.value-float.Parse(this.region))*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.xscale=Float.parseFloat(this.region)+(this.value-Float.parseFloat(this.region))*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==1) {
-                            objects.xscale=float.Parse(this.region)+this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.xscale=Float.parseFloat(this.region)+this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==2) {
-                            objects.xscale=float.Parse(this.region)-this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.xscale=Float.parseFloat(this.region)-this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         break;
                     case 20:
                         if(this.change==0) {
-                            objects.yscale=float.Parse(this.region)+(this.value-float.Parse(this.region))*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.yscale=Float.parseFloat(this.region)+(this.value-Float.parseFloat(this.region))*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==1) {
-                            objects.yscale=float.Parse(this.region)+this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.yscale=Float.parseFloat(this.region)+this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         if(this.change==2) {
-                            objects.yscale=float.Parse(this.region)-this.value*(float)Math.Sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
+                            objects.yscale=Float.parseFloat(this.region)-this.value*(float)Math.sin((double)MathHelper.ToRadians((float)(360.0/(double)this.time*((double)this.time-(double)this.ctime))));
                             break;
                         }
                         break;

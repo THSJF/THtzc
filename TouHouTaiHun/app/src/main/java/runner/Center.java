@@ -1,6 +1,10 @@
 package runner;
 
-    public class Center {
+import java.util.*;
+import runner.*;
+import runner.layer.*;
+
+public class Center {
         public static float ox = 315f;
         public static float oy = 240f;
         public static float ospeed = 0.0f;
@@ -49,80 +53,80 @@ package runner;
             speedy+=aspeedy;
             ox+=speedx;
             oy+=speedy;
-            Hashtable hashtable1 = new Hashtable();
-            Hashtable hashtable2 = new Hashtable();
-            hashtable1.Add("当前帧",Time.now);
-            hashtable2.Add("速度",ospeed);
-            hashtable2.Add("速度方向",ospeedd);
-            hashtable2.Add("加速度",oaspeed);
-            hashtable2.Add("加速度方向",oaspeedd);
-            foreach(String str1 in events) {
-                if(!str1.Contains("PlayMusic")&&!str1.Contains("UseKira")&&!str1.Contains("BanSound")) {
-                    String s = str1.Split('：')[0];
+            HashMap<String,Integer> hashtable1 = new HashMap<>();
+            HashMap<String,Float> hashtable2 = new HashMap<>();
+            hashtable1.put("当前帧",Time.now);
+            hashtable2.put("速度",ospeed);
+            hashtable2.put("速度方向",ospeedd);
+            hashtable2.put("加速度",oaspeed);
+            hashtable2.put("加速度方向",oaspeedd);
+            for(String str1 : events) {
+                if(!str1.contains("PlayMusic")&&!str1.contains("UseKira")&&!str1.contains("BanSound")) {
+                    String s = str1.split("：")[0];
                     String str2 = "";
                     String str3 = "";
-                    String str4 = str1.Split('：')[1];
+                    String str4 = str1.split("：")[1];
                     int num1 = 0;
                     String str5 = "";
                     int num2 = 0;
                     String str6 = "";
                     float num3 = 0.0f;
                     int num4 = 0;
-                    if(s.Contains("=")) {
-                        str2=s.Split('=')[0];
+                    if(s.contains("=")) {
+                        str2=s.split("=")[0];
                         str3="=";
-                        s=s.Split('=')[1];
+                        s=s.split("=")[1];
                     }
-                    if(str3=="="&&(double)float.Parse(hashtable1[str2].ToString())==float.Parse(s)) {
-                        if(str1.Contains("变化到")) {
+                    if(str3.equals("=")&&(double)Float.parseFloat(hashtable1[str2].ToString())==Float.parseFloat(s)) {
+                        if(str1.contains("变化到")) {
                             num1=0;
-                            String[] strArray = str4.Split("变化到".ToCharArray())[3].Split("，".ToCharArray());
-                            num2=(int)Main.results3[str4.Split("变化到".ToCharArray())[0]];
-                            str6=str4.Split("变化到".ToCharArray())[0];
-                            if(strArray[0].Contains('+')) {
-                                num3=(float)(float.Parse(strArray[0].Split('+')[0])+(double)MathHelper.Lerp(-float.Parse(strArray[0].Split('+')[1]),float.Parse(strArray[0].Split('+')[1]),(float)Main.rand.NextDouble()));
+                            String[] strArray = str4.split("变化到)[3].split("，);
+                            num2=(int)Main.results3[str4.split("变化到)[0]];
+                            str6=str4.split("变化到)[0];
+                            if(strArray[0].contains("+")) {
+                                num3=(float)(Float.parseFloat(strArray[0].split("+")[0])+(double)MathHelper.Lerp(-Float.parseFloat(strArray[0].split("+")[1]),Float.parseFloat(strArray[0].split("+")[1]),(float)Main.rand.NextDouble()));
                             } else {
-                                num3=num2==1||num2==3 ? (!strArray[0].Contains("自机") ? float.Parse(strArray[0]) : MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,ox,oy))) : float.Parse(strArray[0]);
+                                num3=num2==1||num2==3 ? (!strArray[0].contains("自机") ? Float.parseFloat(strArray[0]) : MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,ox,oy))) : Float.parseFloat(strArray[0]);
                             }
                             str5=strArray[1];
-                            num4=int.Parse(strArray[2].Split("帧".ToCharArray())[0]);
-                        } else if(str1.Contains("增加")) {
+                            num4=Integer.parseInt(strArray[2].split("帧)[0]);
+                        } else if(str1.contains("增加")) {
                             num1=1;
-                            String[] strArray = str4.Split("增".ToCharArray())[1].Split("，".ToCharArray());
+                            String[] strArray = str4.split("增)[1].split("，);
                             strArray[0]=strArray[0].Replace("加","");
-                            num2=(int)Main.results3[str4.Split("增".ToCharArray())[0]];
-                            str6=str4.Split("增".ToCharArray())[0];
-                            if(strArray[0].Contains('+')) {
-                                num3=(float)(float.Parse(strArray[0].Split('+')[0])+(double)MathHelper.Lerp(-float.Parse(strArray[0].Split('+')[1]),float.Parse(strArray[0].Split('+')[1]),(float)Main.rand.NextDouble()));
+                            num2=(int)Main.results3[str4.split("增)[0]];
+                            str6=str4.split("增")[0];
+                            if(strArray[0].contains("+")) {
+                                num3=(float)(Float.parseFloat(strArray[0].split("+")[0])+(double)MathHelper.Lerp(-Float.parseFloat(strArray[0].split("+")[1]),Float.parseFloat(strArray[0].split("+")[1]),(float)Main.rand.NextDouble()));
                             } else {
-                                num3=num2==1||num2==3 ? (!strArray[0].Contains("自机") ? float.Parse(strArray[0]) : MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,ox,oy))) : float.Parse(strArray[0]);
+                                num3=num2==1||num2==3 ? (!strArray[0].contains("自机") ? Float.parseFloat(strArray[0]) : MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,ox,oy))) : Float.parseFloat(strArray[0]);
                             }
                             str5=strArray[1];
-                            num4=int.Parse(strArray[2].Split("帧".ToCharArray())[0]);
-                        } else if(str1.Contains("减少")) {
+                            num4=Integer.parseInt(strArray[2].split("帧)[0]);
+                        } else if(str1.contains("减少")) {
                             num1=2;
-                            String[] strArray = str4.Split("减少".ToCharArray())[2].Split("，".ToCharArray());
-                            num2=(int)Main.results3[str4.Split("减少".ToCharArray())[0]];
-                            str6=str4.Split("减少".ToCharArray())[0];
-                            if(strArray[0].Contains('+')) {
-                                num3=(float)(float.Parse(strArray[0].Split('+')[0])+(double)MathHelper.Lerp(-float.Parse(strArray[0].Split('+')[1]),float.Parse(strArray[0].Split('+')[1]),(float)Main.rand.NextDouble()));
+                            String[] strArray = str4.split("减少)[2].split("，);
+                            num2=(int)Main.results3[str4.split("减少)[0]];
+                            str6=str4.split("减少)[0];
+                            if(strArray[0].contains("+")) {
+                                num3=(float)(Float.parseFloat(strArray[0].split("+")[0])+(double)MathHelper.Lerp(-Float.parseFloat(strArray[0].split("+")[1]),Float.parseFloat(strArray[0].split("+")[1]),(float)Main.rand.NextDouble()));
                             } else {
-                                num3=num2==1||num2==3 ? (!strArray[0].Contains("自机") ? float.Parse(strArray[0]) : MathHelper.ToDegrees(Main.Twopointangle(Player.position.X,Player.position.Y,ox,oy))) : float.Parse(strArray[0]);
+                                num3=num2==1||num2==3 ? (!strArray[0].contains("自机") ? Float.parseFloat(strArray[0]) : MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,ox,oy))) : Float.parseFloat(strArray[0]);
                             }
                             str5=strArray[1];
-                            num4=int.Parse(strArray[2].Split("帧".ToCharArray())[0]);
+                            num4=Integer.parseInt(strArray[2].split("帧)[0]);
                         }
-                        if(str1.Contains("跟随自机")) {
-                            Eventsexe.Add(new CExecution() {
+                        if(str1.contains("跟随自机")) {
+                            Eventsexe.put(new CExecution() {
                                 changetype=3,
                                 ctime=60
                             });
-                        } else if(str1.Contains("范围移动")) {
-                            Eventsexe.Add(new CExecution() {
+                        } else if(str1.contains("范围移动")) {
+                            Eventsexe.put(new CExecution() {
                                 changetype=4,
                                 ctime=60,
-                                value=MathHelper.Lerp(float.Parse(str1.Split('，')[1]),float.Parse(str1.Split('，')[2]),(float)Main.rand.NextDouble()),
-                                value2=MathHelper.Lerp(float.Parse(str1.Split('，')[3]),float.Parse(str1.Split('，')[4]),(float)Main.rand.NextDouble())
+                                value=MathHelper.Lerp(Float.parseFloat(str1.split("，")[1]),Float.parseFloat(str1.split("，")[2]),(float)Main.rand.NextDouble()),
+                                value2=MathHelper.Lerp(Float.parseFloat(str1.split("，")[3]),Float.parseFloat(str1.split("，")[4]),(float)Main.rand.NextDouble())
                             });
                         } else {
                             CExecution cexecution = new CExecution() {
@@ -134,16 +138,16 @@ package runner;
                                 time=num4
                             };
                             cexecution.ctime=cexecution.time;
-                            Eventsexe.Add(cexecution);
+                            Eventsexe.put(cexecution);
                         }
                     }
                 }
             }
-            for(int index = 0;index<Eventsexe.Count;++index) {
+            for(int index = 0;index<Eventsexe.size();++index) {
                 if(!Eventsexe[index].NeedDelete) {
                     Eventsexe[index].Update();
                 } else {
-                    Eventsexe.RemoveAt(index);
+                    Eventsexe.remove(index);
                     --index;
                 }
             }

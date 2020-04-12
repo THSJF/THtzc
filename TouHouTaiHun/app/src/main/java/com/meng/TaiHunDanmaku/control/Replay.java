@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Replay {
 
-	public ArrayArrayList<Byte> data=new ArrayArrayList<>(262143);
+	public ArrayList<Byte> data=new ArrayList<>(262143);
 	public byte[] dataArray;
 	public static final short headLength=16;
 	public int dataPointer=0;
@@ -121,7 +121,7 @@ public class Replay {
 		return this;
 	}
 
-	public Replay write(booleanean b) {
+	public Replay write(boolean b) {
 		writeByteDataIntoArray(typeBoolean);
 		writeByteDataIntoArray(b ?(byte)1: (byte)0);
 		return this;
@@ -193,14 +193,14 @@ public class Replay {
 		return null;
 	}
 
-	public booleanean readBoolean() {
+	public boolean readBoolean() {
 		if (dataArray[dataPointer++] == typeBoolean) {
 			return dataArray[dataPointer++] == 1;
 		}
 		throw new RuntimeException("not a booleanean value at " + dataPointer);
 	}
 
-	public booleanean hasNext() {
+	public boolean hasNext() {
 		return dataPointer != dataArray.length;
 	}
 }

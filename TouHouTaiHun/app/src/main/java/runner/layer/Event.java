@@ -1,6 +1,7 @@
-package runner.Layer;
+package runner.layer;
+
 import java.util.*;
-import runner.Layer.*;
+import runner.layer.*;
 
 public class Event implements Cloneable {
 	public String tag = "新事件组";
@@ -13,15 +14,22 @@ public class Event implements Cloneable {
 	public int special;
 
 	public Event(int idx) {
-		index = idx;
+		this.index = idx;
+	}
+
+	public Event Clone() {
+		try {
+			return clone();
+		} catch (CloneNotSupportedException e) {
+			return null;
+		}
 	}
 
 	@Override
-	public Event clone() throws CloneNotSupportedException {
-		Event e=(Event) super.clone();
-		e.events.clear();
-		e.events.addAll(events);
-		e.results.clear();
+	protected Event clone() throws CloneNotSupportedException {
+		Event e = (Event) super.clone();
+		e.events = (ArrayList<String>) events.clone();
+		e.results = new ArrayList<>();
 		for (EventRead er:results) {
 			e.results.add(er.clone());
 		}

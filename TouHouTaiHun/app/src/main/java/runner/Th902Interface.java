@@ -1,15 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace CrazyStorm_1._03 {
-    class Th902Interface {
+package runner;
+public class Th902Interface {
         public static ArrayList<Barrage> bullets = new ArrayList<Barrage>();
         public static ArrayList<Barrage> getBulletInfo() {
             return bullets;
         }
 
         public static int getBulletCount() {
-            return bullets.Count();
+            return bullets.size()();
         }
 
         public static void openDanmakuFile(String mbgPath) {
@@ -25,16 +22,15 @@ namespace CrazyStorm_1._03 {
         }
 
         public static void setPlayerX(float x) {
-            Player.position.X=x;
+            Player.position.x=x;
         }
 
         public static void setPlayerY(float y) {
-            Player.position.Y=y;
+            Player.position.y=y;
         }
 
         public static void setPlayerPosition(float x,float y) {
-            Player.position.X=x;
-            Player.position.Y=y;
+            Player.position.x=x;
+            Player.position.y=y;
         }
     }
-}

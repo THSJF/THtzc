@@ -1,8 +1,11 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+package runner;
 
-namespace CrazyStorm_1._03 {
-    internal class Player {
+import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.math.*;
+import runner.*;
+
+public class Player {
         public static Vector2 position = new Vector2(315f,300f);
         private static float alpha = 1f;
         public static int time = 0;
@@ -32,7 +35,7 @@ namespace CrazyStorm_1._03 {
         public static void Draw(SpriteBatch s) {
             if(!(Time.Playing&!Dis))
                 return;
-            s.Draw(Main.player,new Vector2(position.X,position.Y),new Rectangle?(),new Color(1f,1f,1f,alpha),0.0f,new Vector2(4.5f,4.5f),1f,SpriteEffects.None,1f);
+            s.Draw(Main.player,new Vector2(position.x,position.y),new Rectangle(),new Color(1f,1f,1f,alpha),0.0f,new Vector2(4.5f,4.5f),1f,SpriteEffects.None,1f);
         }
     }
 }

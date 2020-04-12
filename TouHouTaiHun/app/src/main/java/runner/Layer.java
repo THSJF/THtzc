@@ -1,7 +1,8 @@
 package runner;
+
 import java.util.*;
-import runner.Layer.*;
-import runner.Layer.*;
+import runner.*;
+import runner.layer.*;
 
 public class Layer {
         public static ArrayList<Layer> LayerArray = new ArrayList<Layer>();
@@ -49,7 +50,7 @@ public class Layer {
             ReboundArray=new ArrayList<Rebound>();
             ForceArray=new ArrayList<Force>();
             Barrages=new ArrayList<Barrage>();
-            LayerArray.add(this);
+            LayerArray.put(this);
         }
 
         public void Update() {
@@ -59,7 +60,7 @@ public class Layer {
             if(!Visible) {
                 return;
             }
-            for(int index = 0;index<ForceArray.Count;++index) {
+            for(int index = 0;index<ForceArray.size();++index) {
                 ForceArray[index].id=index;
                 ForceArray[index].parentid=sort;
                 if(!Time.Playing) {
@@ -68,7 +69,7 @@ public class Layer {
                     ForceArray[index].copys.Update();
                 }
             }
-            for(int index = 0;index<ReboundArray.Count;++index) {
+            for(int index = 0;index<ReboundArray.size();++index) {
                 ReboundArray[index].id=index;
                 ReboundArray[index].parentid=this.sort;
                 if(!Time.Playing) {
@@ -77,7 +78,7 @@ public class Layer {
                     ReboundArray[index].copys.Update();
                 }
             }
-            for(int index = 0;index<CoverArray.Count;++index) {
+            for(int index = 0;index<CoverArray.size();++index) {
                 CoverArray[index].id=index;
                 CoverArray[index].parentid=sort;
                 if(!Time.Playing) {
@@ -86,7 +87,7 @@ public class Layer {
                     CoverArray[index].copys.Update();
                 }
             }
-            for(int index = 0;index<LaseArray.Count;++index) {
+            for(int index = 0;index<LaseArray.size();++index) {
                 LaseArray[index].id=index;
                 LaseArray[index].parentid=sort;
                 if(!Time.Playing) {
@@ -95,7 +96,7 @@ public class Layer {
                     LaseArray[index].copys.Update();
                 }
             }
-            for(int index = 0;index<BatchArray.Count;++index) {
+            for(int index = 0;index<BatchArray.size();++index) {
                 BatchArray[index].id=index;
                 BatchArray[index].parentid=sort;
                 if(!Time.Playing) {
@@ -107,7 +108,7 @@ public class Layer {
             if(!Time.Playing) {
                 return;
             }
-            for(int index = 0;index<Barrages.Count;++index) {
+            for(int index = 0;index<Barrages.size();++index) {
                 Barrages[index].id=index;
                 Barrages[index].Update();
                 Barrages[index].LUpdate();
