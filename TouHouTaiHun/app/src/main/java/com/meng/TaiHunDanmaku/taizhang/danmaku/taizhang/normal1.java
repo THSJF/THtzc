@@ -1,16 +1,11 @@
 package com.meng.TaiHunDanmaku.taizhang.danmaku.taizhang;
 
-import com.badlogic.gdx.*;
-import com.badlogic.gdx.graphics.*;
-import com.badlogic.gdx.graphics.g2d.*;
+import com.badlogic.gdx.math.*;
 import com.meng.TaiHunDanmaku.baseObjects.bullets.enemy.*;
 import com.meng.TaiHunDanmaku.taizhang.*;
 import com.meng.TaiHunDanmaku.taizhang.danmaku.*;
 import com.meng.TaiHunDanmaku.task.*;
-import com.meng.TaiHunDanmaku.ui.*;
-import com.badlogic.gdx.math.*;
-
-import java.util.ArrayArrayList;
+import java.util.*;
 
 public class normal1 extends BaseNormalDanmaku {
     private TaskManagerEnemyPlane taskManager;
@@ -41,7 +36,7 @@ public class normal1 extends BaseNormalDanmaku {
         laser2.distance = 190;
         FightScreen.instence.laserManager.addLaser(laser2);
 */
-        ArrayArrayList<Task> arrayArrayList = new ArrayArrayList<Task>();
+        ArrayList<Task> ArrayList = new ArrayList<Task>();
         shooters = new BulletShooter[]{
                 new BulletShooter().init()
                         .setEnemyPlane(boss)
@@ -53,7 +48,7 @@ public class normal1 extends BaseNormalDanmaku {
                         .setBulletStyle(BulletStyle.round)
                         .setBulletHighLight(true)
                         .setBulletAcceleration(new Vector2(0, -0.05f))
-                        .setBulletTasks(arrayArrayList)
+                        .setBulletTasks(ArrayList)
         };
         taskManager = new TaskManagerEnemyPlane(baseBossPlane, TaskRepeatMode.repeatAll);
         taskManager.addTask(new TaskShoot(shooters));

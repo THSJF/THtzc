@@ -1,10 +1,9 @@
 package runner;
 import java.util.*;
-import runner.*;
 import runner.layer.*;
 
 public class Time {
-        private static int clcount = 0;
+        private static int clCount = 0;
         private static int clwait = 0;
         public static int total = 200;
         public static int now = 1;
@@ -15,7 +14,7 @@ public class Time {
         public static boolean Playing = false;
         public static boolean Pause = false;
         public static ArrayList<GlobalEvent> GE = new ArrayList<>();
-        public static ArrayList<Integer> GEcount = new ArrayList<>();
+        public static ArrayList<Integer> GECount = new ArrayList<>();
 
         public static void Clear() {
             total=200;
@@ -25,19 +24,19 @@ public class Time {
             Playing=false;
             Pause=false;
             GE.clear();
-            GEcount.clear();
+            GECount.clear();
         }
 
         public static void Update() {
             if(Main.Available) {
                 if(GE.size()<total) {
                     for(int index = 0;index<total-GE.size();++index) {
-                       GlobalEvent gev=new GlobalEvent();
-						gev.gotocondition=-1;
-						gev.quakecondition=-1;
-						gev.stopcondition=-1;
-						gev.stoplevel=-1;
-						GE.add(gev);
+                        GlobalEvent g= new GlobalEvent();
+						g.gotocondition=-1;
+						g.quakecondition=-1;
+						g.stopcondition=-1;
+						g.stoplevel=-1;
+                        GE.add(g);
                     }
                 }
             }
@@ -50,10 +49,10 @@ public class Time {
                             for(Event parentevent : batch.copys.Parentevents) {
                                 parentevent.loop=0;
                             }
-                            float num1 = MathHelper.Lerp(-batch.copys.rand.speed,batch.copys.rand.speed,(float)Main.rand.NextDouble());
-                            int num2 = (int)MathHelper.Lerp(-batch.copys.rand.speedd,batch.copys.rand.speedd,(float)Main.rand.NextDouble());
-                            float num3 = MathHelper.Lerp(-batch.copys.rand.aspeed,batch.copys.rand.aspeed,(float)Main.rand.NextDouble());
-                            int num4 = (int)MathHelper.Lerp(-batch.copys.rand.aspeedd,batch.copys.rand.aspeedd,(float)Main.rand.NextDouble());
+                            float num1 = MathHelper.Lerp(-batch.copys.rand.speed,batch.copys.rand.speed,(float)Main.rand.nextDouble());
+                            int num2 = (int) MathHelper.Lerp(-batch.copys.rand.speedd,batch.copys.rand.speedd,(float)Main.rand.nextDouble());
+                            float num3 = MathHelper.Lerp(-batch.copys.rand.aspeed,batch.copys.rand.aspeed,(float)Main.rand.nextDouble());
+                            int num4 = (int) MathHelper.Lerp(-batch.copys.rand.aspeedd,batch.copys.rand.aspeedd,(float)Main.rand.nextDouble());
                             if((double)batch.fx==-99998.0)
                                 batch.copys.fx=batch.x-4f;
                             if((double)batch.fx==-99999.0)
@@ -63,33 +62,33 @@ public class Time {
                             if((double)batch.fy==-99999.0)
                                 batch.copys.fy=Player.position.y;
                             if((double)batch.speedd==-99999.0)
-                                batch.copys.speedd=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,batch.copys.fx,batch.copys.fy));
+                                batch.copys.speedd=(float)MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,batch.copys.fx,batch.copys.fy));
                             if((double)batch.aspeedd==-99999.0)
-                                batch.copys.aspeedd=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,batch.copys.fx,batch.copys.fy));
+                                batch.copys.aspeedd=(float)MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,batch.copys.fx,batch.copys.fy));
                             batch.copys.aspeed+=num3;
                             batch.copys.aspeedd+=(float)num4;
                             batch.copys.speed+=num1;
                             batch.copys.speedd+=(float)num2;
-                            batch.copys.aspeedx=batch.copys.aspeed*(float)Math.cos((double)MathHelper.ToRadians(batch.copys.aspeedd));
-                            batch.copys.aspeedy=batch.copys.aspeed*(float)Math.sin((double)MathHelper.ToRadians(batch.copys.aspeedd));
-                            batch.copys.speedx=batch.copys.speed*(float)Math.cos((double)MathHelper.ToRadians(batch.copys.speedd));
-                            batch.copys.speedy=batch.copys.speed*(float)Math.sin((double)MathHelper.ToRadians(batch.copys.speedd));
+                            batch.copys.aspeedx=batch.copys.aspeed*(float)Math.cos(MathHelper.ToRadians(batch.copys.aspeedd));
+                            batch.copys.aspeedy=batch.copys.aspeed*(float)Math.sin(MathHelper.ToRadians(batch.copys.aspeedd));
+                            batch.copys.speedx=batch.copys.speed*(float)Math.cos(MathHelper.ToRadians(batch.copys.speedd));
+                            batch.copys.speedy=batch.copys.speed*(float)Math.sin(MathHelper.ToRadians(batch.copys.speedd));
                             batch.copys.bfdirection=batch.fdirection;
                             batch.copys.bsonaspeedd=batch.sonaspeedd;
                             if((double)batch.fdirection==-99998.0)
-                                batch.copys.fdirection=MathHelper.ToDegrees(Main.Twopointangle(batch.x-4f,batch.y+16f,batch.copys.fx,batch.copys.fy));
+                                batch.copys.fdirection=(float)MathHelper.ToDegrees(Main.Twopointangle(batch.x-4f,batch.y+16f,batch.copys.fx,batch.copys.fy));
                             else if((double)batch.fdirection==-99999.0)
-                                batch.copys.fdirection=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,batch.copys.fx,batch.copys.fy));
+                                batch.copys.fdirection=(float)MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,batch.copys.fx,batch.copys.fy));
                             else if((double)batch.fdirection==-100000.0)
-                                batch.copys.fdirection=MathHelper.ToDegrees(Main.Twopointangle(batch.fdirections.X,batch.fdirections.Y,batch.copys.fx,batch.copys.fy));
+                                batch.copys.fdirection=(float)MathHelper.ToDegrees(Main.Twopointangle(batch.fdirections.x,batch.fdirections.y,batch.copys.fx,batch.copys.fy));
                             if((double)batch.sonaspeedd==-99998.0)
-                                batch.copys.sonaspeedd=MathHelper.ToDegrees(Main.Twopointangle(batch.x-4f,batch.y+16f,batch.copys.fx,batch.copys.fy));
+                                batch.copys.sonaspeedd=(float)MathHelper.ToDegrees(Main.Twopointangle(batch.x-4f,batch.y+16f,batch.copys.fx,batch.copys.fy));
                             else if((double)batch.sonaspeedd==-99999.0)
-                                batch.copys.sonaspeedd=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,batch.copys.fx,batch.copys.fy));
+                                batch.copys.sonaspeedd=(float)MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,batch.copys.fx,batch.copys.fy));
                             else if((double)batch.sonaspeedd==-100000.0)
-                                batch.copys.sonaspeedd=MathHelper.ToDegrees(Main.Twopointangle(batch.sonaspeedds.X,batch.sonaspeedds.Y,batch.copys.fx,batch.copys.fy));
+                                batch.copys.sonaspeedd=(float)MathHelper.ToDegrees(Main.Twopointangle(batch.sonaspeedds.x,batch.sonaspeedds.y,batch.copys.fx,batch.copys.fy));
                             if((double)batch.head==-100000.0)
-                                batch.copys.head=MathHelper.ToDegrees(Main.Twopointangle(batch.heads.X,batch.heads.Y,batch.copys.fx,batch.copys.fx));
+                                batch.copys.head=(float)MathHelper.ToDegrees(Main.Twopointangle(batch.heads.x,batch.heads.y,batch.copys.fx,batch.copys.fx));
                             for(Event parentevent : batch.Parentevents) {
                                 for(String str1 : parentevent.events) {
                                     String str2 = str1.split("：")[0];
@@ -103,12 +102,12 @@ public class Time {
                                     int num6 = 0;
                                     if(str1.contains("且")) {
                                         str7="且";
-                                        str3=str2.split("且)[1];
-                                        str2=str2.split("且)[0];
+                                        str3=str2.split("且")[1];
+                                        str2=str2.split("且")[0];
                                     } else if(str1.contains("或")) {
                                         str7="或";
-                                        str3=str2.split("或)[1];
-                                        str2=str2.split("或)[0];
+                                        str3=str2.split("或")[1];
+                                        str2=str2.split("或")[0];
                                     }
                                     if(str2.contains(">")) {
                                         str4=str2.split(">")[0];
@@ -142,153 +141,151 @@ public class Time {
                                     }
                                     if(str1.contains("变化到")) {
                                         int num7 = 0;
-                                        String[] strArray = str8.split("变)[1].split("，);
-                                        int result = (int)Main.results[(object)str8.split("变)[0]];
-                                        String str9 = str8.split("变)[0];
-                                        if(strArray[0].Replace("化到","").contains<char>("+")) {
-                                            if(strArray[0].Replace("化到","").split("+")[0].equals("自身")
+                                        String[] strArray = str8.split("变")[1].split("，");
+                                        int result = Main.results.get(str8.split("变")[0]);
+                                        String str9 = str8.split("变")[0];
+                                        if(strArray[0].replace("化到","").contains("+")) {
+                                            if(strArray[0].replace("化到","").split("+")[0].equals("自身"))
                                                 num6=3;
-                                            else if(strArray[0].Replace("化到","").split("+")[0].equals("自机")
+                                            else if(strArray[0].replace("化到","").split("+")[0].equals("自机"))
                                                 num6=4;
                                             else
-                                                num5=Float.parseFloat(strArray[0].Replace("化到","").split("+")[0]);
-                                        } else if(strArray[0].Replace("化到","").equals("自身")
+                                                num5=Float.parseFloat(strArray[0].replace("化到","").split("+")[0]);
+                                        } else if(strArray[0].replace("化到","").equals("自身"))
                                             num6=3;
-                                        else if(strArray[0].Replace("化到","").equals("自机")
+                                        else if(strArray[0].replace("化到","").equals("自机"))
                                             num6=4;
                                         else
-                                            num5=Float.parseFloat(strArray[0].Replace("化到",""));
+                                            num5=Float.parseFloat(strArray[0].replace("化到",""));
                                         String str10 = strArray[1];
-                                        int num8 = Integer.parseInt(strArray[2].split("帧)[0]);
-                                        EventRead eventRead = new EventRead {
-                                            condition=str2,
-                                            result=str8,
-                                            condition2=str3,
-                                            contype=(int)Main.conditions[str4],
-                                            contype2=(int)Main.conditions[str4],
-                                            opreator=str5,
-                                            opreator2=str6,
-                                            collector=str7,
-                                            change=num7,
-                                            changetype=(int)Main.type[str10],
-                                            changevalue=result,
-                                            changename=(int)Main.results[str9],
-                                            res=num5,
-                                            special=num6
-                                        };
-                                        if(strArray[0].Replace("化到","").contains<char>("+"))
-                                            eventRead.rand=Float.parseFloat(strArray[0].Replace("化到","").split("+")[1]);
+                                        int num8 = Integer.parseInt(strArray[2].split("帧")[0]);
+                                        EventRead eventRead = new EventRead();
+										eventRead.condition=str2;
+										eventRead.result=str8;
+										eventRead.condition2=str3;
+										eventRead.contype=Main.conditions.get(str4);
+										eventRead.contype2=Main.conditions.get(str4);
+										eventRead.opreator=str5;
+										eventRead.opreator2=str6;
+										eventRead.collector=str7;
+										eventRead.change=num7;
+										eventRead.changetype=Main.type.get(str10);
+										eventRead.changevalue=result;
+										eventRead.changename=Main.results.get(str9);
+										eventRead.res=num5;
+										eventRead.special=num6;
+                                        if(strArray[0].replace("化到","").contains("+"))
+                                            eventRead.rand=Float.parseFloat(strArray[0].replace("化到","").split("+")[1]);
                                         eventRead.times=num8;
                                         if(strArray[2].contains("("))
                                             eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
-                                        parentevent.results.put(eventRead);
+                                        parentevent.results.add(eventRead);
                                     } else if(str1.contains("增加")) {
                                         int num7 = 1;
-                                        String[] strArray = str8.split("增)[1].split("，);
-                                        strArray[0]=strArray[0].Replace("加","");
-                                        int result = (int)Main.results[(object)str8.split("增)[0]];
-                                        String str9 = str8.split("增)[0];
-                                        if(strArray[0].contains<char>("+")) {
-                                            if(strArray[0].split("+")[0].equals("自身")
+                                        String[] strArray = str8.split("增")[1].split("，");
+                                        strArray[0]=strArray[0].replace("加","");
+                                        int result = Main.results.get(str8.split("增")[0]);
+                                        String str9 = str8.split("增")[0];
+                                        if(strArray[0].contains("+")) {
+                                            if(strArray[0].split("+")[0].equals("自身"))
                                                 num6=3;
-                                            else if(strArray[0].split("+")[0].equals("自机")
+                                            else if(strArray[0].split("+")[0].equals("自机"))
                                                 num6=4;
                                             else
                                                 num5=Float.parseFloat(strArray[0].split("+")[0]);
-                                        } else if(strArray[0].equals("自身")
+                                        } else if(strArray[0].equals("自身"))
                                             num6=3;
-                                        else if(strArray[0].equals("自机")
+                                        else if(strArray[0].equals("自机"))
                                             num6=4;
                                         else
                                             num5=Float.parseFloat(strArray[0]);
                                         String str10 = strArray[1];
-                                        int num8 = Integer.parseInt(strArray[2].split("帧)[0]);
-                                        EventRead eventRead = new EventRead {
-                                            condition=str2,
-                                            result=str8,
-                                            condition2=str3,
-                                            contype=(int)Main.conditions[(object)str4],
-                                            contype2=(int)Main.conditions[(object)str4],
-                                            opreator=str5,
-                                            opreator2=str6,
-                                            collector=str7,
-                                            change=num7,
-                                            changetype=(int)Main.type[(object)str10],
-                                            changevalue=result,
-                                            changename=(int)Main.results[(object)str9],
-                                            res=num5,
-                                            special=num6
-                                        };
-                                        if(strArray[0].contains<char>("+"))
+                                        int num8 = Integer.parseInt(strArray[2].split("帧")[0]);
+                                        EventRead eventRead = new EventRead();
+                                            eventRead.condition=str2;
+                                            eventRead.result=str8;
+                                            eventRead.condition2=str3;
+                                            eventRead.contype=Main.conditions.get(str4);
+                                            eventRead.contype2=Main.conditions.get(str4);
+                                            eventRead.opreator=str5;
+                                            eventRead.opreator2=str6;
+                                            eventRead.collector=str7;
+                                            eventRead.change=num7;
+                                            eventRead.changetype=Main.type.get(str10);
+                                            eventRead.changevalue=result;
+                                           eventRead.changename=Main.results.get(str9);
+                                            eventRead.res=num5;
+                                            eventRead.special=num6;
+                                        if(strArray[0].contains("+"))
                                             eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
                                         eventRead.times=num8;
                                         if(strArray[2].contains("("))
                                             eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
-                                        parentevent.results.put(eventRead);
+                                        parentevent.results.add(eventRead);
                                     } else if(str1.contains("减少")) {
                                         int num7 = 2;
-                                        String[] strArray = str8.split("减少)[2].split("，);
-                                        int result = (int)Main.results[(object)str8.split("减少)[0]];
-                                        String str9 = str8.split("减少)[0];
-                                        if(strArray[0].contains<char>("+")) {
-                                            if(strArray[0].split("+")[0].equals("自身")
+                                        String[] strArray = str8.split("减少")[2].split("，");
+                                        int result = Main.results.get(str8.split("减少")[0]);
+                                        String str9 = str8.split("减少")[0];
+                                        if(strArray[0].contains("+")) {
+                                            if(strArray[0].split("+")[0].equals("自身"))
                                                 num6=3;
-                                            else if(strArray[0].split("+")[0].equals("自机")
+                                            else if(strArray[0].split("+")[0].equals("自机"))
                                                 num6=4;
                                             else
                                                 num5=Float.parseFloat(strArray[0].split("+")[0]);
-                                        } else if(strArray[0].equals("自身")
+                                        } else if(strArray[0].equals("自身"))
                                             num6=3;
-                                        else if(strArray[0].equals("自机")
+                                        else if(strArray[0].equals("自机"))
                                             num6=4;
                                         else
                                             num5=Float.parseFloat(strArray[0]);
                                         String str10 = strArray[1];
-                                        int num8 = Integer.parseInt(strArray[2].split("帧)[0]);
-                                        EventRead eventRead = new EventRead {
-                                            condition=str2,
-                                            result=str8,
-                                            condition2=str3,
-                                            contype=(int)Main.conditions[(object)str4],
-                                            contype2=(int)Main.conditions[(object)str4],
-                                            opreator=str5,
-                                            opreator2=str6,
-                                            collector=str7,
-                                            change=num7,
-                                            changetype=(int)Main.type[(object)str10],
-                                            changevalue=result,
-                                            changename=(int)Main.results[(object)str9],
-                                            res=num5,
-                                            special=num6
-                                        };
-                                        if(strArray[0].contains<char>("+"))
+                                        int num8 = Integer.parseInt(strArray[2].split("帧")[0]);
+                                        EventRead eventRead = new EventRead();
+                                            eventRead.condition=str2;
+                                            eventRead.result=str8;
+                                            eventRead.condition2=str3;
+                                            eventRead.contype=Main.conditions.get(str4);
+                                            eventRead.contype2=Main.conditions.get(str4);
+                                            eventRead.opreator=str5;
+                                            eventRead.opreator2=str6;
+                                            eventRead.collector=str7;
+                                            eventRead.change=num7;
+                                            eventRead.changetype=Main.type.get(str10);
+                                            eventRead.changevalue=result;
+                                            eventRead.changename=Main.results.get(str9);
+                                            eventRead.res=num5;
+                                            eventRead.special=num6;
+                                        if(strArray[0].contains("+"))
                                             eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
                                         eventRead.times=num8;
                                         if(strArray[2].contains("("))
                                             eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
-                                        parentevent.results.put(eventRead);
-                                    } else if(str1.contains("恢复"))
-                                        parentevent.results.put(new EventRead() {
-                                            special=1,
-                                            opreator=str5,
-                                            opreator2=str6,
-                                            condition=str2,
-                                            condition2=str3,
-                                            contype=(int)Main.conditions[(object)str4],
-                                            contype2=(int)Main.conditions[(object)str4],
-                                            collector=str7
-                                        });
-                                    else if(str1.contains("发射"))
-                                        parentevent.results.put(new EventRead() {
-                                            special=2,
-                                            opreator=str5,
-                                            opreator2=str6,
-                                            condition=str2,
-                                            condition2=str3,
-                                            contype=(int)Main.conditions[(object)str4],
-                                            contype2=(int)Main.conditions[(object)str4],
-                                            collector=str7
-                                        });
+                                        parentevent.results.add(eventRead);
+                                    } else if(str1.contains("恢复")){
+										EventRead e=new EventRead();
+										e.special=1;
+										e.opreator=str5;
+										e.opreator2=str6;
+										e.condition=str2;
+										e.condition2=str3;
+										e.contype=Main.conditions.get(str4);
+										e.contype2=Main.conditions.get(str4);
+										e.collector=str7;
+                                        parentevent.results.add(e);
+									} else if(str1.contains("发射")){
+                                        EventRead e=new EventRead();
+										e.special=2;
+										e.opreator=str5;
+										e.opreator2=str6;
+										e.condition=str2;
+										e.condition2=str3;
+										e.contype=Main.conditions.get(str4);
+										e.contype2=Main.conditions.get(str4);
+										e.collector=str7;
+										parentevent.results.add(e);
+									}
                                 }
                             }
                             for(Event sonevent : batch.Sonevents) {
@@ -305,12 +302,12 @@ public class Time {
                                     int num6 = 0;
                                     if(str1.contains("且")) {
                                         str8="且";
-                                        str3=str2.split("且)[1];
-                                        str2=str2.split("且)[0];
+                                        str3=str2.split("且")[1];
+                                        str2=str2.split("且")[0];
                                     } else if(str1.contains("或")) {
                                         str8="或";
-                                        str3=str2.split("或)[1];
-                                        str2=str2.split("或)[0];
+                                        str3=str2.split("或")[1];
+                                        str2=str2.split("或")[0];
                                     }
                                     if(str2.contains(">")) {
                                         str4=str2.split(">")[0];
@@ -344,179 +341,176 @@ public class Time {
                                     }
                                     if(str1.contains("变化到")) {
                                         int num7 = 0;
-                                        String[] strArray = str9.split("变)[1].split("，);
-                                        int num8 = (int)Main.results2[(object)str9.split("变)[0]];
-                                        String str10 = str9.split("变)[0];
-                                        if(strArray[0].Replace("化到","").contains<char>("+")) {
-                                            if(strArray[0].Replace("化到","").split("+")[0].equals("自身")
+                                        String[] strArray = str9.split("变")[1].split("，");
+                                        int num8 = Main.results2.get(str9.split("变")[0]);
+                                        String str10 = str9.split("变")[0];
+                                        if(strArray[0].replace("化到","").contains("+")) {
+                                            if(strArray[0].replace("化到","").split("+")[0].equals("自身"))
                                                 num6=3;
-                                            else if(strArray[0].Replace("化到","").split("+")[0].equals("自机")
+                                            else if(strArray[0].replace("化到","").split("+")[0].equals("自机"))
                                                 num6=4;
-                                            else if(strArray[0].Replace("化到","").split("+")[0].equals("中心") {
+                                            else if(strArray[0].replace("化到","").split("+")[0].equals("中心")) {
                                                 num6=5;
                                                 str6="";
                                             } else
-                                                num5=Float.parseFloat(strArray[0].Replace("化到","").split("+")[0]);
-                                        } else if(strArray[0].Replace("化到","").equals("自身")
+                                                num5=Float.parseFloat(strArray[0].replace("化到","").split("+")[0]);
+                                        } else if(strArray[0].replace("化到","").equals("自身"))
                                             num6=3;
-                                        else if(strArray[0].Replace("化到","").equals("自机")
+                                        else if(strArray[0].replace("化到","").equals("自机"))
                                             num6=4;
-                                        else if(strArray[0].Replace("化到","").equals("中心") {
+                                        else if(strArray[0].replace("化到","").equals("中心")) {
                                             num6=5;
                                             str6="";
                                         } else
-                                            num5=Float.parseFloat(strArray[0].Replace("化到",""));
+                                            num5=Float.parseFloat(strArray[0].replace("化到",""));
                                         String str11 = strArray[1];
-                                        int num9 = Integer.parseInt(strArray[2].split("帧)[0]);
-                                        EventRead eventRead = new EventRead {
-                                            condition=str2,
-                                            result=str9,
-                                            condition2=str3,
-                                            contype=(int)Main.conditions2[(object)str4],
-                                            contype2=(int)Main.conditions2[(object)str5],
-                                            opreator=str6,
-                                            opreator2=str7,
-                                            collector=str8,
-                                            change=num7,
-                                            changetype=(int)Main.type[(object)str11],
-                                            changevalue=num8,
-                                            changename=(int)Main.results2[(object)str10],
-                                            res=num5,
-                                            special=num6
-                                        };
-                                        if(strArray[0].Replace("化到","").contains<char>("+"))
-                                            eventRead.rand=Float.parseFloat(strArray[0].Replace("化到","").split("+")[1]);
+                                        int num9 = Integer.parseInt(strArray[2].split("帧")[0]);
+                                        EventRead eventRead = new EventRead();
+										eventRead.condition=str2;
+										eventRead.result=str9;
+										eventRead.condition2=str3;
+										eventRead.contype=Main.conditions2.get(str4);
+										eventRead.contype2=Main.conditions2.get(str5);
+										eventRead.opreator=str6;
+										eventRead.opreator2=str7;
+										eventRead.collector=str8;
+										eventRead.change=num7;
+										eventRead.changetype=Main.type.get(str11);
+										eventRead.changevalue=num8;
+										eventRead.changename=Main.results2.get(str10);
+										eventRead.res=num5;
+										eventRead.special=num6;
+                                        if(strArray[0].replace("化到","").contains("+"))
+                                            eventRead.rand=Float.parseFloat(strArray[0].replace("化到","").split("+")[1]);
                                         eventRead.times=num9;
                                         if(strArray[2].contains("("))
                                             eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
-                                        sonevent.results.put(eventRead);
+                                        sonevent.results.add(eventRead);
                                     } else if(str1.contains("增加")) {
                                         int num7 = 1;
-                                        String[] strArray = str9.split("增)[1].split("，);
-                                        strArray[0]=strArray[0].Replace("加","");
-                                        int num8 = (int)Main.results2[(object)str9.split("增)[0]];
-                                        String str10 = str9.split("增)[0];
-                                        if(strArray[0].contains<char>("+")) {
-                                            if(strArray[0].split("+")[0].equals("自身")
+                                        String[] strArray = str9.split("增")[1].split("，");
+                                        strArray[0]=strArray[0].replace("加","");
+                                        int num8 = Main.results2.get(str9.split("增")[0]);
+                                        String str10 = str9.split("增")[0];
+                                        if(strArray[0].contains("+")) {
+                                            if(strArray[0].split("+")[0].equals("自身"))
                                                 num6=3;
-                                            else if(strArray[0].split("+")[0].equals("自机")
+                                            else if(strArray[0].split("+")[0].equals("自机"))
                                                 num6=4;
-                                            else if(strArray[0].split("+")[0].equals("中心") {
+                                            else if(strArray[0].split("+")[0].equals("中心")) {
                                                 num6=5;
                                                 str6="";
                                             } else
                                                 num5=Float.parseFloat(strArray[0].split("+")[0]);
-                                        } else if(strArray[0].equals("自身")
+                                        } else if(strArray[0].equals("自身"))
                                             num6=3;
-                                        else if(strArray[0].equals("自机")
+                                        else if(strArray[0].equals("自机"))
                                             num6=4;
-                                        else if(strArray[0].equals("中心") {
+                                        else if(strArray[0].equals("中心")) {
                                             num6=5;
                                             str6="";
                                         } else
                                             num5=Float.parseFloat(strArray[0]);
                                         String str11 = strArray[1];
-                                        int num9 = Integer.parseInt(strArray[2].split("帧)[0]);
-                                        EventRead eventRead = new EventRead {
-                                            condition=str2,
-                                            result=str9,
-                                            condition2=str3,
-                                            contype=(int)Main.conditions2[(object)str4],
-                                            contype2=(int)Main.conditions2[(object)str5],
-                                            opreator=str6,
-                                            opreator2=str7,
-                                            collector=str8,
-                                            change=num7,
-                                            changetype=(int)Main.type[(object)str11],
-                                            changevalue=num8,
-                                            changename=(int)Main.results2[(object)str10],
-                                            res=num5,
-                                            special=num6
-                                        };
-                                        if(strArray[0].contains<char>("+"))
+                                        int num9 = Integer.parseInt(strArray[2].split("帧")[0]);
+                                        EventRead eventRead = new EventRead();
+										eventRead.condition=str2;
+										eventRead.result=str9;
+										eventRead.condition2=str3;
+										eventRead.contype=Main.conditions2.get(str4);
+										eventRead.contype2=Main.conditions2.get(str5);
+										eventRead.opreator=str6;
+										eventRead.opreator2=str7;
+										eventRead.collector=str8;
+										eventRead.change=num7;
+										eventRead.changetype=Main.type.get(str11);
+										eventRead.changevalue=num8;
+										eventRead.changename=Main.results2.get(str10);
+										eventRead.res=num5;
+										eventRead.special=num6;
+                                        if(strArray[0].contains("+"))
                                             eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
                                         eventRead.times=num9;
                                         if(strArray[2].contains("("))
                                             eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
-                                        sonevent.results.put(eventRead);
+                                        sonevent.results.add(eventRead);
                                     } else if(str1.contains("减少")) {
                                         int num7 = 2;
-                                        String[] strArray = str9.split("减少)[2].split("，);
-                                        int num8 = (int)Main.results2[(object)str9.split("减少)[0]];
-                                        String str10 = str9.split("减少)[0];
-                                        if(strArray[0].contains<char>("+")) {
-                                            if(strArray[0].split("+")[0].equals("自身")
+                                        String[] strArray = str9.split("减少")[2].split("，");
+                                        int num8 = Main.results2.get(str9.split("减少")[0]);
+                                        String str10 = str9.split("减少")[0];
+                                        if(strArray[0].contains("+")) {
+                                            if(strArray[0].split("+")[0].equals("自身"))
                                                 num6=3;
-                                            else if(strArray[0].split("+")[0].equals("自机")
+                                            else if(strArray[0].split("+")[0].equals("自机"))
                                                 num6=4;
-                                            else if(strArray[0].split("+")[0].equals("中心") {
+                                            else if(strArray[0].split("+")[0].equals("中心")) {
                                                 num6=5;
                                                 str6="";
                                             } else
                                                 num5=Float.parseFloat(strArray[0].split("+")[0]);
-                                        } else if(strArray[0].equals("自身")
+                                        } else if(strArray[0].equals("自身"))
                                             num6=3;
-                                        else if(strArray[0].equals("自机")
+                                        else if(strArray[0].equals("自机"))
                                             num6=4;
-                                        else if(strArray[0].equals("中心") {
+                                        else if(strArray[0].equals("中心")) {
                                             num6=5;
                                             str6="";
                                         } else
                                             num5=Float.parseFloat(strArray[0]);
                                         String str11 = strArray[1];
-                                        int num9 = Integer.parseInt(strArray[2].split("帧)[0]);
-                                        EventRead eventRead = new EventRead {
-                                            condition=str2,
-                                            result=str9,
-                                            condition2=str3,
-                                            contype=(int)Main.conditions2[(object)str4],
-                                            contype2=(int)Main.conditions2[(object)str5],
-                                            opreator=str6,
-                                            opreator2=str7,
-                                            collector=str8,
-                                            change=num7,
-                                            changetype=(int)Main.type[(object)str11],
-                                            changevalue=num8,
-                                            changename=(int)Main.results2[(object)str10],
-                                            res=num5,
-                                            special=num6
-                                        };
-                                        if(strArray[0].contains<char>("+"))
+                                        int num9 = Integer.parseInt(strArray[2].split("帧")[0]);
+                                        EventRead eventRead = new EventRead();
+										eventRead.condition=str2;
+										eventRead.result=str9;
+										eventRead.condition2=str3;
+										eventRead.contype=Main.conditions2.get(str4);
+										eventRead.contype2=Main.conditions2.get(str5);
+										eventRead.opreator=str6;
+										eventRead.opreator2=str7;
+										eventRead.collector=str8;
+										eventRead.change=num7;
+										eventRead.changetype=Main.type.get(str11);
+										eventRead.changevalue=num8;
+										eventRead.changename=Main.results2.get(str10);
+										eventRead.res=num5;
+										eventRead.special=num6;
+                                        if(strArray[0].contains("+"))
                                             eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
                                         eventRead.times=num9;
                                         if(strArray[2].contains("("))
                                             eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
-                                        sonevent.results.put(eventRead);
+                                        sonevent.results.add(eventRead);
                                     }
                                 }
                             }
                         }
                         for(Lase lase : layer.LaseArray) {
-                            lase.copys=lase.Copy() as Lase;
+                            lase.copys=lase.Copy();
                             for(Event parentevent : lase.copys.Parentevents)
                                 parentevent.loop=0;
-                            float num1 = MathHelper.Lerp(-lase.copys.rand.speed,lase.copys.rand.speed,(float)Main.rand.NextDouble());
-                            int num2 = (int)MathHelper.Lerp(-lase.copys.rand.speedd,lase.copys.rand.speedd,(float)Main.rand.NextDouble());
-                            float num3 = MathHelper.Lerp(-lase.copys.rand.aspeed,lase.copys.rand.aspeed,(float)Main.rand.NextDouble());
-                            int num4 = (int)MathHelper.Lerp(-lase.copys.rand.aspeedd,lase.copys.rand.aspeedd,(float)Main.rand.NextDouble());
+                            float num1 = MathHelper.Lerp(-lase.copys.rand.speed,lase.copys.rand.speed,(float)Main.rand.nextDouble());
+                            int num2 = (int) MathHelper.Lerp(-lase.copys.rand.speedd,lase.copys.rand.speedd,(float)Main.rand.nextDouble());
+                            float num3 = MathHelper.Lerp(-lase.copys.rand.aspeed,lase.copys.rand.aspeed,(float)Main.rand.nextDouble());
+                            int num4 = (int) MathHelper.Lerp(-lase.copys.rand.aspeedd,lase.copys.rand.aspeedd,(float)Main.rand.nextDouble());
                             lase.copys.aspeed+=num3;
                             lase.copys.aspeedd+=(float)num4;
                             lase.copys.speed+=num1;
                             lase.copys.speedd+=(float)num2;
-                            lase.copys.aspeedx=lase.copys.aspeed*(float)Math.cos((double)MathHelper.ToRadians(lase.copys.aspeedd));
-                            lase.copys.aspeedy=lase.copys.aspeed*(float)Math.sin((double)MathHelper.ToRadians(lase.copys.aspeedd));
-                            lase.copys.speedx=lase.copys.speed*(float)Math.cos((double)MathHelper.ToRadians(lase.copys.speedd));
-                            lase.copys.speedy=lase.copys.speed*(float)Math.sin((double)MathHelper.ToRadians(lase.copys.speedd));
+                            lase.copys.aspeedx=lase.copys.aspeed*(float)Math.cos(MathHelper.ToRadians(lase.copys.aspeedd));
+                            lase.copys.aspeedy=lase.copys.aspeed*(float)Math.sin(MathHelper.ToRadians(lase.copys.aspeedd));
+                            lase.copys.speedx=lase.copys.speed*(float)Math.cos(MathHelper.ToRadians(lase.copys.speedd));
+                            lase.copys.speedy=lase.copys.speed*(float)Math.sin(MathHelper.ToRadians(lase.copys.speedd));
                             if((double)lase.fdirection==-99999.0)
-                                lase.copys.fdirection=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,lase.copys.x-4f,lase.copys.y+16f));
+                                lase.copys.fdirection=(float)MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,lase.copys.x-4f,lase.copys.y+16f));
                             else if((double)lase.fdirection==-100000.0)
-                                lase.copys.fdirection=MathHelper.ToDegrees(Main.Twopointangle(lase.fdirections.X,lase.fdirections.Y,lase.copys.x-4f,lase.copys.y+16f));
+                                lase.copys.fdirection=(float)MathHelper.ToDegrees(Main.Twopointangle(lase.fdirections.x,lase.fdirections.y,lase.copys.x-4f,lase.copys.y+16f));
                             if((double)lase.sonaspeedd==-99998.0)
-                                lase.copys.sonaspeedd=MathHelper.ToDegrees(Main.Twopointangle(lase.x-4f,lase.y+16f,lase.copys.x-4f,lase.copys.y+16f));
+                                lase.copys.sonaspeedd=(float)MathHelper.ToDegrees(Main.Twopointangle(lase.x-4f,lase.y+16f,lase.copys.x-4f,lase.copys.y+16f));
                             else if((double)lase.sonaspeedd==-99999.0)
-                                lase.copys.sonaspeedd=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,lase.copys.x-4f,lase.copys.y+16f));
+                                lase.copys.sonaspeedd=(float)MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,lase.copys.x-4f,lase.copys.y+16f));
                             else if((double)lase.sonaspeedd==-100000.0)
-                                lase.copys.sonaspeedd=MathHelper.ToDegrees(Main.Twopointangle(lase.sonaspeedds.X,lase.sonaspeedds.Y,lase.copys.x-4f,lase.copys.y+16f));
+                                lase.copys.sonaspeedd=(float)MathHelper.ToDegrees(Main.Twopointangle(lase.sonaspeedds.x,lase.sonaspeedds.y,lase.copys.x-4f,lase.copys.y+16f));
                             for(Event parentevent : lase.Parentevents) {
                                 for(String str1 : parentevent.events) {
                                     String str2 = str1.split("：")[0];
@@ -531,12 +525,12 @@ public class Time {
                                     int num6 = 0;
                                     if(str1.contains("且")) {
                                         str8="且";
-                                        str3=str2.split("且)[1];
-                                        str2=str2.split("且)[0];
+                                        str3=str2.split("且")[1];
+                                        str2=str2.split("且")[0];
                                     } else if(str1.contains("或")) {
                                         str8="或";
-                                        str3=str2.split("或)[1];
-                                        str2=str2.split("或)[0];
+                                        str3=str2.split("或")[1];
+                                        str2=str2.split("或")[0];
                                     }
                                     if(str2.contains(">")) {
                                         str4=str2.split(">")[0];
@@ -570,141 +564,139 @@ public class Time {
                                     }
                                     if(str1.contains("变化到")) {
                                         int num7 = 0;
-                                        String[] strArray = str9.split("变化到)[3].split("，);
-                                        int lresult = (int)Main.lresults[(object)str9.split("变化到)[0]];
-                                        String str10 = str9.split("变化到)[0];
-                                        if(strArray[0].contains<char>("+")) {
-                                            if(strArray[0].split("+")[0].equals("自机")
+                                        String[] strArray = str9.split("变化到")[3].split("，");
+                                        int lresult = Main.lresults.get(str9.split("变化到")[0]);
+                                        String str10 = str9.split("变化到")[0];
+                                        if(strArray[0].contains("+")) {
+                                            if(strArray[0].split("+")[0].equals("自机"))
                                                 num6=4;
                                             else
                                                 num5=Float.parseFloat(strArray[0].split("+")[0]);
-                                        } else if(strArray[0].equals("自机")
+                                        } else if(strArray[0].equals("自机"))
                                             num6=4;
                                         else
                                             num5=Float.parseFloat(strArray[0]);
                                         String str11 = strArray[1];
-                                        int num8 = Integer.parseInt(strArray[2].split("帧)[0]);
-                                        EventRead eventRead = new EventRead {
-                                            condition=str2,
-                                            result=str9,
-                                            condition2=str3,
-                                            contype=(int)Main.lconditions[(object)str4],
-                                            contype2=(int)Main.lconditions[(object)str5],
-                                            opreator=str6,
-                                            opreator2=str7,
-                                            collector=str8,
-                                            change=num7,
-                                            changetype=(int)Main.type[(object)str11],
-                                            changevalue=lresult,
-                                            changename=(int)Main.lresults[(object)str10],
-                                            res=num5,
-                                            special=num6
-                                        };
-                                        if(strArray[0].contains<char>("+"))
+                                        int num8 = Integer.parseInt(strArray[2].split("帧")[0]);
+                                        EventRead eventRead = new EventRead();
+										eventRead.condition=str2;
+										eventRead.result=str9;
+										eventRead.condition2=str3;
+										eventRead.contype=Main.lconditions.get(str4);
+										eventRead.contype2=Main.lconditions.get(str5);
+										eventRead.opreator=str6;
+										eventRead.opreator2=str7;
+										eventRead.collector=str8;
+										eventRead.change=num7;
+										eventRead.changetype=Main.type.get(str11);
+										eventRead.changevalue=lresult;
+										eventRead.changename=Main.lresults.get(str10);
+										eventRead.res=num5;
+										eventRead.special=num6;
+                                        if(strArray[0].contains("+"))
                                             eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
                                         eventRead.times=num8;
                                         if(strArray[2].contains("("))
                                             eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
-                                        parentevent.results.put(eventRead);
+                                        parentevent.results.add(eventRead);
                                     } else if(str1.contains("增加")) {
                                         int num7 = 1;
-                                        String[] strArray = str9.split("增)[1].split("，);
-                                        strArray[0]=strArray[0].Replace("加","");
-                                        int lresult = (int)Main.lresults[(object)str9.split("增)[0]];
-                                        String str10 = str9.split("增)[0];
-                                        if(strArray[0].contains<char>("+")) {
-                                            if(strArray[0].split("+")[0].equals("自机")
+                                        String[] strArray = str9.split("增")[1].split("，");
+                                        strArray[0]=strArray[0].replace("加","");
+                                        int lresult = Main.lresults.get(str9.split("增")[0]);
+                                        String str10 = str9.split("增")[0];
+                                        if(strArray[0].contains("+")) {
+                                            if(strArray[0].split("+")[0].equals("自机"))
                                                 num6=4;
                                             else
                                                 num5=Float.parseFloat(strArray[0].split("+")[0]);
-                                        } else if(strArray[0].equals("自机")
+                                        } else if(strArray[0].equals("自机"))
                                             num6=4;
                                         else
                                             num5=Float.parseFloat(strArray[0]);
                                         String str11 = strArray[1];
-                                        int num8 = Integer.parseInt(strArray[2].split("帧)[0]);
-                                        EventRead eventRead = new EventRead {
-                                            condition=str2,
-                                            result=str9,
-                                            condition2=str3,
-                                            contype=(int)Main.lconditions[(object)str4],
-                                            contype2=(int)Main.lconditions[(object)str5],
-                                            opreator=str6,
-                                            opreator2=str7,
-                                            collector=str8,
-                                            change=num7,
-                                            changetype=(int)Main.type[(object)str11],
-                                            changevalue=lresult,
-                                            changename=(int)Main.lresults[(object)str10],
-                                            res=num5,
-                                            special=num6
-                                        };
-                                        if(strArray[0].contains<char>("+"))
+                                        int num8 = Integer.parseInt(strArray[2].split("帧")[0]);
+                                        EventRead eventRead = new EventRead();
+										eventRead.condition=str2;
+										eventRead.result=str9;
+										eventRead.condition2=str3;
+										eventRead.contype=Main.lconditions.get(str4);
+										eventRead.contype2=Main.lconditions.get(str5);
+										eventRead.opreator=str6;
+										eventRead.opreator2=str7;
+										eventRead.collector=str8;
+										eventRead.change=num7;
+										eventRead.changetype=Main.type.get(str11);
+										eventRead.changevalue=lresult;
+										eventRead.changename=Main.lresults.get(str10);
+										eventRead.res=num5;
+										eventRead.special=num6;
+                                        if(strArray[0].contains("+"))
                                             eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
                                         eventRead.times=num8;
                                         if(strArray[2].contains("("))
                                             eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
-                                        parentevent.results.put(eventRead);
+                                        parentevent.results.add(eventRead);
                                     } else if(str1.contains("减少")) {
                                         int num7 = 2;
-                                        String[] strArray = str9.split("减少)[2].split("，);
-                                        int lresult = (int)Main.lresults[(object)str9.split("减少)[0]];
-                                        String str10 = str9.split("减少)[0];
-                                        if(strArray[0].contains<char>("+")) {
-                                            if(strArray[0].split("+")[0].equals("自机")
+                                        String[] strArray = str9.split("减少")[2].split("，");
+                                        int lresult = Main.lresults.get(str9.split("减少")[0]);
+                                        String str10 = str9.split("减少")[0];
+                                        if(strArray[0].contains("+")) {
+                                            if(strArray[0].split("+")[0].equals("自机"))
                                                 num6=4;
                                             else
                                                 num5=Float.parseFloat(strArray[0].split("+")[0]);
-                                        } else if(strArray[0].equals("自机")
+                                        } else if(strArray[0].equals("自机"))
                                             num6=4;
                                         else
                                             num5=Float.parseFloat(strArray[0]);
                                         String str11 = strArray[1];
-                                        int num8 = Integer.parseInt(strArray[2].split("帧)[0]);
-                                        EventRead eventRead = new EventRead {
-                                            condition=str2,
-                                            result=str9,
-                                            condition2=str3,
-                                            contype=(int)Main.lconditions[(object)str4],
-                                            contype2=(int)Main.lconditions[(object)str5],
-                                            opreator=str6,
-                                            opreator2=str7,
-                                            collector=str8,
-                                            change=num7,
-                                            changetype=(int)Main.type[(object)str11],
-                                            changevalue=lresult,
-                                            changename=(int)Main.lresults[(object)str10],
-                                            res=num5,
-                                            special=num6
-                                        };
-                                        if(strArray[0].contains<char>("+"))
+                                        int num8 = Integer.parseInt(strArray[2].split("帧")[0]);
+                                        EventRead eventRead = new EventRead();
+										eventRead.condition=str2;
+										eventRead.result=str9;
+										eventRead.condition2=str3;
+										eventRead.contype=Main.lconditions.get(str4);
+										eventRead.contype2=Main.lconditions.get(str5);
+										eventRead.opreator=str6;
+										eventRead.opreator2=str7;
+										eventRead.collector=str8;
+										eventRead.change=num7;
+										eventRead.changetype=Main.type.get(str11);
+										eventRead.changevalue=lresult;
+										eventRead.changename=Main.lresults.get(str10);
+										eventRead.res=num5;
+										eventRead.special=num6;
+                                        if(strArray[0].contains("+"))
                                             eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
                                         eventRead.times=num8;
                                         if(strArray[2].contains("("))
                                             eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
-                                        parentevent.results.put(eventRead);
-                                    } else if(str1.contains("恢复"))
-                                        parentevent.results.put(new EventRead() {
-                                            special=1,
-                                            opreator=str6,
-                                            opreator2=str7,
-                                            condition=str2,
-                                            condition2=str3,
-                                            contype=(int)Main.lconditions[(object)str4],
-                                            contype2=(int)Main.lconditions[(object)str5],
-                                            collector=str8
-                                        });
-                                    else if(str1.contains("发射"))
-                                        parentevent.results.put(new EventRead() {
-                                            special=2,
-                                            opreator=str6,
-                                            opreator2=str7,
-                                            condition=str2,
-                                            condition2=str3,
-                                            contype=(int)Main.lconditions[(object)str4],
-                                            contype2=(int)Main.lconditions[(object)str5],
-                                            collector=str8
-                                        });
+                                        parentevent.results.add(eventRead);
+                                    } else if(str1.contains("恢复")){
+										EventRead e=new EventRead();
+										e.special=1;
+										e.opreator=str6;
+										e.opreator2=str7;
+										e.condition=str2;
+										e.condition2=str3;
+										e.contype=Main.lconditions.get(str4);
+										e.contype2=Main.lconditions.get(str5);
+										e.collector=str8;
+                                        parentevent.results.add(e);
+									} else if(str1.contains("发射")){
+										EventRead e=new EventRead();
+										e.special=2;
+										e.opreator=str6;
+										e.opreator2=str7;
+										e.condition=str2;
+										e.condition2=str3;
+										e.contype=Main.lconditions.get(str4);
+										e.contype2=Main.lconditions.get(str5);
+										e.collector=str8;
+										parentevent.results.add(e);
+									}
                                 }
                             }
                             for(Event sonevent : lase.Sonevents) {
@@ -721,12 +713,12 @@ public class Time {
                                     int num6 = 0;
                                     if(str1.contains("且")) {
                                         str8="且";
-                                        str3=str2.split("且)[1];
-                                        str2=str2.split("且)[0];
+                                        str3=str2.split("且")[1];
+                                        str2=str2.split("且")[0];
                                     } else if(str1.contains("或")) {
                                         str8="或";
-                                        str3=str2.split("或)[1];
-                                        str2=str2.split("或)[0];
+                                        str3=str2.split("或")[1];
+                                        str2=str2.split("或")[0];
                                     }
                                     if(str2.contains(">")) {
                                         str4=str2.split(">")[0];
@@ -760,157 +752,154 @@ public class Time {
                                     }
                                     if(str1.contains("变化到")) {
                                         int num7 = 0;
-                                        String[] strArray = str9.split("变化到)[3].split("，);
-                                        int num8 = (int)Main.lresults2[(object)str9.split("变化到)[0]];
-                                        String str10 = str9.split("变化到)[0];
-                                        if(strArray[0].contains<char>("+")) {
-                                            if(strArray[0].split("+")[0].equals("自机")
+                                        String[] strArray = str9.split("变化到")[3].split("，");
+                                        int num8 = Main.lresults2.get(str9.split("变化到")[0]);
+                                        String str10 = str9.split("变化到")[0];
+                                        if(strArray[0].contains("+")) {
+                                            if(strArray[0].split("+")[0].equals("自机"))
                                                 num6=4;
-                                            else if(strArray[0].split("+")[0].equals("中心") {
+                                            else if(strArray[0].split("+")[0].equals("中心")) {
                                                 num6=5;
                                                 str6="";
                                             } else
                                                 num5=Float.parseFloat(strArray[0].split("+")[0]);
-                                        } else if(strArray[0].equals("自机")
+                                        } else if(strArray[0].equals("自机"))
                                             num6=4;
-                                        else if(strArray[0].equals("中心") {
+                                        else if(strArray[0].equals("中心")) {
                                             num6=5;
                                             str6="";
                                         } else
                                             num5=Float.parseFloat(strArray[0]);
                                         String str11 = strArray[1];
-                                        int num9 = Integer.parseInt(strArray[2].split("帧)[0]);
-                                        EventRead eventRead = new EventRead {
-                                            condition=str2,
-                                            result=str9,
-                                            condition2=str3,
-                                            contype=(int)Main.lconditions[(object)str4],
-                                            contype2=(int)Main.lconditions[(object)str5],
-                                            opreator=str6,
-                                            opreator2=str7,
-                                            collector=str8,
-                                            change=num7,
-                                            changetype=(int)Main.type[(object)str11],
-                                            changevalue=num8,
-                                            changename=(int)Main.lresults2[(object)str10],
-                                            res=num5,
-                                            special=num6
-                                        };
-                                        if(strArray[0].contains<char>("+"))
+                                        int num9 = Integer.parseInt(strArray[2].split("帧")[0]);
+                                        EventRead eventRead = new EventRead();
+										eventRead.condition=str2;
+										eventRead.result=str9;
+										eventRead.condition2=str3;
+										eventRead.contype=Main.lconditions.get(str4);
+										eventRead.contype2=Main.lconditions.get(str5);
+										eventRead.opreator=str6;
+										eventRead.opreator2=str7;
+										eventRead.collector=str8;
+										eventRead.change=num7;
+										eventRead.changetype=Main.type.get(str11);
+										eventRead.changevalue=num8;
+										eventRead.changename=Main.lresults2.get(str10);
+										eventRead.res=num5;
+										eventRead.special=num6;
+                                        if(strArray[0].contains("+"))
                                             eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
                                         eventRead.times=num9;
                                         if(strArray[2].contains("("))
                                             eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
-                                        sonevent.results.put(eventRead);
+                                        sonevent.results.add(eventRead);
                                     } else if(str1.contains("增加")) {
                                         int num7 = 1;
-                                        String[] strArray = str9.split("增)[1].split("，);
-                                        strArray[0]=strArray[0].Replace("加","");
-                                        int num8 = (int)Main.lresults2[(object)str9.split("增)[0]];
-                                        String str10 = str9.split("增)[0];
-                                        if(strArray[0].contains<char>("+")) {
-                                            if(strArray[0].split("+")[0].equals("自机")
+                                        String[] strArray = str9.split("增")[1].split("，");
+                                        strArray[0]=strArray[0].replace("加","");
+                                        int num8 = Main.lresults2.get(str9.split("增")[0]);
+                                        String str10 = str9.split("增")[0];
+                                        if(strArray[0].contains("+")) {
+                                            if(strArray[0].split("+")[0].equals("自机"))
                                                 num6=4;
-                                            else if(strArray[0].split("+")[0].equals("中心") {
+                                            else if(strArray[0].split("+")[0].equals("中心")) {
                                                 num6=5;
                                                 str6="";
                                             } else
                                                 num5=Float.parseFloat(strArray[0].split("+")[0]);
-                                        } else if(strArray[0].equals("自机")
+                                        } else if(strArray[0].equals("自机"))
                                             num6=4;
-                                        else if(strArray[0].equals("中心") {
+                                        else if(strArray[0].equals("中心")) {
                                             num6=5;
                                             str6="";
                                         } else
                                             num5=Float.parseFloat(strArray[0]);
                                         String str11 = strArray[1];
-                                        int num9 = Integer.parseInt(strArray[2].split("帧)[0]);
-                                        EventRead eventRead = new EventRead {
-                                            condition=str2,
-                                            result=str9,
-                                            condition2=str3,
-                                            contype=(int)Main.lconditions[(object)str4],
-                                            contype2=(int)Main.lconditions[(object)str5],
-                                            opreator=str6,
-                                            opreator2=str7,
-                                            collector=str8,
-                                            change=num7,
-                                            changetype=(int)Main.type[(object)str11],
-                                            changevalue=num8,
-                                            changename=(int)Main.lresults2[(object)str10],
-                                            res=num5,
-                                            special=num6
-                                        };
-                                        if(strArray[0].contains<char>("+"))
+                                        int num9 = Integer.parseInt(strArray[2].split("帧")[0]);
+                                        EventRead eventRead = new EventRead();
+										eventRead.condition=str2;
+										eventRead.result=str9;
+										eventRead.condition2=str3;
+										eventRead.contype=Main.lconditions.get(str4);
+										eventRead.contype2=Main.lconditions.get(str5);
+										eventRead.opreator=str6;
+										eventRead.opreator2=str7;
+										eventRead.collector=str8;
+										eventRead.change=num7;
+										eventRead.changetype=Main.type.get(str11);
+										eventRead.changevalue=num8;
+										eventRead.changename=Main.lresults2.get(str10);
+										eventRead.res=num5;
+										eventRead.special=num6;
+                                        if(strArray[0].contains("+"))
                                             eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
                                         eventRead.times=num9;
                                         if(strArray[2].contains("("))
                                             eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
-                                        sonevent.results.put(eventRead);
+                                        sonevent.results.add(eventRead);
                                     } else if(str1.contains("减少")) {
                                         int num7 = 2;
-                                        String[] strArray = str9.split("减少)[2].split("，);
-                                        int num8 = (int)Main.lresults2[(object)str9.split("减少)[0]];
-                                        String str10 = str9.split("减少)[0];
-                                        if(strArray[0].contains<char>("+")) {
-                                            if(strArray[0].split("+")[0].equals("自机")
+                                        String[] strArray = str9.split("减少")[2].split("，");
+                                        int num8 = Main.lresults2.get(str9.split("减少")[0]);
+                                        String str10 = str9.split("减少")[0];
+                                        if(strArray[0].contains("+")) {
+                                            if(strArray[0].split("+")[0].equals("自机"))
                                                 num6=4;
-                                            else if(strArray[0].split("+")[0].equals("中心") {
+                                            else if(strArray[0].split("+")[0].equals("中心")) {
                                                 num6=5;
                                                 str6="";
                                             } else
                                                 num5=Float.parseFloat(strArray[0].split("+")[0]);
-                                        } else if(strArray[0].equals("自机")
+                                        } else if(strArray[0].equals("自机"))
                                             num6=4;
-                                        else if(strArray[0].equals("中心") {
+                                        else if(strArray[0].equals("中心")) {
                                             num6=5;
                                             str6="";
                                         } else
                                             num5=Float.parseFloat(strArray[0]);
                                         String str11 = strArray[1];
-                                        int num9 = Integer.parseInt(strArray[2].split("帧)[0]);
-                                        EventRead eventRead = new EventRead {
-                                            condition=str2,
-                                            result=str9,
-                                            condition2=str3,
-                                            contype=(int)Main.lconditions[(object)str4],
-                                            contype2=(int)Main.lconditions[(object)str5],
-                                            opreator=str6,
-                                            opreator2=str7,
-                                            collector=str8,
-                                            change=num7,
-                                            changetype=(int)Main.type[(object)str11],
-                                            changevalue=num8,
-                                            changename=(int)Main.lresults2[(object)str10],
-                                            res=num5,
-                                            special=num6
-                                        };
-                                        if(strArray[0].contains<char>("+"))
+                                        int num9 = Integer.parseInt(strArray[2].split("帧")[0]);
+                                        EventRead eventRead = new EventRead();
+                                        eventRead.condition=str2;
+										eventRead.result=str9;
+										eventRead.condition2=str3;
+                                        eventRead.contype=Main.lconditions.get(str4);
+										eventRead.contype2=Main.lconditions.get(str5);
+                                        eventRead.opreator=str6;
+                                        eventRead.opreator2=str7;
+                                        eventRead.collector=str8;
+										eventRead.change=num7;
+										eventRead.changetype=Main.type.get(str11);
+                                        eventRead.changevalue=num8;
+										eventRead.changename=Main.lresults2.get(str10);
+										eventRead.res=num5;
+										eventRead.special=num6;
+                                        if(strArray[0].contains("+"))
                                             eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
                                         eventRead.times=num9;
                                         if(strArray[2].contains("("))
                                             eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
-                                        sonevent.results.put(eventRead);
+                                        sonevent.results.add(eventRead);
                                     }
                                 }
                             }
                         }
                         for(Cover cover : layer.CoverArray) {
-                            cover.copys=cover.Copy() as Cover;
+                            cover.copys=cover.Copy();
                             for(Event parentevent : cover.copys.Parentevents)
                                 parentevent.loop=0;
-                            float num1 = MathHelper.Lerp(-cover.copys.rand.speed,cover.copys.rand.speed,(float)Main.rand.NextDouble());
-                            int num2 = (int)MathHelper.Lerp(-cover.copys.rand.speedd,cover.copys.rand.speedd,(float)Main.rand.NextDouble());
-                            float num3 = MathHelper.Lerp(-cover.copys.rand.aspeed,cover.copys.rand.aspeed,(float)Main.rand.NextDouble());
-                            int num4 = (int)MathHelper.Lerp(-cover.copys.rand.aspeedd,cover.copys.rand.aspeedd,(float)Main.rand.NextDouble());
+                            float num1 = MathHelper.Lerp(-cover.copys.rand.speed,cover.copys.rand.speed,(float)Main.rand.nextDouble());
+                            int num2 = (int) MathHelper.Lerp(-cover.copys.rand.speedd,cover.copys.rand.speedd,(float)Main.rand.nextDouble());
+                            float num3 = MathHelper.Lerp(-cover.copys.rand.aspeed,cover.copys.rand.aspeed,(float)Main.rand.nextDouble());
+                            int num4 = (int) MathHelper.Lerp(-cover.copys.rand.aspeedd,cover.copys.rand.aspeedd,(float)Main.rand.nextDouble());
                             cover.copys.aspeed+=num3;
                             cover.copys.aspeedd+=(float)num4;
                             cover.copys.speed+=num1;
                             cover.copys.speedd+=(float)num2;
-                            cover.copys.aspeedx=cover.copys.aspeed*(float)Math.cos((double)MathHelper.ToRadians(cover.copys.aspeedd));
-                            cover.copys.aspeedy=cover.copys.aspeed*(float)Math.sin((double)MathHelper.ToRadians(cover.copys.aspeedd));
-                            cover.copys.speedx=cover.copys.speed*(float)Math.cos((double)MathHelper.ToRadians(cover.copys.speedd));
-                            cover.copys.speedy=cover.copys.speed*(float)Math.sin((double)MathHelper.ToRadians(cover.copys.speedd));
+                            cover.copys.aspeedx=cover.copys.aspeed*(float)Math.cos(MathHelper.ToRadians(cover.copys.aspeedd));
+                            cover.copys.aspeedy=cover.copys.aspeed*(float)Math.sin(MathHelper.ToRadians(cover.copys.aspeedd));
+                            cover.copys.speedx=cover.copys.speed*(float)Math.cos(MathHelper.ToRadians(cover.copys.speedd));
+                            cover.copys.speedy=cover.copys.speed*(float)Math.sin(MathHelper.ToRadians(cover.copys.speedd));
                             for(Event parentevent : cover.Parentevents) {
                                 for(String str1 : parentevent.events) {
                                     String str2 = str1.split("：")[0];
@@ -925,12 +914,12 @@ public class Time {
                                     int num6 = 0;
                                     if(str1.contains("且")) {
                                         str8="且";
-                                        str3=str2.split("且)[1];
-                                        str2=str2.split("且)[0];
+                                        str3=str2.split("且")[1];
+                                        str2=str2.split("且")[0];
                                     } else if(str1.contains("或")) {
                                         str8="或";
-                                        str3=str2.split("或)[1];
-                                        str2=str2.split("或)[0];
+                                        str3=str2.split("或")[1];
+                                        str2=str2.split("或")[0];
                                     }
                                     if(str2.contains(">")) {
                                         str4=str2.split(">")[0];
@@ -964,119 +953,116 @@ public class Time {
                                     }
                                     if(str1.contains("变化到")) {
                                         int num7 = 0;
-                                        String[] strArray = str9.split("变化到)[3].split("，);
-                                        int cresult = (int)Main.cresults[(object)str9.split("变化到)[0]];
-                                        String str10 = str9.split("变化到)[0];
-                                        if(strArray[0].contains<char>("+")) {
-                                            if(strArray[0].split("+")[0].equals("自机")
+                                        String[] strArray = str9.split("变化到")[3].split("，");
+                                        int cresult = Main.cresults.get(str9.split("变化到")[0]);
+                                        String str10 = str9.split("变化到")[0];
+                                        if(strArray[0].contains("+")) {
+                                            if(strArray[0].split("+")[0].equals("自机"))
                                                 num6=4;
                                             else
                                                 num5=Float.parseFloat(strArray[0].split("+")[0]);
-                                        } else if(strArray[0].equals("自机")
+                                        } else if(strArray[0].equals("自机"))
                                             num6=4;
                                         else
                                             num5=Float.parseFloat(strArray[0]);
                                         String str11 = strArray[1];
-                                        int num8 = Integer.parseInt(strArray[2].split("帧)[0]);
-                                        EventRead eventRead = new EventRead {
-                                            condition=str2,
-                                            result=str9,
-                                            condition2=str3,
-                                            contype=(int)Main.cconditions[(object)str4],
-                                            contype2=(int)Main.cconditions[(object)str5],
-                                            opreator=str6,
-                                            opreator2=str7,
-                                            collector=str8,
-                                            change=num7,
-                                            changetype=(int)Main.type[(object)str11],
-                                            changevalue=cresult,
-                                            changename=(int)Main.cresults[(object)str10],
-                                            res=num5,
-                                            special=num6
-                                        };
-                                        if(strArray[0].contains<char>("+"))
+                                        int num8 = Integer.parseInt(strArray[2].split("帧")[0]);
+										EventRead eventRead = new EventRead();
+										eventRead.condition=str2;
+                                        eventRead.result=str9;
+										eventRead.condition2=str3;
+										eventRead.contype=Main.cconditions.get(str4);
+										eventRead.contype2=Main.cconditions.get(str5);
+										eventRead.opreator=str6;
+										eventRead.opreator2=str7;
+										eventRead.collector=str8;
+										eventRead.change=num7;
+										eventRead.changetype=Main.type.get(str11);
+										eventRead.changevalue=cresult;
+										eventRead.changename=Main.cresults.get(str10);
+										eventRead.res=num5;
+										eventRead.special=num6;
+										if(strArray[0].contains("+"))
                                             eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
                                         eventRead.times=num8;
                                         if(strArray[2].contains("("))
                                             eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
-                                        parentevent.results.put(eventRead);
+                                        parentevent.results.add(eventRead);
                                     } else if(str1.contains("增加")) {
                                         int num7 = 1;
-                                        String[] strArray = str9.split("增)[1].split("，);
-                                        strArray[0]=strArray[0].Replace("加","");
-                                        int cresult = (int)Main.cresults[(object)str9.split("增)[0]];
-                                        String str10 = str9.split("增)[0];
-                                        if(strArray[0].contains<char>("+")) {
-                                            if(strArray[0].split("+")[0].equals("自机")
+                                        String[] strArray = str9.split("增")[1].split("，");
+                                        strArray[0]=strArray[0].replace("加","");
+                                        int cresult = Main.cresults.get(str9.split("增")[0]);
+                                        String str10 = str9.split("增")[0];
+                                        if(strArray[0].contains("+")) {
+                                            if(strArray[0].split("+")[0].equals("自机"))
                                                 num6=4;
                                             else
                                                 num5=Float.parseFloat(strArray[0].split("+")[0]);
-                                        } else if(strArray[0].equals("自机")
+                                        } else if(strArray[0].equals("自机"))
                                             num6=4;
                                         else
                                             num5=Float.parseFloat(strArray[0]);
                                         String str11 = strArray[1];
-                                        int num8 = Integer.parseInt(strArray[2].split("帧)[0]);
-                                        EventRead eventRead = new EventRead {
-                                            condition=str2,
-                                            result=str9,
-                                            condition2=str3,
-                                            contype=(int)Main.cconditions[(object)str4],
-                                            contype2=(int)Main.cconditions[(object)str5],
-                                            opreator=str6,
-                                            opreator2=str7,
-                                            collector=str8,
-                                            change=num7,
-                                            changetype=(int)Main.type[(object)str11],
-                                            changevalue=cresult,
-                                            changename=(int)Main.cresults[(object)str10],
-                                            res=num5,
-                                            special=num6
-                                        };
-                                        if(strArray[0].contains<char>("+"))
+                                        int num8 = Integer.parseInt(strArray[2].split("帧")[0]);
+                                        EventRead eventRead = new EventRead();
+										eventRead.condition=str2;
+										eventRead.result=str9;
+										eventRead.condition2=str3;
+										eventRead.contype=Main.cconditions.get(str4);
+										eventRead.contype2=Main.cconditions.get(str5);
+										eventRead.opreator=str6;
+										eventRead.opreator2=str7;
+										eventRead.collector=str8;
+										eventRead.change=num7;
+										eventRead.changetype=Main.type.get(str11);
+										eventRead.changevalue=cresult;
+										eventRead.changename=Main.cresults.get(str10);
+										eventRead.res=num5;
+										eventRead.special=num6;
+                                        if(strArray[0].contains("+"))
                                             eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
                                         eventRead.times=num8;
                                         if(strArray[2].contains("("))
                                             eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
-                                        parentevent.results.put(eventRead);
+                                        parentevent.results.add(eventRead);
                                     } else if(str1.contains("减少")) {
                                         int num7 = 2;
-                                        String[] strArray = str9.split("减少)[2].split("，);
-                                        int cresult = (int)Main.cresults[(object)str9.split("减少)[0]];
-                                        String str10 = str9.split("减少)[0];
-                                        if(strArray[0].contains<char>("+")) {
-                                            if(strArray[0].split("+")[0].equals("自机")
+                                        String[] strArray = str9.split("减少")[2].split("，");
+                                        int cresult = Main.cresults.get(str9.split("减少")[0]);
+                                        String str10 = str9.split("减少")[0];
+                                        if(strArray[0].contains("+")) {
+                                            if(strArray[0].split("+")[0].equals("自机"))
                                                 num6=4;
                                             else
                                                 num5=Float.parseFloat(strArray[0].split("+")[0]);
-                                        } else if(strArray[0].equals("自机")
+                                        } else if(strArray[0].equals("自机"))
                                             num6=4;
                                         else
                                             num5=Float.parseFloat(strArray[0]);
                                         String str11 = strArray[1];
-                                        int num8 = Integer.parseInt(strArray[2].split("帧)[0]);
-                                        EventRead eventRead = new EventRead {
-                                            condition=str2,
-                                            result=str9,
-                                            condition2=str3,
-                                            contype=(int)Main.cconditions[(object)str4],
-                                            contype2=(int)Main.cconditions[(object)str5],
-                                            opreator=str6,
-                                            opreator2=str7,
-                                            collector=str8,
-                                            change=num7,
-                                            changetype=(int)Main.type[(object)str11],
-                                            changevalue=cresult,
-                                            changename=(int)Main.cresults[(object)str10],
-                                            res=num5,
-                                            special=num6
-                                        };
-                                        if(strArray[0].contains<char>("+"))
+                                        int num8 = Integer.parseInt(strArray[2].split("帧")[0]);
+                                        EventRead eventRead = new EventRead();
+										eventRead.condition=str2;
+										eventRead.result=str9;
+										eventRead.condition2=str3;
+										eventRead.contype=Main.cconditions.get(str4);
+										eventRead.contype2=Main.cconditions.get(str5);
+										eventRead.opreator=str6;
+										eventRead.opreator2=str7;
+										eventRead.collector=str8;
+										eventRead.change=num7;
+										eventRead.changetype=Main.type.get(str11);
+										eventRead.changevalue=cresult;
+										eventRead.changename=Main.cresults.get(str10);
+										eventRead.res=num5;
+										eventRead.special=num6;
+                                        if(strArray[0].contains("+"))
                                             eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
                                         eventRead.times=num8;
                                         if(strArray[2].contains("("))
                                             eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
-                                        parentevent.results.put(eventRead);
+                                        parentevent.results.add(eventRead);
                                     }
                                 }
                             }
@@ -1094,12 +1080,12 @@ public class Time {
                                     int num6 = 0;
                                     if(str1.contains("且")) {
                                         str8="且";
-                                        str3=str2.split("且)[1];
-                                        str2=str2.split("且)[0];
+                                        str3=str2.split("且")[1];
+                                        str2=str2.split("且")[0];
                                     } else if(str1.contains("或")) {
                                         str8="或";
-                                        str3=str2.split("或)[1];
-                                        str2=str2.split("或)[0];
+                                        str3=str2.split("或")[1];
+                                        str2=str2.split("或")[0];
                                     }
                                     if(str2.contains(">")) {
                                         str4=str2.split(">")[0];
@@ -1133,185 +1119,182 @@ public class Time {
                                     }
                                     if(str1.contains("变化到")) {
                                         int num7 = 0;
-                                        String[] strArray = str9.split("变化到)[3].split("，);
-                                        int num8 = (int)Main.results2[(object)str9.split("变化到)[0]];
-                                        String str10 = str9.split("变化到)[0];
-                                        if(strArray[0].contains<char>("+")) {
-                                            if(strArray[0].split("+")[0].equals("自身")
+                                        String[] strArray = str9.split("变化到")[3].split("，");
+                                        int num8 = Main.results2.get(str9.split("变化到")[0]);
+                                        String str10 = str9.split("变化到")[0];
+                                        if(strArray[0].contains("+")) {
+                                            if(strArray[0].split("+")[0].equals("自身"))
                                                 num6=3;
-                                            else if(strArray[0].split("+")[0].equals("自机")
+                                            else if(strArray[0].split("+")[0].equals("自机"))
                                                 num6=4;
-                                            else if(strArray[0].split("+")[0].equals("中心") {
+                                            else if(strArray[0].split("+")[0].equals("中心")) {
                                                 num6=5;
                                                 str6="";
                                             } else
                                                 num5=Float.parseFloat(strArray[0].split("+")[0]);
-                                        } else if(strArray[0].equals("自身")
+                                        } else if(strArray[0].equals("自身"))
                                             num6=3;
-                                        else if(strArray[0].equals("自机")
+                                        else if(strArray[0].equals("自机"))
                                             num6=4;
-                                        else if(strArray[0].equals("中心") {
+                                        else if(strArray[0].equals("中心")) {
                                             num6=5;
                                             str6="";
                                         } else
                                             num5=Float.parseFloat(strArray[0]);
                                         String str11 = strArray[1];
-                                        int num9 = Integer.parseInt(strArray[2].split("帧)[0]);
-                                        EventRead eventRead = new EventRead {
-                                            condition=str2,
-                                            result=str9,
-                                            condition2=str3,
-                                            contype=(int)Main.conditions2[(object)str4],
-                                            contype2=(int)Main.conditions2[(object)str5],
-                                            opreator=str6,
-                                            opreator2=str7,
-                                            collector=str8,
-                                            change=num7,
-                                            changetype=(int)Main.type[(object)str11],
-                                            changevalue=num8,
-                                            changename=(int)Main.results2[(object)str10],
-                                            res=num5,
-                                            special=num6,
-                                            special2=1
-                                        };
-                                        if(strArray[0].contains<char>("+"))
+                                        int num9 = Integer.parseInt(strArray[2].split("帧")[0]);
+                                        EventRead eventRead = new EventRead();
+										eventRead.condition=str2;
+										eventRead.result=str9;
+										eventRead.condition2=str3;
+										eventRead.contype=Main.conditions2.get(str4);
+										eventRead.contype2=Main.conditions2.get(str5);
+										eventRead.opreator=str6;
+										eventRead.opreator2=str7;
+										eventRead.collector=str8;
+										eventRead.change=num7;
+										eventRead.changetype=Main.type.get(str11);
+										eventRead.changevalue=num8;
+										eventRead.changename=Main.results2.get(str10);
+										eventRead.res=num5;
+										eventRead.special=num6;
+										eventRead.special2=1;
+                                        if(strArray[0].contains("+"))
                                             eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
                                         eventRead.times=num9;
                                         if(strArray[2].contains("("))
                                             eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
-                                        sonevent.results.put(eventRead);
+                                        sonevent.results.add(eventRead);
                                     } else if(str1.contains("增加")) {
                                         int num7 = 1;
-                                        String[] strArray = str9.split("增)[1].split("，);
-                                        strArray[0]=strArray[0].Replace("加","");
-                                        int num8 = (int)Main.results2[(object)str9.split("增)[0]];
-                                        String str10 = str9.split("增)[0];
-                                        if(strArray[0].contains<char>("+")) {
-                                            if(strArray[0].split("+")[0].equals("自身")
+                                        String[] strArray = str9.split("增")[1].split("，");
+                                        strArray[0]=strArray[0].replace("加","");
+                                        int num8 = Main.results2.get(str9.split("增")[0]);
+                                        String str10 = str9.split("增")[0];
+                                        if(strArray[0].contains("+")) {
+                                            if(strArray[0].split("+")[0].equals("自身"))
                                                 num6=3;
-                                            else if(strArray[0].split("+")[0].equals("自机")
+                                            else if(strArray[0].split("+")[0].equals("自机"))
                                                 num6=4;
-                                            else if(strArray[0].split("+")[0].equals("中心") {
+                                            else if(strArray[0].split("+")[0].equals("中心")) {
                                                 num6=5;
                                                 str6="";
                                             } else
                                                 num5=Float.parseFloat(strArray[0].split("+")[0]);
-                                        } else if(strArray[0].equals("自身")
+                                        } else if(strArray[0].equals("自身"))
                                             num6=3;
-                                        else if(strArray[0].equals("自机")
+                                        else if(strArray[0].equals("自机"))
                                             num6=4;
-                                        else if(strArray[0].equals("中心") {
+                                        else if(strArray[0].equals("中心")) {
                                             num6=5;
                                             str6="";
                                         } else
                                             num5=Float.parseFloat(strArray[0]);
                                         String str11 = strArray[1];
-                                        int num9 = Integer.parseInt(strArray[2].split("帧)[0]);
-                                        EventRead eventRead = new EventRead {
-                                            condition=str2,
-                                            result=str9,
-                                            condition2=str3,
-                                            contype=(int)Main.conditions2[(object)str4],
-                                            contype2=(int)Main.conditions2[(object)str5],
-                                            opreator=str6,
-                                            opreator2=str7,
-                                            collector=str8,
-                                            change=num7,
-                                            changetype=(int)Main.type[(object)str11],
-                                            changevalue=num8,
-                                            changename=(int)Main.results2[(object)str10],
-                                            res=num5,
-                                            special=num6,
-                                            special2=1
-                                        };
-                                        if(strArray[0].contains<char>("+"))
+                                        int num9 = Integer.parseInt(strArray[2].split("帧")[0]);
+                                        EventRead eventRead = new EventRead();
+										eventRead.condition=str2;
+										eventRead.result=str9;
+										eventRead.condition2=str3;
+										eventRead.contype=Main.conditions2.get(str4);
+										eventRead.contype2=Main.conditions2.get(str5);
+										eventRead.opreator=str6;
+										eventRead.opreator2=str7;
+										eventRead.collector=str8;
+										eventRead.change=num7;
+										eventRead.changetype=Main.type.get(str11);
+										eventRead.changevalue=num8;
+										eventRead.changename=Main.results2.get(str10);
+										eventRead.res=num5;
+										eventRead.special=num6;
+										eventRead.special2=1;
+                                        if(strArray[0].contains("+"))
                                             eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
                                         eventRead.times=num9;
                                         if(strArray[2].contains("("))
                                             eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
-                                        sonevent.results.put(eventRead);
+                                        sonevent.results.add(eventRead);
                                     } else if(str1.contains("减少")) {
                                         int num7 = 2;
-                                        String[] strArray = str9.split("减少)[2].split("，);
-                                        int num8 = (int)Main.results2[(object)str9.split("减少)[0]];
-                                        String str10 = str9.split("减少)[0];
-                                        if(strArray[0].contains<char>("+")) {
-                                            if(strArray[0].split("+")[0].equals("自身")
+                                        String[] strArray = str9.split("减少")[2].split("，");
+                                        int num8 = Main.results2.get(str9.split("减少")[0]);
+                                        String str10 = str9.split("减少")[0];
+                                        if(strArray[0].contains("+")) {
+                                            if(strArray[0].split("+")[0].equals("自身"))
                                                 num6=3;
-                                            else if(strArray[0].split("+")[0].equals("自机")
+                                            else if(strArray[0].split("+")[0].equals("自机"))
                                                 num6=4;
-                                            else if(strArray[0].split("+")[0].equals("中心") {
+                                            else if(strArray[0].split("+")[0].equals("中心")) {
                                                 num6=5;
                                                 str6="";
                                             } else
                                                 num5=Float.parseFloat(strArray[0].split("+")[0]);
-                                        } else if(strArray[0].equals("自身")
+                                        } else if(strArray[0].equals("自身"))
                                             num6=3;
-                                        else if(strArray[0].equals("自机")
+                                        else if(strArray[0].equals("自机"))
                                             num6=4;
-                                        else if(strArray[0].equals("中心") {
+                                        else if(strArray[0].equals("中心")) {
                                             num6=5;
                                             str6="";
                                         } else
                                             num5=Float.parseFloat(strArray[0]);
                                         String str11 = strArray[1];
-                                        int num9 = Integer.parseInt(strArray[2].split("帧)[0]);
-                                        EventRead eventRead = new EventRead {
-                                            condition=str2,
-                                            result=str9,
-                                            condition2=str3,
-                                            contype=(int)Main.conditions2[(object)str4],
-                                            contype2=(int)Main.conditions2[(object)str5],
-                                            opreator=str6,
-                                            opreator2=str7,
-                                            collector=str8,
-                                            change=num7,
-                                            changetype=(int)Main.type[(object)str11],
-                                            changevalue=num8,
-                                            changename=(int)Main.results2[(object)str10],
-                                            res=num5,
-                                            special=num6,
-                                            special2=1
-                                        };
-                                        if(strArray[0].contains<char>("+"))
+                                        int num9 = Integer.parseInt(strArray[2].split("帧")[0]);
+                                        EventRead eventRead = new EventRead();
+										eventRead.condition=str2;
+										eventRead.result=str9;
+										eventRead.condition2=str3;
+										eventRead.contype=Main.conditions2.get(str4);
+										eventRead.contype2=Main.conditions2.get(str5);
+										eventRead.opreator=str6;
+										eventRead.opreator2=str7;
+										eventRead.collector=str8;
+										eventRead.change=num7;
+										eventRead.changetype=Main.type.get(str11);
+										eventRead.changevalue=num8;
+										eventRead.changename=Main.results2.get(str10);
+										eventRead.res=num5;
+										eventRead.special=num6;
+										eventRead.special2=1;
+                                        if(strArray[0].contains("+"))
                                             eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
                                         eventRead.times=num9;
                                         if(strArray[2].contains("("))
                                             eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
-                                        sonevent.results.put(eventRead);
+                                        sonevent.results.add(eventRead);
                                     }
                                 }
                             }
                         }
                         for(Rebound rebound : layer.ReboundArray) {
-                            rebound.copys=rebound.Copy() as Rebound;
-                            float num1 = MathHelper.Lerp(-rebound.copys.rand.speed,rebound.copys.rand.speed,(float)Main.rand.NextDouble());
-                            int num2 = (int)MathHelper.Lerp(-rebound.copys.rand.speedd,rebound.copys.rand.speedd,(float)Main.rand.NextDouble());
-                            float num3 = MathHelper.Lerp(-rebound.copys.rand.aspeed,rebound.copys.rand.aspeed,(float)Main.rand.NextDouble());
-                            int num4 = (int)MathHelper.Lerp(-rebound.copys.rand.aspeedd,rebound.copys.rand.aspeedd,(float)Main.rand.NextDouble());
+                            rebound.copys=rebound.Copy();
+                            float num1 = MathHelper.Lerp(-rebound.copys.rand.speed,rebound.copys.rand.speed,(float)Main.rand.nextDouble());
+                            int num2 = (int) MathHelper.Lerp(-rebound.copys.rand.speedd,rebound.copys.rand.speedd,(float)Main.rand.nextDouble());
+                            float num3 = MathHelper.Lerp(-rebound.copys.rand.aspeed,rebound.copys.rand.aspeed,(float)Main.rand.nextDouble());
+                            int num4 = (int) MathHelper.Lerp(-rebound.copys.rand.aspeedd,rebound.copys.rand.aspeedd,(float)Main.rand.nextDouble());
                             rebound.copys.aspeed+=num3;
                             rebound.copys.aspeedd+=(float)num4;
                             rebound.copys.speed+=num1;
                             rebound.copys.speedd+=(float)num2;
-                            rebound.copys.aspeedx=rebound.copys.aspeed*(float)Math.cos((double)MathHelper.ToRadians(rebound.copys.aspeedd));
-                            rebound.copys.aspeedy=rebound.copys.aspeed*(float)Math.sin((double)MathHelper.ToRadians(rebound.copys.aspeedd));
-                            rebound.copys.speedx=rebound.copys.speed*(float)Math.cos((double)MathHelper.ToRadians(rebound.copys.speedd));
-                            rebound.copys.speedy=rebound.copys.speed*(float)Math.sin((double)MathHelper.ToRadians(rebound.copys.speedd));
+                            rebound.copys.aspeedx=rebound.copys.aspeed*(float)Math.cos(MathHelper.ToRadians(rebound.copys.aspeedd));
+                            rebound.copys.aspeedy=rebound.copys.aspeed*(float)Math.sin(MathHelper.ToRadians(rebound.copys.aspeedd));
+                            rebound.copys.speedx=rebound.copys.speed*(float)Math.cos(MathHelper.ToRadians(rebound.copys.speedd));
+                            rebound.copys.speedy=rebound.copys.speed*(float)Math.sin(MathHelper.ToRadians(rebound.copys.speedd));
                         }
                         for(Force force : layer.ForceArray) {
-                            force.copys=force.Copy() as Force;
-                            float num1 = MathHelper.Lerp(-force.copys.rand.speed,force.copys.rand.speed,(float)Main.rand.NextDouble());
-                            int num2 = (int)MathHelper.Lerp(-force.copys.rand.speedd,force.copys.rand.speedd,(float)Main.rand.NextDouble());
-                            float num3 = MathHelper.Lerp(-force.copys.rand.aspeed,force.copys.rand.aspeed,(float)Main.rand.NextDouble());
-                            int num4 = (int)MathHelper.Lerp(-force.copys.rand.aspeedd,force.copys.rand.aspeedd,(float)Main.rand.NextDouble());
+                            force.copys=force.Copy();
+                            float num1 = MathHelper.Lerp(-force.copys.rand.speed,force.copys.rand.speed,(float)Main.rand.nextDouble());
+                            int num2 = (int) MathHelper.Lerp(-force.copys.rand.speedd,force.copys.rand.speedd,(float)Main.rand.nextDouble());
+                            float num3 = MathHelper.Lerp(-force.copys.rand.aspeed,force.copys.rand.aspeed,(float)Main.rand.nextDouble());
+                            int num4 = (int) MathHelper.Lerp(-force.copys.rand.aspeedd,force.copys.rand.aspeedd,(float)Main.rand.nextDouble());
                             force.copys.aspeed+=num3;
                             force.copys.aspeedd+=(float)num4;
                             force.copys.speed+=num1;
                             force.copys.speedd+=(float)num2;
-                            force.copys.aspeedx=force.copys.aspeed*(float)Math.cos((double)MathHelper.ToRadians(force.copys.aspeedd));
-                            force.copys.aspeedy=force.copys.aspeed*(float)Math.sin((double)MathHelper.ToRadians(force.copys.aspeedd));
-                            force.copys.speedx=force.copys.speed*(float)Math.cos((double)MathHelper.ToRadians(force.copys.speedd));
-                            force.copys.speedy=force.copys.speed*(float)Math.sin((double)MathHelper.ToRadians(force.copys.speedd));
+                            force.copys.aspeedx=force.copys.aspeed*(float)Math.cos(MathHelper.ToRadians(force.copys.aspeedd));
+                            force.copys.aspeedy=force.copys.aspeed*(float)Math.sin(MathHelper.ToRadians(force.copys.aspeedd));
+                            force.copys.speedx=force.copys.speed*(float)Math.cos(MathHelper.ToRadians(force.copys.speedd));
+                            force.copys.speedy=force.copys.speed*(float)Math.sin(MathHelper.ToRadians(force.copys.speedd));
                         }
                     }
                     int now = Time.now;
@@ -1367,13 +1350,13 @@ public class Time {
                     for(Layer layer : Layer.LayerArray) {
                         for(Batch batch : layer.BatchArray) {
                             batch.Eventsexe.clear();
-                            batch.copys=batch.Copy() as Batch;
+                            batch.copys=batch.Copy();
                             for(Event parentevent : batch.copys.Parentevents)
                                 parentevent.loop=0;
-                            float num1 = MathHelper.Lerp(-batch.copys.rand.speed,batch.copys.rand.speed,(float)Main.rand.NextDouble());
-                            int num2 = (int)MathHelper.Lerp(-batch.copys.rand.speedd,batch.copys.rand.speedd,(float)Main.rand.NextDouble());
-                            float num3 = MathHelper.Lerp(-batch.copys.rand.aspeed,batch.copys.rand.aspeed,(float)Main.rand.NextDouble());
-                            int num4 = (int)MathHelper.Lerp(-batch.copys.rand.aspeedd,batch.copys.rand.aspeedd,(float)Main.rand.NextDouble());
+                            float num1 = MathHelper.Lerp(-batch.copys.rand.speed,batch.copys.rand.speed,(float)Main.rand.nextDouble());
+                            int num2 = (int) MathHelper.Lerp(-batch.copys.rand.speedd,batch.copys.rand.speedd,(float)Main.rand.nextDouble());
+                            float num3 = MathHelper.Lerp(-batch.copys.rand.aspeed,batch.copys.rand.aspeed,(float)Main.rand.nextDouble());
+                            int num4 = (int) MathHelper.Lerp(-batch.copys.rand.aspeedd,batch.copys.rand.aspeedd,(float)Main.rand.nextDouble());
                             if((double)batch.fx==-99998.0)
                                 batch.copys.fx=batch.x-4f;
                             if((double)batch.fx==-99999.0)
@@ -1383,109 +1366,109 @@ public class Time {
                             if((double)batch.fy==-99999.0)
                                 batch.copys.fy=Player.position.y;
                             if((double)batch.speedd==-99999.0)
-                                batch.copys.speedd=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,batch.copys.fx,batch.copys.fy));
+                                batch.copys.speedd=(float)MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,batch.copys.fx,batch.copys.fy));
                             if((double)batch.aspeedd==-99999.0)
-                                batch.copys.aspeedd=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,batch.copys.fx,batch.copys.fy));
+                                batch.copys.aspeedd=(float)MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,batch.copys.fx,batch.copys.fy));
                             batch.copys.aspeed+=num3;
                             batch.copys.aspeedd+=(float)num4;
                             batch.copys.speed+=num1;
                             batch.copys.speedd+=(float)num2;
-                            batch.copys.aspeedx=batch.copys.aspeed*(float)Math.cos((double)MathHelper.ToRadians(batch.copys.aspeedd));
-                            batch.copys.aspeedy=batch.copys.aspeed*(float)Math.sin((double)MathHelper.ToRadians(batch.copys.aspeedd));
-                            batch.copys.speedx=batch.copys.speed*(float)Math.cos((double)MathHelper.ToRadians(batch.copys.speedd));
-                            batch.copys.speedy=batch.copys.speed*(float)Math.sin((double)MathHelper.ToRadians(batch.copys.speedd));
+                            batch.copys.aspeedx=batch.copys.aspeed*(float)Math.cos(MathHelper.ToRadians(batch.copys.aspeedd));
+                            batch.copys.aspeedy=batch.copys.aspeed*(float)Math.sin(MathHelper.ToRadians(batch.copys.aspeedd));
+                            batch.copys.speedx=batch.copys.speed*(float)Math.cos(MathHelper.ToRadians(batch.copys.speedd));
+                            batch.copys.speedy=batch.copys.speed*(float)Math.sin(MathHelper.ToRadians(batch.copys.speedd));
                             batch.copys.bfdirection=batch.fdirection;
                             batch.copys.bsonaspeedd=batch.sonaspeedd;
                             if((double)batch.fdirection==-99998.0)
-                                batch.copys.fdirection=MathHelper.ToDegrees(Main.Twopointangle(batch.x-4f,batch.y+16f,batch.copys.fx,batch.copys.fy));
+                                batch.copys.fdirection=(float)MathHelper.ToDegrees(Main.Twopointangle(batch.x-4f,batch.y+16f,batch.copys.fx,batch.copys.fy));
                             else if((double)batch.fdirection==-99999.0)
-                                batch.copys.fdirection=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,batch.copys.fx,batch.copys.fy));
+                                batch.copys.fdirection=(float)MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,batch.copys.fx,batch.copys.fy));
                             else if((double)batch.fdirection==-100000.0)
-                                batch.copys.fdirection=MathHelper.ToDegrees(Main.Twopointangle(batch.fdirections.X,batch.fdirections.Y,batch.copys.fx,batch.copys.fy));
+                                batch.copys.fdirection=(float)MathHelper.ToDegrees(Main.Twopointangle(batch.fdirections.x,batch.fdirections.y,batch.copys.fx,batch.copys.fy));
                             if((double)batch.sonaspeedd==-99998.0)
-                                batch.copys.sonaspeedd=MathHelper.ToDegrees(Main.Twopointangle(batch.x-4f,batch.y+16f,batch.copys.fx,batch.copys.fy));
+                                batch.copys.sonaspeedd=(float)MathHelper.ToDegrees(Main.Twopointangle(batch.x-4f,batch.y+16f,batch.copys.fx,batch.copys.fy));
                             else if((double)batch.sonaspeedd==-99999.0)
-                                batch.copys.sonaspeedd=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,batch.copys.fx,batch.copys.fy));
+                                batch.copys.sonaspeedd=(float)MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,batch.copys.fx,batch.copys.fy));
                             else if((double)batch.sonaspeedd==-100000.0)
-                                batch.copys.sonaspeedd=MathHelper.ToDegrees(Main.Twopointangle(batch.sonaspeedds.X,batch.sonaspeedds.Y,batch.copys.fx,batch.copys.fy));
+                                batch.copys.sonaspeedd=(float)MathHelper.ToDegrees(Main.Twopointangle(batch.sonaspeedds.x,batch.sonaspeedds.y,batch.copys.fx,batch.copys.fy));
                             if((double)batch.head==-100000.0)
-                                batch.copys.head=MathHelper.ToDegrees(Main.Twopointangle(batch.heads.X,batch.heads.Y,batch.copys.fx,batch.copys.fx));
+                                batch.copys.head=(float)MathHelper.ToDegrees(Main.Twopointangle(batch.heads.x,batch.heads.y,batch.copys.fx,batch.copys.fx));
                         }
                         for(Lase lase : layer.LaseArray) {
                             lase.Eventsexe.clear();
-                            lase.copys=lase.Copy() as Lase;
+                            lase.copys=lase.Copy();
                             for(Event parentevent : lase.copys.Parentevents)
                                 parentevent.loop=0;
-                            float num1 = MathHelper.Lerp(-lase.copys.rand.speed,lase.copys.rand.speed,(float)Main.rand.NextDouble());
-                            int num2 = (int)MathHelper.Lerp(-lase.copys.rand.speedd,lase.copys.rand.speedd,(float)Main.rand.NextDouble());
-                            float num3 = MathHelper.Lerp(-lase.copys.rand.aspeed,lase.copys.rand.aspeed,(float)Main.rand.NextDouble());
-                            int num4 = (int)MathHelper.Lerp(-lase.copys.rand.aspeedd,lase.copys.rand.aspeedd,(float)Main.rand.NextDouble());
+                            float num1 = MathHelper.Lerp(-lase.copys.rand.speed,lase.copys.rand.speed,(float)Main.rand.nextDouble());
+                            int num2 = (int) MathHelper.Lerp(-lase.copys.rand.speedd,lase.copys.rand.speedd,(float)Main.rand.nextDouble());
+                            float num3 = MathHelper.Lerp(-lase.copys.rand.aspeed,lase.copys.rand.aspeed,(float)Main.rand.nextDouble());
+                            int num4 = (int) MathHelper.Lerp(-lase.copys.rand.aspeedd,lase.copys.rand.aspeedd,(float)Main.rand.nextDouble());
                             lase.copys.aspeed+=num3;
                             lase.copys.aspeedd+=(float)num4;
                             lase.copys.speed+=num1;
                             lase.copys.speedd+=(float)num2;
-                            lase.copys.aspeedx=lase.copys.aspeed*(float)Math.cos((double)MathHelper.ToRadians(lase.copys.aspeedd));
-                            lase.copys.aspeedy=lase.copys.aspeed*(float)Math.sin((double)MathHelper.ToRadians(lase.copys.aspeedd));
-                            lase.copys.speedx=lase.copys.speed*(float)Math.cos((double)MathHelper.ToRadians(lase.copys.speedd));
-                            lase.copys.speedy=lase.copys.speed*(float)Math.sin((double)MathHelper.ToRadians(lase.copys.speedd));
+                            lase.copys.aspeedx=lase.copys.aspeed*(float)Math.cos(MathHelper.ToRadians(lase.copys.aspeedd));
+                            lase.copys.aspeedy=lase.copys.aspeed*(float)Math.sin(MathHelper.ToRadians(lase.copys.aspeedd));
+                            lase.copys.speedx=lase.copys.speed*(float)Math.cos(MathHelper.ToRadians(lase.copys.speedd));
+                            lase.copys.speedy=lase.copys.speed*(float)Math.sin(MathHelper.ToRadians(lase.copys.speedd));
                             if((double)lase.fdirection==-99999.0)
-                                lase.copys.fdirection=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,lase.copys.x-4f,lase.copys.y+16f));
+                                lase.copys.fdirection=(float)MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,lase.copys.x-4f,lase.copys.y+16f));
                             else if((double)lase.fdirection==-100000.0)
-                                lase.copys.fdirection=MathHelper.ToDegrees(Main.Twopointangle(lase.fdirections.X,lase.fdirections.Y,lase.copys.x-4f,lase.copys.y+16f));
+                                lase.copys.fdirection=(float)MathHelper.ToDegrees(Main.Twopointangle(lase.fdirections.x,lase.fdirections.y,lase.copys.x-4f,lase.copys.y+16f));
                             if((double)lase.sonaspeedd==-99998.0)
-                                lase.copys.sonaspeedd=MathHelper.ToDegrees(Main.Twopointangle(lase.x-4f,lase.y+16f,lase.copys.x-4f,lase.copys.y+16f));
+                                lase.copys.sonaspeedd=(float)MathHelper.ToDegrees(Main.Twopointangle(lase.x-4f,lase.y+16f,lase.copys.x-4f,lase.copys.y+16f));
                             else if((double)lase.sonaspeedd==-99999.0)
-                                lase.copys.sonaspeedd=MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,lase.copys.x-4f,lase.copys.y+16f));
+                                lase.copys.sonaspeedd=(float)MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,lase.copys.x-4f,lase.copys.y+16f));
                             else if((double)lase.sonaspeedd==-100000.0)
-                                lase.copys.sonaspeedd=MathHelper.ToDegrees(Main.Twopointangle(lase.sonaspeedds.X,lase.sonaspeedds.Y,lase.copys.x-4f,lase.copys.y+16f));
+                                lase.copys.sonaspeedd=(float)MathHelper.ToDegrees(Main.Twopointangle(lase.sonaspeedds.x,lase.sonaspeedds.y,lase.copys.x-4f,lase.copys.y+16f));
                         }
                         for(Cover cover : layer.CoverArray) {
                             cover.Eventsexe.clear();
-                            cover.copys=cover.Copy() as Cover;
+                            cover.copys=cover.Copy();
                             for(Event parentevent : cover.copys.Parentevents)
                                 parentevent.loop=0;
-                            float num1 = MathHelper.Lerp(-cover.copys.rand.speed,cover.copys.rand.speed,(float)Main.rand.NextDouble());
-                            int num2 = (int)MathHelper.Lerp(-cover.copys.rand.speedd,cover.copys.rand.speedd,(float)Main.rand.NextDouble());
-                            float num3 = MathHelper.Lerp(-cover.copys.rand.aspeed,cover.copys.rand.aspeed,(float)Main.rand.NextDouble());
-                            int num4 = (int)MathHelper.Lerp(-cover.copys.rand.aspeedd,cover.copys.rand.aspeedd,(float)Main.rand.NextDouble());
+                            float num1 = MathHelper.Lerp(-cover.copys.rand.speed,cover.copys.rand.speed,(float)Main.rand.nextDouble());
+                            int num2 = (int) MathHelper.Lerp(-cover.copys.rand.speedd,cover.copys.rand.speedd,(float)Main.rand.nextDouble());
+                            float num3 = MathHelper.Lerp(-cover.copys.rand.aspeed,cover.copys.rand.aspeed,(float)Main.rand.nextDouble());
+                            int num4 = (int) MathHelper.Lerp(-cover.copys.rand.aspeedd,cover.copys.rand.aspeedd,(float)Main.rand.nextDouble());
                             cover.copys.aspeed+=num3;
                             cover.copys.aspeedd+=(float)num4;
                             cover.copys.speed+=num1;
                             cover.copys.speedd+=(float)num2;
-                            cover.copys.aspeedx=cover.copys.aspeed*(float)Math.cos((double)MathHelper.ToRadians(cover.copys.aspeedd));
-                            cover.copys.aspeedy=cover.copys.aspeed*(float)Math.sin((double)MathHelper.ToRadians(cover.copys.aspeedd));
-                            cover.copys.speedx=cover.copys.speed*(float)Math.cos((double)MathHelper.ToRadians(cover.copys.speedd));
-                            cover.copys.speedy=cover.copys.speed*(float)Math.sin((double)MathHelper.ToRadians(cover.copys.speedd));
+                            cover.copys.aspeedx=cover.copys.aspeed*(float)Math.cos(MathHelper.ToRadians(cover.copys.aspeedd));
+                            cover.copys.aspeedy=cover.copys.aspeed*(float)Math.sin(MathHelper.ToRadians(cover.copys.aspeedd));
+                            cover.copys.speedx=cover.copys.speed*(float)Math.cos(MathHelper.ToRadians(cover.copys.speedd));
+                            cover.copys.speedy=cover.copys.speed*(float)Math.sin(MathHelper.ToRadians(cover.copys.speedd));
                         }
                         for(Rebound rebound : layer.ReboundArray) {
-                            rebound.copys=rebound.Copy() as Rebound;
-                            float num1 = MathHelper.Lerp(-rebound.copys.rand.speed,rebound.copys.rand.speed,(float)Main.rand.NextDouble());
-                            int num2 = (int)MathHelper.Lerp(-rebound.copys.rand.speedd,rebound.copys.rand.speedd,(float)Main.rand.NextDouble());
-                            float num3 = MathHelper.Lerp(-rebound.copys.rand.aspeed,rebound.copys.rand.aspeed,(float)Main.rand.NextDouble());
-                            int num4 = (int)MathHelper.Lerp(-rebound.copys.rand.aspeedd,rebound.copys.rand.aspeedd,(float)Main.rand.NextDouble());
+                            rebound.copys=rebound.Copy();
+                            float num1 = MathHelper.Lerp(-rebound.copys.rand.speed,rebound.copys.rand.speed,(float)Main.rand.nextDouble());
+                            int num2 = (int) MathHelper.Lerp(-rebound.copys.rand.speedd,rebound.copys.rand.speedd,(float)Main.rand.nextDouble());
+                            float num3 = MathHelper.Lerp(-rebound.copys.rand.aspeed,rebound.copys.rand.aspeed,(float)Main.rand.nextDouble());
+                            int num4 = (int) MathHelper.Lerp(-rebound.copys.rand.aspeedd,rebound.copys.rand.aspeedd,(float)Main.rand.nextDouble());
                             rebound.copys.aspeed+=num3;
                             rebound.copys.aspeedd+=(float)num4;
                             rebound.copys.speed+=num1;
                             rebound.copys.speedd+=(float)num2;
-                            rebound.copys.aspeedx=rebound.copys.aspeed*(float)Math.cos((double)MathHelper.ToRadians(rebound.copys.aspeedd));
-                            rebound.copys.aspeedy=rebound.copys.aspeed*(float)Math.sin((double)MathHelper.ToRadians(rebound.copys.aspeedd));
-                            rebound.copys.speedx=rebound.copys.speed*(float)Math.cos((double)MathHelper.ToRadians(rebound.copys.speedd));
-                            rebound.copys.speedy=rebound.copys.speed*(float)Math.sin((double)MathHelper.ToRadians(rebound.copys.speedd));
+                            rebound.copys.aspeedx=rebound.copys.aspeed*(float)Math.cos(MathHelper.ToRadians(rebound.copys.aspeedd));
+                            rebound.copys.aspeedy=rebound.copys.aspeed*(float)Math.sin(MathHelper.ToRadians(rebound.copys.aspeedd));
+                            rebound.copys.speedx=rebound.copys.speed*(float)Math.cos(MathHelper.ToRadians(rebound.copys.speedd));
+                            rebound.copys.speedy=rebound.copys.speed*(float)Math.sin(MathHelper.ToRadians(rebound.copys.speedd));
                         }
                         for(Force force : layer.ForceArray) {
-                            force.copys=force.Copy() as Force;
-                            float num1 = MathHelper.Lerp(-force.copys.rand.speed,force.copys.rand.speed,(float)Main.rand.NextDouble());
-                            int num2 = (int)MathHelper.Lerp(-force.copys.rand.speedd,force.copys.rand.speedd,(float)Main.rand.NextDouble());
-                            float num3 = MathHelper.Lerp(-force.copys.rand.aspeed,force.copys.rand.aspeed,(float)Main.rand.NextDouble());
-                            int num4 = (int)MathHelper.Lerp(-force.copys.rand.aspeedd,force.copys.rand.aspeedd,(float)Main.rand.NextDouble());
+                            force.copys=force.Copy();
+                            float num1 = MathHelper.Lerp(-force.copys.rand.speed,force.copys.rand.speed,(float)Main.rand.nextDouble());
+                            int num2 = (int) MathHelper.Lerp(-force.copys.rand.speedd,force.copys.rand.speedd,(float)Main.rand.nextDouble());
+                            float num3 = MathHelper.Lerp(-force.copys.rand.aspeed,force.copys.rand.aspeed,(float)Main.rand.nextDouble());
+                            int num4 = (int) MathHelper.Lerp(-force.copys.rand.aspeedd,force.copys.rand.aspeedd,(float)Main.rand.nextDouble());
                             force.copys.aspeed+=num3;
                             force.copys.aspeedd+=(float)num4;
                             force.copys.speed+=num1;
                             force.copys.speedd+=(float)num2;
-                            force.copys.aspeedx=force.copys.aspeed*(float)Math.cos((double)MathHelper.ToRadians(force.copys.aspeedd));
-                            force.copys.aspeedy=force.copys.aspeed*(float)Math.sin((double)MathHelper.ToRadians(force.copys.aspeedd));
-                            force.copys.speedx=force.copys.speed*(float)Math.cos((double)MathHelper.ToRadians(force.copys.speedd));
-                            force.copys.speedy=force.copys.speed*(float)Math.sin((double)MathHelper.ToRadians(force.copys.speedd));
+                            force.copys.aspeedx=force.copys.aspeed*(float)Math.cos(MathHelper.ToRadians(force.copys.aspeedd));
+                            force.copys.aspeedy=force.copys.aspeed*(float)Math.sin(MathHelper.ToRadians(force.copys.aspeedd));
+                            force.copys.speedx=force.copys.speed*(float)Math.cos(MathHelper.ToRadians(force.copys.speedd));
+                            force.copys.speedy=force.copys.speed*(float)Math.sin(MathHelper.ToRadians(force.copys.speedd));
                         }
                     }
                     for(GlobalEvent globalEvent : Time.GE) {
@@ -1497,20 +1480,20 @@ public class Time {
                 if(Time.now>=Time.left+105)
                     ++Time.left;
                 for(int index = 0;index<Time.GE.size();++index) {
-                    if(index+1==Time.now&&Time.GE[index].isgoto) {
-                        ++Time.GE[index].gtcount;
-                        if(Time.GE[index].gotowhere!=0&&(Time.GE[index].gototime==0||Time.GE[index].gtcount<=Time.GE[index].gototime))
-                            Time.now=Time.GE[index].gotowhere;
+                    if(index+1==Time.now&&Time.GE.get(index).isgoto) {
+                        ++Time.GE.get(index).gtcount;
+                        if(Time.GE.get(index).gotowhere!=0&&(Time.GE.get(index).gototime==0||Time.GE.get(index).gtcount<=Time.GE.get(index).gototime))
+                            Time.now=Time.GE.get(index).gotowhere;
                     }
-                    if(GE[index].isquake&&now>=index+1) {
-                        ++GE[index].qtcount;
+                    if(GE.get(index).isquake&&now>=index+1) {
+                        ++GE.get(index).qtcount;
                     }
-                    if(Time.GE[index].isstop&&Time.now>=index+1) {
-                        ++Time.GE[index].stcount;
-                        if(Time.GE[index].stoptime==0||Time.GE[index].stcount<=Time.GE[index].stoptime) {
-                            if(Time.GE[index].stoplevel==0)
-                                Time.stop=(float)Time.GE[index].stcount/(float)Time.GE[index].stoptime*(float)Time.GE[index].stcount/(float)Time.GE[index].stoptime;
-                            else if(Time.GE[index].stoplevel==1)
+                    if(Time.GE.get(index).isstop&&Time.now>=index+1) {
+                        ++Time.GE.get(index).stcount;
+                        if(Time.GE.get(index).stoptime==0||Time.GE.get(index).stcount<=Time.GE.get(index).stoptime) {
+                            if(Time.GE.get(index).stoplevel==0)
+                                Time.stop=(float)Time.GE.get(index).stcount/(float)Time.GE.get(index).stoptime*(float)Time.GE.get(index).stcount/(float)Time.GE.get(index).stoptime;
+                            else if(Time.GE.get(index).stoplevel==1)
                                 Time.stop=0.0f;
                         } else
                             Time.stop=1f;
@@ -1520,11 +1503,11 @@ public class Time {
             int num10 = Time.left+106;
             if(num10>=Time.total)
                 num10-=num10-Time.total;
-            if(Time.clcount==1) {
+            if(Time.clCount==1) {
                 ++Time.clwait;
                 if(Time.clwait>15) {
                     Time.clwait=0;
-                    Time.clcount=0;
+                    Time.clCount=0;
                 }
             }
             if(Main.Available&Time.search&!Time.Playing) {
@@ -1534,4 +1517,3 @@ public class Time {
             }
         }
     }
-

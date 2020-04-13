@@ -152,7 +152,7 @@ public class Cover implements Cloneable {
                                             coExecution.change=result.change;
                                             coExecution.changetype=result.changetype;
                                             coExecution.changevalue=result.changevalue;
-                                            coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                            coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                             coExecution.region=results[result.changename]+"";
                                             coExecution.time=result.times;
                                             coExecution.ctime=coExecution.time;
@@ -173,7 +173,7 @@ public class Cover implements Cloneable {
                                         coExecution.change=result.change;
                                         coExecution.changetype=result.changetype;
                                         coExecution.changevalue=result.changevalue;
-                                        coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                        coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                         coExecution.region=results[result.changename]+"";
                                         coExecution.time=result.times;
                                         coExecution.ctime=coExecution.time;
@@ -196,7 +196,7 @@ public class Cover implements Cloneable {
                                             coExecution.change=result.change;
                                             coExecution.changetype=result.changetype;
                                             coExecution.changevalue=result.changevalue;
-                                            coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                            coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                             coExecution.region=results[result.changename]+"";
                                             coExecution.time=result.times;
                                             coExecution.ctime=coExecution.time;
@@ -217,7 +217,7 @@ public class Cover implements Cloneable {
                                         coExecution.change=result.change;
                                         coExecution.changetype=result.changetype;
                                         coExecution.changevalue=result.changevalue;
-                                        coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                        coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                         coExecution.region=results[result.changename]+"";
                                         coExecution.time=result.times;
                                         coExecution.ctime=coExecution.time;
@@ -240,7 +240,7 @@ public class Cover implements Cloneable {
                                             coExecution.change=result.change;
                                             coExecution.changetype=result.changetype;
                                             coExecution.changevalue=result.changevalue;
-                                            coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                            coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                             coExecution.region=results[result.changename]+"";
                                             coExecution.time=result.times;
                                             coExecution.ctime=coExecution.time;
@@ -261,7 +261,7 @@ public class Cover implements Cloneable {
                                         coExecution.change=result.change;
                                         coExecution.changetype=result.changetype;
                                         coExecution.changevalue=result.changevalue;
-                                        coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                        coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                         coExecution.region=results[result.changename]+"";
                                         coExecution.time=result.times;
                                         coExecution.ctime=coExecution.time;
@@ -282,7 +282,7 @@ public class Cover implements Cloneable {
                                     coExecution.change=result.change;
                                     coExecution.changetype=result.changetype;
                                     coExecution.changevalue=result.changevalue;
-                                    coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                    coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                     coExecution.region=results[result.changename]+"";
                                     coExecution.time=result.times;
                                     coExecution.ctime=coExecution.time;
@@ -307,7 +307,7 @@ public class Cover implements Cloneable {
                                             coExecution.change=result.change;
                                             coExecution.changetype=result.changetype;
                                             coExecution.changevalue=result.changevalue;
-                                            coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                            coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                             coExecution.region=results[result.changename]+"";
                                             coExecution.time=result.times;
                                             coExecution.ctime=coExecution.time;
@@ -328,7 +328,7 @@ public class Cover implements Cloneable {
                                         coExecution.change=result.change;
                                         coExecution.changetype=result.changetype;
                                         coExecution.changevalue=result.changevalue;
-                                        coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                        coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                         coExecution.region=results[result.changename]+"";
                                         coExecution.time=result.times;
                                         coExecution.ctime=coExecution.time;
@@ -351,7 +351,7 @@ public class Cover implements Cloneable {
                                             coExecution.change=result.change;
                                             coExecution.changetype=result.changetype;
                                             coExecution.changevalue=result.changevalue;
-                                            coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                            coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                             coExecution.region=results[result.changename]+"";
                                             coExecution.time=result.times;
                                             coExecution.ctime=coExecution.time;
@@ -372,7 +372,7 @@ public class Cover implements Cloneable {
                                         coExecution.change=result.change;
                                         coExecution.changetype=result.changetype;
                                         coExecution.changevalue=result.changevalue;
-                                        coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                        coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                         coExecution.region=results[result.changename]+"";
                                         coExecution.time=result.times;
                                         coExecution.ctime=coExecution.time;
@@ -395,7 +395,7 @@ public class Cover implements Cloneable {
                                             coExecution.change=result.change;
                                             coExecution.changetype=result.changetype;
                                             coExecution.changevalue=result.changevalue;
-                                            coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                            coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                             coExecution.region=results[result.changename]+"";
                                             coExecution.time=result.times;
                                             coExecution.ctime=coExecution.time;
@@ -416,7 +416,7 @@ public class Cover implements Cloneable {
                                         coExecution.change=result.change;
                                         coExecution.changetype=result.changetype;
                                         coExecution.changevalue=result.changevalue;
-                                        coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                        coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                         coExecution.region=results[result.changename]+"";
                                         coExecution.time=result.times;
                                         coExecution.ctime=coExecution.time;
@@ -437,7 +437,7 @@ public class Cover implements Cloneable {
                                     coExecution.change=result.change;
                                     coExecution.changetype=result.changetype;
                                     coExecution.changevalue=result.changevalue;
-                                    coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                    coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                     coExecution.region=results[result.changename]+"";
                                     coExecution.time=result.times;
                                     coExecution.ctime=coExecution.time;
@@ -462,7 +462,7 @@ public class Cover implements Cloneable {
                                             coExecution.change=result.change;
                                             coExecution.changetype=result.changetype;
                                             coExecution.changevalue=result.changevalue;
-                                            coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                            coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                             coExecution.region=results[result.changename]+"";
                                             coExecution.time=result.times;
                                             coExecution.ctime=coExecution.time;
@@ -482,7 +482,7 @@ public class Cover implements Cloneable {
                                         coExecution.change=result.change;
                                         coExecution.changetype=result.changetype;
                                         coExecution.changevalue=result.changevalue;
-                                        coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                        coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                         coExecution.region=results[result.changename]+"";
                                         coExecution.time=result.times;
                                         coExecution.ctime=coExecution.time;
@@ -504,7 +504,7 @@ public class Cover implements Cloneable {
                                             coExecution.change=result.change;
                                             coExecution.changetype=result.changetype;
                                             coExecution.changevalue=result.changevalue;
-                                            coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                            coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                             coExecution.region=results[result.changename]+"";
                                             coExecution.time=result.times;
                                             coExecution.ctime=coExecution.time;
@@ -524,7 +524,7 @@ public class Cover implements Cloneable {
                                         coExecution.change=result.change;
                                         coExecution.changetype=result.changetype;
                                         coExecution.changevalue=result.changevalue;
-                                        coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                        coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                         coExecution.region=results[result.changename]+"";
                                         coExecution.time=result.times;
                                         coExecution.ctime=coExecution.time;
@@ -546,7 +546,7 @@ public class Cover implements Cloneable {
                                             coExecution.change=result.change;
                                             coExecution.changetype=result.changetype;
                                             coExecution.changevalue=result.changevalue;
-                                            coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                            coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                             coExecution.region=results[result.changename]+"";
                                             coExecution.time=result.times;
                                             coExecution.ctime=coExecution.time;
@@ -566,7 +566,7 @@ public class Cover implements Cloneable {
                                         coExecution.change=result.change;
                                         coExecution.changetype=result.changetype;
                                         coExecution.changevalue=result.changevalue;
-                                        coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                        coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                         coExecution.region=results[result.changename]+"";
                                         coExecution.time=result.times;
                                         coExecution.ctime=coExecution.time;
@@ -586,7 +586,7 @@ public class Cover implements Cloneable {
                                     coExecution.change=result.change;
                                     coExecution.changetype=result.changetype;
                                     coExecution.changevalue=result.changevalue;
-                                    coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                    coExecution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                     coExecution.region=results[result.changename]+"";
                                     coExecution.time=result.times;
                                     coExecution.ctime=coExecution.time;
@@ -610,7 +610,7 @@ public class Cover implements Cloneable {
                     if(((barrage.Cover&!barrage.IsLase ? 1 : 0)&(barrage.time>15 ? 1 : (!barrage.Mist ? 1 : 0))&(!barrage.NeedDelete ? 1 : 0))!=0) {
                         if(Circle) {
                             if(type==0) {
-                                if(Math.sqrt(((double)x-4.0-(double)barrage.x)*((double)x-4.0-(double)barrage.x)+((double)y+16.0-(double)barrage.y)*((double)y+16.0-(double)barrage.y))<=(double)Math.max(halfw,halfh)) {
+                                if(Math.sqrt(((double)x-4.0-(double)barrage.x)*((double)x-4.0-(double)barrage.x)+((double)y+16.0-(double)barrage.y)*((double)y+16.0-(double)barrage.y))<=(double)Math.Max(halfw,halfh)) {
                                     if(!barrage.Covered.contains(id)) {
                                         for(int idx = 0;idx<Sonevents.size();++idx) {
 											Event ev=new Event(idx);
@@ -636,7 +636,7 @@ public class Cover implements Cloneable {
                                     barrage.Covered.remove(id);
                                 }
                             } else if(type==1) {
-                                if(barrage.parentid==controlid-1&Math.sqrt(((double)x-4.0-(double)barrage.x)*((double)x-4.0-(double)barrage.x)+((double)y+16.0-(double)barrage.y)*((double)y+16.0-(double)barrage.y))<=(double)Math.max(halfw,halfh)) {
+                                if(barrage.parentid==controlid-1&Math.sqrt(((double)x-4.0-(double)barrage.x)*((double)x-4.0-(double)barrage.x)+((double)y+16.0-(double)barrage.y)*((double)y+16.0-(double)barrage.y))<=(double)Math.Max(halfw,halfh)) {
                                     if(!barrage.Covered.contains(id)) {
                                         for(int idx = 0;idx<Sonevents.size();++idx) {
 											Event ev=new Event(idx);
@@ -739,7 +739,7 @@ public class Cover implements Cloneable {
                                 if(((barrage2.id!=barrage1.id&barrage2.Cover&!barrage2.IsLase ? 1 : 0)&(barrage2.time>15 ? 1 : (!barrage2.Mist ? 1 : 0))&(!barrage2.NeedDelete ? 1 : 0))!=0) {
                                     if(Circle) {
                                         if(type==0) {
-                                            if(Math.sqrt(((double)barrage1.x-(double)barrage2.x)*((double)barrage1.x-(double)barrage2.x)+((double)barrage1.y-(double)barrage2.y)*((double)barrage1.y-(double)barrage2.y))<=(double)Math.max(halfw,halfh)) {
+                                            if(Math.sqrt(((double)barrage1.x-(double)barrage2.x)*((double)barrage1.x-(double)barrage2.x)+((double)barrage1.y-(double)barrage2.y)*((double)barrage1.y-(double)barrage2.y))<=(double)Math.Max(halfw,halfh)) {
                                                 if(!barrage2.Covered.contains(num1)) {
                                                     for(int idx = 0;idx<Sonevents.size();++idx) {
 														Event ev=new Event(idx);
@@ -766,7 +766,7 @@ public class Cover implements Cloneable {
                                                 barrage2.Covered.remove(num1);
                                             }
                                         } else if(type==1) {
-                                            if(barrage2.parentid==controlid-1&Math.sqrt(((double)barrage1.x-(double)barrage2.x)*((double)barrage1.x-(double)barrage2.x)+((double)barrage1.y-(double)barrage2.y)*((double)barrage1.y-(double)barrage2.y))<=(double)Math.max(halfw,halfh)) {
+                                            if(barrage2.parentid==controlid-1&Math.sqrt(((double)barrage1.x-(double)barrage2.x)*((double)barrage1.x-(double)barrage2.x)+((double)barrage1.y-(double)barrage2.y)*((double)barrage1.y-(double)barrage2.y))<=(double)Math.Max(halfw,halfh)) {
                                                 if(!barrage2.Covered.contains(num1)) {
                                                     for(int idx = 0;idx<Sonevents.size();++idx) {
                                                         Event ev=new Event(idx);

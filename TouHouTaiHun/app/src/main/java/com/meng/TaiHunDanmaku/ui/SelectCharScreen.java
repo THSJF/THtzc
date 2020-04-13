@@ -1,12 +1,11 @@
 package com.meng.TaiHunDanmaku.ui;
 
 import com.badlogic.gdx.*;
-import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.*;
 import com.badlogic.gdx.utils.viewport.*;
-import com.meng.TaiHunDanmaku.control.ReplayManager;
+import com.meng.TaiHunDanmaku.control.*;
 import com.meng.TaiHunDanmaku.helpers.*;
 
 
@@ -16,7 +15,7 @@ public class SelectCharScreen extends ScreenAdapter {
     public Stage stage;
     private int width = 386;
     private int height = 600;
-    private booleanean A = false;
+    private boolean A = false;
 
     public SelectCharScreen(final GameMain gameMain) {
         this.gameMain = gameMain;
@@ -37,7 +36,7 @@ public class SelectCharScreen extends ScreenAdapter {
         buttonA.setPosition(120, 200);
         Button buttonB = new Button(ResourcesManager.textures.get(TextureNameManager.ReimuSubPlaneBulletStraight), ResourcesManager.textures.get(TextureNameManager.ReimuSubPlaneBulletStraight));
         buttonB.setPosition(120, 150);
-        buttonA.addArrayListener(new ClickArrayListener() {
+        buttonA.addListener(new ClickListener() {
 				@Override
 				public void clicked(InputEvent event, float x, float y) {
 					gameMain.equipmentFlag = "A";
@@ -46,7 +45,7 @@ public class SelectCharScreen extends ScreenAdapter {
 					//  A=true;
 				}
 			});
-        buttonB.addArrayListener(new ClickArrayListener() {
+        buttonB.addListener(new ClickListener() {
 				@Override
 				public void clicked(InputEvent event, float x, float y) {
 					gameMain.equipmentFlag = "B";

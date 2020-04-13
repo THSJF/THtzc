@@ -1,11 +1,9 @@
 package com.meng.TaiHunDanmaku.ui;
 
-import android.os.Bundle;
-import android.view.KeyEvent;
-
-import com.badlogic.gdx.backends.android.AndroidApplication;
-import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.meng.TaiHunDanmaku.control.ReplayManager;
+import android.os.*;
+import android.view.*;
+import com.badlogic.gdx.backends.android.*;
+import com.meng.TaiHunDanmaku.control.*;
 
 public class MainActivity extends AndroidApplication {
     public static MainActivity instance;
@@ -20,7 +18,7 @@ public class MainActivity extends AndroidApplication {
     }
 
     @Override
-    public booleanean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             switch (gameMain.screenFlag) {
                 case 1:
@@ -30,7 +28,7 @@ public class MainActivity extends AndroidApplication {
                     gameMain.setSelectDiffScreen();
                     return true;
                 case 3:
-                    if(ReplayManager.onReplay){
+                    if (ReplayManager.onReplay) {
                         gameMain.setMainMenuScreen();
                         return true;
                     }

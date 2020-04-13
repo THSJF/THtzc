@@ -14,10 +14,10 @@ public class SelectDiffScreen extends ScreenAdapter {
     private Stage stage;
     private Image background;
 
-    private booleanean A = false;
-    private booleanean B = false;
-    private booleanean C = false;
-    private booleanean D = false;
+    private boolean A = false;
+    private boolean B = false;
+    private boolean C = false;
+    private boolean D = false;
 
     public SelectDiffScreen(final GameMain gameMain) {
         this.gameMain = gameMain;
@@ -52,45 +52,45 @@ public class SelectDiffScreen extends ScreenAdapter {
         buttonL.setPosition(buttonX, buttonY + 50);
         Button buttonO = new Button(ResourcesManager.textures.get("overdrive"), ResourcesManager.textures.get("overdrive_c"));
         buttonO.setPosition(buttonX, buttonY);
-        buttonE.addArrayListener(new ClickArrayListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                A = true;
-                //    gameMain.difficultFlag = "Easy";
-                //   gameMain.setSelectCharScreen();
-            }
-        });
-        buttonN.addArrayListener(new ClickArrayListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                B = true;
-                //  gameMain.difficultFlag = "Normal";
-                //  gameMain.setSelectCharScreen();
-            }
-        });
-        buttonH.addArrayListener(new ClickArrayListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                C = true;
-                //   gameMain.difficultFlag = "Hard";
-                //   gameMain.setSelectCharScreen();
-            }
-        });
-        buttonL.addArrayListener(new ClickArrayListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                D = true;
-                //   gameMain.difficultFlag = "Lunatic";
-                //   gameMain.setSelectCharScreen();
-            }
-        });
-        buttonO.addArrayListener(new ClickArrayListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                gameMain.difficultFlag = "Overdrive";
-                gameMain.setSelectCharScreen();
-            }
-        });
+        buttonE.addListener(new ClickListener() {
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					A = true;
+					//    gameMain.difficultFlag = "Easy";
+					//   gameMain.setSelectCharScreen();
+				}
+			});
+        buttonN.addListener(new ClickListener() {
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					B = true;
+					//  gameMain.difficultFlag = "Normal";
+					//  gameMain.setSelectCharScreen();
+				}
+			});
+        buttonH.addListener(new ClickListener() {
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					C = true;
+					//   gameMain.difficultFlag = "Hard";
+					//   gameMain.setSelectCharScreen();
+				}
+			});
+        buttonL.addListener(new ClickListener() {
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					D = true;
+					//   gameMain.difficultFlag = "Lunatic";
+					//   gameMain.setSelectCharScreen();
+				}
+			});
+        buttonO.addListener(new ClickListener() {
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					gameMain.difficultFlag = "Overdrive";
+					gameMain.setSelectCharScreen();
+				}
+			});
         buttons.addActor(buttonE);
         buttons.addActor(buttonN);
         buttons.addActor(buttonH);
@@ -112,7 +112,6 @@ public class SelectDiffScreen extends ScreenAdapter {
         gameMain.spriteBatch.begin();
         background.draw(gameMain.spriteBatch, 1f);
         gameMain.bitmapFont.draw(gameMain.spriteBatch, "FPS:" + Gdx.graphics.getFramesPerSecond(), 10, 590);
-
         if (A) {
             gameMain.bitmapFont.draw(gameMain.spriteBatch, "未实装", 220, 280);
         }
@@ -125,8 +124,6 @@ public class SelectDiffScreen extends ScreenAdapter {
         if (D) {
             gameMain.bitmapFont.draw(gameMain.spriteBatch, "未实装", 220, 130);
         }
-
-
         gameMain.spriteBatch.end();
         stage.draw();
         super.render(delta);

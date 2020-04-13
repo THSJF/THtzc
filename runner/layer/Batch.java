@@ -280,7 +280,7 @@ public class Batch implements Cloneable{
                                                 execution.change=result.change;
                                                 execution.changetype=result.changetype;
                                                 execution.changevalue=result.changevalue;
-                                                execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                                execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                                 execution.region=results[result.changename]+"";
                                                 execution.time=result.times;
                                                 execution.ctime=execution.time;
@@ -289,7 +289,7 @@ public class Batch implements Cloneable{
                                                 continue;
                                         }
                                     }
-                                } else if(result.collector.equals("或")&&(((double)conditions[result.contype]>(double)Float.parseFloat(result.condition)+(double)(parentevent.loop*parentevent.addtime)||(double)conditions[result.contype2]>(double)Float.parseFloat(result.condition2)+(double)(parentevent.loop*parentevent.addtime)))) {
+                                } else if(result.collector.equals("或")&&(((double)conditions[result.contype]>(double)Float.parseFloat(result.condition)+(double)(parentevent.loop*parentevent.addtime)||(double)conditions[result.contype2]>(double)Float.parseFloat(result.condition2)+(double)(parentevent.loop*parentevent.addtime))) {
                                     if(result.special==1)
                                         Recover();
                                     else if(result.special==2) {
@@ -307,7 +307,7 @@ public class Batch implements Cloneable{
                                             execution.change=result.change;
                                             execution.changetype=result.changetype;
                                             execution.changevalue=result.changevalue;
-                                            execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                            execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                             execution.region=results[result.changename]+"";
                                             execution.time=result.times;
                                             execution.ctime=execution.time;
@@ -336,7 +336,7 @@ public class Batch implements Cloneable{
                                                 execution.change=result.change;
                                                 execution.changetype=result.changetype;
                                                 execution.changevalue=result.changevalue;
-                                                execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                                execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                                 execution.region=results[result.changename]+"";
                                                 execution.time=result.times;
                                                 execution.ctime=execution.time;
@@ -345,7 +345,7 @@ public class Batch implements Cloneable{
                                                 continue;
                                         }
                                     }
-                                } else if(result.collector.equals("或")&&(((double)conditions[result.contype]>(double)Float.parseFloat(result.condition)+(double)(parentevent.loop*parentevent.addtime)||(double)conditions[result.contype2]==(double)Float.parseFloat(result.condition2)+(double)(parentevent.loop*parentevent.addtime)))) {
+                                } else if(result.collector.equals("或")&&(((double)conditions[result.contype]>(double)Float.parseFloat(result.condition)+(double)(parentevent.loop*parentevent.addtime)||(double)conditions[result.contype2]==(double)Float.parseFloat(result.condition2)+(double)(parentevent.loop*parentevent.addtime))) {
                                     if(result.special==1)
                                         Recover();
                                     else if(result.special==2) {
@@ -363,7 +363,7 @@ public class Batch implements Cloneable{
                                             execution.change=result.change;
                                             execution.changetype=result.changetype;
                                             execution.changevalue=result.changevalue;
-                                            execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                            execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                             execution.region=results[result.changename]+"";
                                             execution.time=result.times;
                                             execution.ctime=execution.time;
@@ -392,7 +392,7 @@ public class Batch implements Cloneable{
                                                 execution.change=result.change;
                                                 execution.changetype=result.changetype;
                                                 execution.changevalue=result.changevalue;
-                                                execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                                execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                                 execution.region=results[result.changename]+"";
                                                 execution.time=result.times;
                                                 execution.ctime=execution.time;
@@ -401,7 +401,7 @@ public class Batch implements Cloneable{
                                                 continue;
                                         }
                                     }
-                                } else if(result.collector.equals("或")&&(((double)conditions[result.contype]>(double)Float.parseFloat(result.condition)+(double)(parentevent.loop*parentevent.addtime)||(double)conditions[result.contype2]<(double)Float.parseFloat(result.condition2)+(double)(parentevent.loop*parentevent.addtime)))) {
+                                } else if(result.collector.equals("或")&&(((double)conditions[result.contype]>(double)Float.parseFloat(result.condition)+(double)(parentevent.loop*parentevent.addtime)||(double)conditions[result.contype2]<(double)Float.parseFloat(result.condition2)+(double)(parentevent.loop*parentevent.addtime))) {
                                     if(result.special==1)
                                         Recover();
                                     else if(result.special==2) {
@@ -419,7 +419,7 @@ public class Batch implements Cloneable{
                                             execution.change=result.change;
                                             execution.changetype=result.changetype;
                                             execution.changevalue=result.changevalue;
-                                            execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                            execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                             execution.region=results[result.changename]+"";
                                             execution.time=result.times;
                                             execution.ctime=execution.time;
@@ -446,7 +446,7 @@ public class Batch implements Cloneable{
                                         execution.change=result.change;
                                         execution.changetype=result.changetype;
                                         execution.changevalue=result.changevalue;
-                                        execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                        execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                         execution.region=results[result.changename]+"";
                                         execution.time=result.times;
                                         execution.ctime=execution.time;
@@ -477,7 +477,7 @@ public class Batch implements Cloneable{
                                                 execution.change=result.change;
                                                 execution.changetype=result.changetype;
                                                 execution.changevalue=result.changevalue;
-                                                execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                                execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                                 execution.region=results[result.changename]+"";
                                                 execution.time=result.times;
                                                 execution.ctime=execution.time;
@@ -486,7 +486,7 @@ public class Batch implements Cloneable{
                                                 continue;
                                         }
                                     }
-                                } else if(result.collector.equals("或")&&(((double)conditions[result.contype]==(double)Float.parseFloat(result.condition)+(double)(parentevent.loop*parentevent.addtime)||(double)conditions[result.contype2]>(double)Float.parseFloat(result.condition2)+(double)(parentevent.loop*parentevent.addtime)))) {
+                                } else if(result.collector.equals("或")&&(((double)conditions[result.contype]==(double)Float.parseFloat(result.condition)+(double)(parentevent.loop*parentevent.addtime)||(double)conditions[result.contype2]>(double)Float.parseFloat(result.condition2)+(double)(parentevent.loop*parentevent.addtime))) {
                                     if(result.special==1)
                                         Recover();
                                     else if(result.special==2) {
@@ -504,7 +504,7 @@ public class Batch implements Cloneable{
                                             execution.change=result.change;
                                             execution.changetype=result.changetype;
                                             execution.changevalue=result.changevalue;
-                                            execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                            execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                             execution.region=results[result.changename]+"";
                                             execution.time=result.times;
                                             execution.ctime=execution.time;
@@ -533,7 +533,7 @@ public class Batch implements Cloneable{
                                                 execution.change=result.change;
                                                 execution.changetype=result.changetype;
                                                 execution.changevalue=result.changevalue;
-                                                execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                                execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                                 execution.region=results[result.changename]+"";
                                                 execution.time=result.times;
                                                 execution.ctime=execution.time;
@@ -542,7 +542,7 @@ public class Batch implements Cloneable{
                                                 continue;
                                         }
                                     }
-                                } else if(result.collector.equals("或")&&(((double)conditions[result.contype]==(double)Float.parseFloat(result.condition)+(double)(parentevent.loop*parentevent.addtime)||(double)conditions[result.contype2]==(double)Float.parseFloat(result.condition2)+(double)(parentevent.loop*parentevent.addtime)))) {
+                                } else if(result.collector.equals("或")&&(((double)conditions[result.contype]==(double)Float.parseFloat(result.condition)+(double)(parentevent.loop*parentevent.addtime)||(double)conditions[result.contype2]==(double)Float.parseFloat(result.condition2)+(double)(parentevent.loop*parentevent.addtime))) {
                                     if(result.special==1)
                                         Recover();
                                     else if(result.special==2) {
@@ -560,7 +560,7 @@ public class Batch implements Cloneable{
                                             execution.change=result.change;
                                             execution.changetype=result.changetype;
                                             execution.changevalue=result.changevalue;
-                                            execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                            execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                             execution.region=results[result.changename]+"";
                                             execution.time=result.times;
                                             execution.ctime=execution.time;
@@ -589,7 +589,7 @@ public class Batch implements Cloneable{
                                                 execution.change=result.change;
                                                 execution.changetype=result.changetype;
                                                 execution.changevalue=result.changevalue;
-                                                execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                                execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                                 execution.region=results[result.changename]+"";
                                                 execution.time=result.times;
                                                 execution.ctime=execution.time;
@@ -598,7 +598,7 @@ public class Batch implements Cloneable{
                                                 continue;
                                         }
                                     }
-                                } else if(result.collector.equals("或")&&(((double)conditions[result.contype]==(double)Float.parseFloat(result.condition)+(double)(parentevent.loop*parentevent.addtime)||(double)conditions[result.contype2]<(double)Float.parseFloat(result.condition2)+(double)(parentevent.loop*parentevent.addtime)))) {
+                                } else if(result.collector.equals("或")&&(((double)conditions[result.contype]==(double)Float.parseFloat(result.condition)+(double)(parentevent.loop*parentevent.addtime)||(double)conditions[result.contype2]<(double)Float.parseFloat(result.condition2)+(double)(parentevent.loop*parentevent.addtime))) {
                                     if(result.special==1)
                                         Recover();
                                     else if(result.special==2) {
@@ -616,7 +616,7 @@ public class Batch implements Cloneable{
                                             execution.change=result.change;
                                             execution.changetype=result.changetype;
                                             execution.changevalue=result.changevalue;
-                                            execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                            execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                             execution.region=results[result.changename]+"";
                                             execution.time=result.times;
                                             execution.ctime=execution.time;
@@ -643,7 +643,7 @@ public class Batch implements Cloneable{
                                         execution.change=result.change;
                                         execution.changetype=result.changetype;
                                         execution.changevalue=result.changevalue;
-                                        execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                        execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                         execution.region=results[result.changename]+"";
                                         execution.time=result.times;
                                         execution.ctime=execution.time;
@@ -674,7 +674,7 @@ public class Batch implements Cloneable{
                                                 execution.change=result.change;
                                                 execution.changetype=result.changetype;
                                                 execution.changevalue=result.changevalue;
-                                                execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                                execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                                 execution.region=results[result.changename]+"";
                                                 execution.time=result.times;
                                                 execution.ctime=execution.time;
@@ -682,7 +682,7 @@ public class Batch implements Cloneable{
                                             }
                                         }
                                     }
-                                } else if(result.collector.equals("或")&&(((double)conditions[result.contype]<(double)Float.parseFloat(result.condition)+(double)(parentevent.loop*parentevent.addtime)||(double)conditions[result.contype2]>(double)Float.parseFloat(result.condition2)+(double)(parentevent.loop*parentevent.addtime)))) {
+                                } else if(result.collector.equals("或")&&(((double)conditions[result.contype]<(double)Float.parseFloat(result.condition)+(double)(parentevent.loop*parentevent.addtime)||(double)conditions[result.contype2]>(double)Float.parseFloat(result.condition2)+(double)(parentevent.loop*parentevent.addtime))) {
                                     if(result.special==1)
                                         Recover();
                                     else if(result.special==2) {
@@ -700,7 +700,7 @@ public class Batch implements Cloneable{
                                             execution.change=result.change;
                                             execution.changetype=result.changetype;
                                             execution.changevalue=result.changevalue;
-                                            execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                            execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                             execution.region=results[result.changename]+"";
                                             execution.time=result.times;
                                             execution.ctime=execution.time;
@@ -728,7 +728,7 @@ public class Batch implements Cloneable{
                                                 execution.change=result.change;
                                                 execution.changetype=result.changetype;
                                                 execution.changevalue=result.changevalue;
-                                                execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                                execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                                 execution.region=results[result.changename]+"";
                                                 execution.time=result.times;
                                                 execution.ctime=execution.time;
@@ -736,7 +736,7 @@ public class Batch implements Cloneable{
                                             }
                                         }
                                     }
-                                } else if(result.collector.equals("或")&&(((double)conditions[result.contype]<(double)Float.parseFloat(result.condition)+(double)(parentevent.loop*parentevent.addtime)||(double)conditions[result.contype2]==(double)Float.parseFloat(result.condition2)+(double)(parentevent.loop*parentevent.addtime)))) {
+                                } else if(result.collector.equals("或")&&(((double)conditions[result.contype]<(double)Float.parseFloat(result.condition)+(double)(parentevent.loop*parentevent.addtime)||(double)conditions[result.contype2]==(double)Float.parseFloat(result.condition2)+(double)(parentevent.loop*parentevent.addtime))) {
                                     if(result.special==1)
                                         Recover();
                                     else if(result.special==2) {
@@ -754,7 +754,7 @@ public class Batch implements Cloneable{
                                             execution.change=result.change;
                                             execution.changetype=result.changetype;
                                             execution.changevalue=result.changevalue;
-                                            execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                            execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                             execution.region=results[result.changename]+"";
                                             execution.time=result.times;
                                             execution.ctime=execution.time;
@@ -782,7 +782,7 @@ public class Batch implements Cloneable{
                                                 execution.change=result.change;
                                                 execution.changetype=result.changetype;
                                                 execution.changevalue=result.changevalue;
-                                                execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                                execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                                 execution.region=results[result.changename]+"";
                                                 execution.time=result.times;
                                                 execution.ctime=execution.time;
@@ -790,7 +790,7 @@ public class Batch implements Cloneable{
                                             }
                                         }
                                     }
-                                } else if(result.collector.equals("或")&&(((double)conditions[result.contype]<(double)Float.parseFloat(result.condition)+(double)(parentevent.loop*parentevent.addtime)||(double)conditions[result.contype2]<(double)Float.parseFloat(result.condition2)+(double)(parentevent.loop*parentevent.addtime)))) {
+                                } else if(result.collector.equals("或")&&(((double)conditions[result.contype]<(double)Float.parseFloat(result.condition)+(double)(parentevent.loop*parentevent.addtime)||(double)conditions[result.contype2]<(double)Float.parseFloat(result.condition2)+(double)(parentevent.loop*parentevent.addtime))) {
                                     if(result.special==1)
                                         Recover();
                                     else if(result.special==2) {
@@ -808,7 +808,7 @@ public class Batch implements Cloneable{
                                             execution.change=result.change;
                                             execution.changetype=result.changetype;
                                             execution.changevalue=result.changevalue;
-                                            execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                            execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                             execution.region=results[result.changename]+"";
                                             execution.time=result.times;
                                             execution.ctime=execution.time;
@@ -834,7 +834,7 @@ public class Batch implements Cloneable{
                                         execution.change=result.change;
                                         execution.changetype=result.changetype;
                                         execution.changevalue=result.changevalue;
-                                        execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.nextDouble());
+                                        execution.value=(double)result.rand==0.0 ? result.res : result.res+MathHelper.Lerp(-result.rand,result.rand,(float)Main.rand.NextDouble());
                                         execution.region=results[result.changename]+"";
                                         execution.time=result.times;
                                         execution.ctime=execution.time;
@@ -859,26 +859,26 @@ public class Batch implements Cloneable{
             if(Deepbind) {
                 Shoot();
             } else {
-                if(time%t+(int)MathHelper.Lerp((float)-rand.t,(float)rand.t,(float)Main.rand.nextDouble())!=0)
+                if(time%t+(int)MathHelper.Lerp((float)-rand.t,(float)rand.t,(float)Main.rand.NextDouble())!=0)
                     return;
                 Shoot();
             }
         }
 
         private void Shoot() {
-            int num1 = tiao+(int)MathHelper.Lerp((float)-rand.tiao,(float)rand.tiao,(float)Main.rand.nextDouble());
-            float num2 = (int)MathHelper.Lerp(-rand.fx,rand.fx,(float)Main.rand.nextDouble());
-            float num3 = (int)MathHelper.Lerp(-rand.fy,rand.fy,(float)Main.rand.nextDouble());
-            int num4 = (int)MathHelper.Lerp(-rand.r,rand.r,(float)Main.rand.nextDouble());
-            float num5 = MathHelper.Lerp(-rand.rdirection,rand.rdirection,(float)Main.rand.nextDouble());
-            float num6 = (int)MathHelper.Lerp(-rand.head,rand.head,(float)Main.rand.nextDouble());
-            int num7 = (int)MathHelper.Lerp((float)-rand.range,(float)rand.range,(float)Main.rand.nextDouble());
-            float num8 = MathHelper.Lerp(-rand.sonspeed,rand.sonspeed,(float)Main.rand.nextDouble());
-            float num9 = MathHelper.Lerp(-rand.fdirection,rand.fdirection,(float)Main.rand.nextDouble());
-            float num10 = MathHelper.Lerp(-rand.sonaspeed,rand.sonaspeed,(float)Main.rand.nextDouble());
-            float num11 = MathHelper.Lerp(-rand.sonaspeedd,rand.sonaspeedd,(float)Main.rand.nextDouble());
-            float val1 = MathHelper.Lerp(-rand.wscale,rand.wscale,(float)Main.rand.nextDouble());
-            float val2 = MathHelper.Lerp(-rand.hscale,rand.hscale,(float)Main.rand.nextDouble());
+            int num1 = tiao+(int)MathHelper.Lerp((float)-rand.tiao,(float)rand.tiao,(float)Main.rand.NextDouble());
+            float num2 = (int)MathHelper.Lerp(-rand.fx,rand.fx,(float)Main.rand.NextDouble());
+            float num3 = (int)MathHelper.Lerp(-rand.fy,rand.fy,(float)Main.rand.NextDouble());
+            int num4 = (int)MathHelper.Lerp(-rand.r,rand.r,(float)Main.rand.NextDouble());
+            float num5 = MathHelper.Lerp(-rand.rdirection,rand.rdirection,(float)Main.rand.NextDouble());
+            float num6 = (int)MathHelper.Lerp(-rand.head,rand.head,(float)Main.rand.NextDouble());
+            int num7 = (int)MathHelper.Lerp((float)-rand.range,(float)rand.range,(float)Main.rand.NextDouble());
+            float num8 = MathHelper.Lerp(-rand.sonspeed,rand.sonspeed,(float)Main.rand.NextDouble());
+            float num9 = MathHelper.Lerp(-rand.fdirection,rand.fdirection,(float)Main.rand.NextDouble());
+            float num10 = MathHelper.Lerp(-rand.sonaspeed,rand.sonaspeed,(float)Main.rand.NextDouble());
+            float num11 = MathHelper.Lerp(-rand.sonaspeedd,rand.sonaspeedd,(float)Main.rand.NextDouble());
+            float val1 = MathHelper.Lerp(-rand.wscale,rand.wscale,(float)Main.rand.NextDouble());
+            float val2 = MathHelper.Lerp(-rand.hscale,rand.hscale,(float)Main.rand.NextDouble());
             if(bindid==-1) {
                 for(int index1 = 0;index1<num1;++index1) {
                     if(Layer.LayerArray.get(parentid).BatchArray.get(id).rdirection==-99999.0) {

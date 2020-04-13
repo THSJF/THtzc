@@ -58,10 +58,10 @@ public class Rebound implements Cloneable {
 			}
 		}
 		if (!Time.Playing) {
-			this.aspeedx = this.aspeed * (float)Math.cos(MathHelper.ToRadians(this.aspeedd));
-			this.aspeedy = this.aspeed * (float)Math.sin(MathHelper.ToRadians(this.aspeedd));
-			this.speedx = this.speed * (float)Math.cos(MathHelper.ToRadians(this.speedd));
-			this.speedy = this.speed * (float)Math.sin(MathHelper.ToRadians(this.speedd));
+			this.aspeedx = this.aspeed * (float)Math.cos((double)MathHelper.ToRadians(this.aspeedd));
+			this.aspeedy = this.aspeed * (float)Math.sin((double)MathHelper.ToRadians(this.aspeedd));
+			this.speedx = this.speed * (float)Math.cos((double)MathHelper.ToRadians(this.speedd));
+			this.speedy = this.speed * (float)Math.sin((double)MathHelper.ToRadians(this.speedd));
 			this.begin = (int)MathHelper.Clamp((float)this.begin, (float)Layer.LayerArray.get(parentid).begin, (float)(1 + Layer.LayerArray.get(parentid).end - Layer.LayerArray.get(parentid).begin));
 			this.life = (int)MathHelper.Clamp((float)this.life, 1f, (float)(Layer.LayerArray.get(parentid).end - Layer.LayerArray.get(parentid).begin + 2 - this.begin));
 		}
@@ -74,8 +74,8 @@ public class Rebound implements Cloneable {
 		this.y += this.speedy;
 		float x2 = this.x - 4f;
 		float y2 = this.y + 16f;
-		float x3 = (float)((double)this.x - 4.0 + (double)this.longs * Math.cos(MathHelper.ToRadians(this.angle)));
-		float y3 = (float)((double)this.y + 16.0 + (double)this.longs * Math.sin(MathHelper.ToRadians(this.angle)));
+		float x3 = (float)((double)this.x - 4.0 + (double)this.longs * Math.cos((double)MathHelper.ToRadians(this.angle)));
+		float y3 = (float)((double)this.y + 16.0 + (double)this.longs * Math.sin((double)MathHelper.ToRadians(this.angle)));
 		Line line1 = new Line(new Vector2(x2, y2), new Vector2(x3, y3));
 		for (Barrage barrage : Layer.LayerArray.get(parentid).Barrages) {
 			if (barrage.Rebound && (barrage.time > 15 || !barrage.Mist) && !barrage.Dis) {
@@ -98,10 +98,10 @@ public class Rebound implements Cloneable {
 					float num7 = (float)((((double)y3 - (double)y2) * ((double)y6 - (double)y5) * ((double)x5 - (double)x2) + ((double)x3 - (double)x2) * ((double)y6 - (double)y5) * (double)y2 - ((double)x6 - (double)x5) * ((double)y3 - (double)y2) * (double)y5) / -(double)num5);
 					barrage.speedd = 2f * this.angle - barrage.speedd;
 					float num8 = (float)(((double)num6 - (double)x5) * ((double)num6 - (double)x5) + ((double)num7 - (double)y5) * ((double)num7 - (double)y5));
-					barrage.x = num6 + barrage.xscale * (float)(Math.sqrt((double)num8) * Math.cos(MathHelper.ToRadians(barrage.speedd)));
-					barrage.y = num7 + barrage.yscale * (float)(Math.sqrt((double)num8) * Math.sin(MathHelper.ToRadians(barrage.speedd)));
-					barrage.speedx = barrage.xscale * barrage.speed * (float)Math.cos(MathHelper.ToRadians(barrage.speedd));
-					barrage.speedy = barrage.yscale * barrage.speed * (float)Math.sin(MathHelper.ToRadians(barrage.speedd));
+					barrage.x = num6 + barrage.xscale * (float)(Math.sqrt((double)num8) * Math.cos((double)MathHelper.ToRadians(barrage.speedd)));
+					barrage.y = num7 + barrage.yscale * (float)(Math.sqrt((double)num8) * Math.sin((double)MathHelper.ToRadians(barrage.speedd)));
+					barrage.speedx = barrage.xscale * barrage.speed * (float)Math.cos((double)MathHelper.ToRadians(barrage.speedd));
+					barrage.speedy = barrage.yscale * barrage.speed * (float)Math.sin((double)MathHelper.ToRadians(barrage.speedd));
 					++barrage.reboundtime;
 					for (Event parentevent : this.Parentevents) {
 						String str = "";
@@ -125,7 +125,7 @@ public class Rebound implements Cloneable {
 						}
 						if (parentevent.tag.contains("+")) {
 							float num10 = Float.parseFloat(parentevent.tag.split("+")[1]);
-							s = (Float.parseFloat(s) + MathHelper.Lerp(-num10, num10, (float)Main.rand.nextDouble())) + "";
+							s = (Float.parseFloat(s) + MathHelper.Lerp(-num10, num10, (float)Main.rand.NextDouble())).ToString();
 						}
 						if (str.equals("生命")) {
 							switch (num9) {
@@ -256,12 +256,12 @@ public class Rebound implements Cloneable {
 									barrage.speed -= Float.parseFloat(s);
 									break;
 							}
-							barrage.speedx = barrage.xscale * barrage.speed * (float)Math.cos(MathHelper.ToRadians(barrage.speedd));
-							barrage.speedy = barrage.yscale * barrage.speed * (float)Math.sin(MathHelper.ToRadians(barrage.speedd));
+							barrage.speedx = barrage.xscale * barrage.speed * (float)Math.cos((double)MathHelper.ToRadians(barrage.speedd));
+							barrage.speedy = barrage.yscale * barrage.speed * (float)Math.sin((double)MathHelper.ToRadians(barrage.speedd));
 						}
 						if (str.equals("子弹速度方向")) {
 							if (s.contains("自机")) {
-								barrage.speedd = (float) MathHelper.ToDegrees(Main.Twopointangle(Player.position.x, Player.position.y, barrage.x, barrage.y));
+								barrage.speedd = MathHelper.ToDegrees(Main.Twopointangle(Player.position.x, Player.position.y, barrage.x, barrage.y));
 							} else {
 								switch (num9) {
 									case 1:
@@ -275,8 +275,8 @@ public class Rebound implements Cloneable {
 										break;
 								}
 							}
-							barrage.speedx = barrage.xscale * barrage.speed * (float)Math.cos(MathHelper.ToRadians(barrage.speedd));
-							barrage.speedy = barrage.yscale * barrage.speed * (float)Math.sin(MathHelper.ToRadians(barrage.speedd));
+							barrage.speedx = barrage.xscale * barrage.speed * (float)Math.cos((double)MathHelper.ToRadians(barrage.speedd));
+							barrage.speedy = barrage.yscale * barrage.speed * (float)Math.sin((double)MathHelper.ToRadians(barrage.speedd));
 						}
 						if (str.equals("子弹加速度")) {
 							switch (num9) {
@@ -290,12 +290,12 @@ public class Rebound implements Cloneable {
 									barrage.aspeed -= Float.parseFloat(s);
 									break;
 							}
-							barrage.aspeedx = barrage.xscale * barrage.aspeed * (float)Math.cos(MathHelper.ToRadians(barrage.aspeedd));
-							barrage.aspeedy = barrage.yscale * barrage.aspeed * (float)Math.sin(MathHelper.ToRadians(barrage.aspeedd));
+							barrage.aspeedx = barrage.xscale * barrage.aspeed * (float)Math.cos((double)MathHelper.ToRadians(barrage.aspeedd));
+							barrage.aspeedy = barrage.yscale * barrage.aspeed * (float)Math.sin((double)MathHelper.ToRadians(barrage.aspeedd));
 						}
 						if (str.equals("子弹加速度方向")) {
 							if (s.contains("自机")) {
-								barrage.aspeedd = (float) MathHelper.ToDegrees(Main.Twopointangle(Player.position.x, Player.position.y, barrage.x, barrage.y));
+								barrage.aspeedd = MathHelper.ToDegrees(Main.Twopointangle(Player.position.x, Player.position.y, barrage.x, barrage.y));
 							} else {
 								switch (num9) {
 									case 1:
@@ -309,8 +309,8 @@ public class Rebound implements Cloneable {
 										break;
 								}
 							}
-							barrage.aspeedx = barrage.xscale * barrage.aspeed * (float)Math.cos(MathHelper.ToRadians(barrage.aspeedd));
-							barrage.aspeedy = barrage.yscale * barrage.aspeed * (float)Math.sin(MathHelper.ToRadians(barrage.aspeedd));
+							barrage.aspeedx = barrage.xscale * barrage.aspeed * (float)Math.cos((double)MathHelper.ToRadians(barrage.aspeedd));
+							barrage.aspeedy = barrage.yscale * barrage.aspeed * (float)Math.sin((double)MathHelper.ToRadians(barrage.aspeedd));
 						}
 						if (str.equals("横比")) {
 							switch (num9) {

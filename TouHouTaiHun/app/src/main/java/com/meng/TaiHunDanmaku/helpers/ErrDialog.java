@@ -1,20 +1,19 @@
 package com.meng.TaiHunDanmaku.helpers;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.app.*;
+import android.content.*;
+import com.meng.TaiHunDanmaku.ui.*;
 
-import com.meng.TaiHunDanmaku.ui.MainActivity;
-
-public class ErrDialog{
-    public static void show(String title,String message){
+public class ErrDialog {
+    public static void show(String title, String message) {
         new AlertDialog.Builder(MainActivity.instance)
-                .setTitle(title)
-                .setMessage(message)
-                .setIcon(android.R.drawable.stat_sys_warning)
-                .setPositiveButton("Dismiss",new DialogInterface.OnClickArrayListener(){
-                    @Override
-                    public void onClick(DialogInterface arg0,int arg1){
-                    }
-                }).show();
+			.setTitle(title)
+			.setMessage(message)
+			.setIcon(android.R.drawable.stat_sys_warning)
+			.setPositiveButton("Dismiss", new DialogInterface.OnClickListener(){
+				@Override
+				public void onClick(DialogInterface arg0, int arg1) {
+				}
+			}).show();
     }
 }

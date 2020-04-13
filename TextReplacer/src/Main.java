@@ -6,38 +6,41 @@ public class Main {
 	public static void main(String[] args) {
 
 		String[][] replace={
-//			{"bool","boolean"},
-//			{"string","String"},
-//			{"Math.Sin","Math.sin"},
-//			{"Math.Cos","Math.cos"},
-//			{"Math.Abs","Math.abs"},
-//			{"Math.Sqrt","Math.sqrt"},
-//			{"float.Parse","Float.parseFloat"},
-//			{"double.parse","Double.parseDouble"},
-//			{"int.Parse","Integer.parseInt"},
-//			{".Count",".size()"},
-//			{"List","ArrayList"},
-//			{"@event","_event"},
-//			{"==\"",".equals(\""},
-//			{"Hashtable","HashMap<String.Integer>"},
-//			{"new Hashtable();","new HashMap<>();"},
-//			{"Split","split"},
-//			{"'","\""},
-	//		{"\".ToCharArray()",""},
-		//		{".Clear()",".clear()"},
-		//	{"position.X","position.x"},
-		//	{"position.Y","position.y"},
-			//{"PointF","Vector2"}
-	//		{"Add","put"},
-	//		{"foreach","for"},
-	//		{" in "," : "}
-	//		{"byte.MaxValue","Byte.MAX_VALUE"}
+			{" bool "," boolean "},
+			{"string","String"},
+			{"Math.Sin","Math.sin"},
+			{"Math.Cos","Math.cos"},
+			{"Math.Abs","Math.abs"},
+			{"Math.Sqrt","Math.sqrt"},
+			{"float.Parse","Float.parseFloat"},
+			{"double.parse","Double.parseDouble"},
+			{"int.Parse","Integer.parseInt"},
+			{".Count",".size()"},
+			{" List"," ArrayList"},
+			{"@event","_event"},
+			{"==\"",".equals(\""},
+			{"Hashtable","HashMap<String,Integer>"},
+			{"new HashMap();","new HashMap<>();"},
+			{"Split","split"},
+			{"'","\""},
+			{"\".ToCharArray()",""},
+				{".Clear()",".clear()"},
+			{"position.X","position.x"},
+			{"position.Y","position.y"},
+			{"PointF","Vector2"},
+			{"Add","put"},
+			{"foreach","for"},
+			{" in "," : "},
+			{"byte.MaxValue","Byte.MAX_VALUE"},
 			{"Contains","contains"},
 			{"Rectangle?","Rectangle"},
 			{"RemoveAt","remove"},
-			{"Atan","atan"}
-	//		{"[this.parentid]",".get(parentid)"}
+			{"Atan","atan"},
+			{"[this.parentid]",".get(parentid)"}
 	
+			
+			
+			
 		};
 
 		ArrayList<File> fs=new ArrayList<>();

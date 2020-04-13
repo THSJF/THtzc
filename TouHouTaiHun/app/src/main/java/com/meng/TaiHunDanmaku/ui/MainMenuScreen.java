@@ -1,17 +1,12 @@
 package com.meng.TaiHunDanmaku.ui;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickArrayListener;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.meng.TaiHunDanmaku.control.ReplayManager;
-import com.meng.TaiHunDanmaku.helpers.ResourcesManager;
+import com.badlogic.gdx.*;
+import com.badlogic.gdx.scenes.scene2d.*;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.*;
+import com.badlogic.gdx.utils.viewport.*;
+import com.meng.TaiHunDanmaku.control.*;
+import com.meng.TaiHunDanmaku.helpers.*;
 
 public class MainMenuScreen extends ScreenAdapter {
     private FitViewport fitViewport;
@@ -63,37 +58,37 @@ public class MainMenuScreen extends ScreenAdapter {
         Button quit = new Button(ResourcesManager.textures.get("menu18"), ResourcesManager.textures.get("menu18"));
         quit.setPosition(buttonX, buttonY - 128);
 
-        gameStart.addArrayListener(new ClickArrayListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                gameMain.onReplay = false;
-                gameMain.setSelectDiffScreen();
-            }
-        });
-        extraStart.addArrayListener(new ClickArrayListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                //        gameMain.difficultFlag = "Extra";
-                //         gameMain.onReplay = false;
-                //         gameMain.setSelectCharScreen();
-            }
-        });
-        replay.addArrayListener(new ClickArrayListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                if (Gdx.files.external(gameMain.replayFileName).exists()) {
-                    gameMain.onReplay = true;
-                    ReplayManager.init(gameMain, System.currentTimeMillis());
-                    gameMain.setFightScreen();
-                }
-            }
-        });
-        quit.addArrayListener(new ClickArrayListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                gameMain.androidApplication.finish();
-            }
-        });
+        gameStart.addListener(new ClickListener() {
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					gameMain.onReplay = false;
+					gameMain.setSelectDiffScreen();
+				}
+			});
+        extraStart.addListener(new ClickListener() {
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					//        gameMain.difficultFlag = "Extra";
+					//         gameMain.onReplay = false;
+					//         gameMain.setSelectCharScreen();
+				}
+			});
+        replay.addListener(new ClickListener() {
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					if (Gdx.files.external(gameMain.replayFileName).exists()) {
+						gameMain.onReplay = true;
+						ReplayManager.init(gameMain, System.currentTimeMillis());
+						gameMain.setFightScreen();
+					}
+				}
+			});
+        quit.addListener(new ClickListener() {
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					gameMain.androidApplication.finish();
+				}
+			});
         buttons.addActor(gameStart);
         buttons.addActor(extraStart);
         buttons.addActor(practice);

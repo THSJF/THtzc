@@ -1,7 +1,8 @@
 package runner.layer;
+
 import runner.*;
 
-public class LExecution implements Cloneable {
+public class Execution implements Cloneable{
         public int parentid;
         public int id;
         public int change;
@@ -13,10 +14,38 @@ public class LExecution implements Cloneable {
         public int ctime;
         public boolean NeedDelete;
 
-        public void Update(Lase objects) {
+        public void Update(Batch objects) {
             if(changetype==0) {
                 switch(changevalue) {
                     case 0:
+                        if(change==0) {
+                            objects.fx=(objects.fx*((float)ctime-1f)+value)/(float)ctime;
+                            break;
+                        }
+                        if(change==1) {
+                            objects.fx+=value/(float)time;
+                            break;
+                        }
+                        if(change==2) {
+                            objects.fx-=value/(float)time;
+                            break;
+                        }
+                        break;
+                    case 1:
+                        if(change==0) {
+                            objects.fy=(objects.fy*((float)ctime-1f)+value)/(float)ctime;
+                            break;
+                        }
+                        if(change==1) {
+                            objects.fy+=value/(float)time;
+                            break;
+                        }
+                        if(change==2) {
+                            objects.fy-=value/(float)time;
+                            break;
+                        }
+                        break;
+                    case 2:
                         if(change==0) {
                             objects.r=(objects.r*((float)ctime-1f)+value)/(float)ctime;
                             break;
@@ -30,7 +59,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 1:
+                    case 3:
                         if(change==0) {
                             objects.rdirection=(objects.rdirection*((float)ctime-1f)+value)/(float)ctime;
                             break;
@@ -44,7 +73,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 2:
+                    case 4:
                         if(change==0) {
                             objects.tiao=(int)(((double)objects.tiao*((double)ctime-1.0)+(double)value)/(double)ctime);
                             break;
@@ -58,7 +87,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 3:
+                    case 5:
                         if(change==0) {
                             objects.t=(int)(((double)objects.t*((double)ctime-1.0)+(double)value)/(double)ctime);
                             break;
@@ -72,7 +101,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 4:
+                    case 6:
                         if(change==0) {
                             objects.fdirection=(objects.fdirection*((float)ctime-1f)+value)/(float)ctime;
                             break;
@@ -86,7 +115,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 5:
+                    case 7:
                         if(change==0) {
                             objects.range=(int)(((double)objects.range*((double)ctime-1.0)+(double)value)/(double)ctime);
                             break;
@@ -100,7 +129,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 6:
+                    case 8:
                         if(change==0)
                             objects.speed=(objects.speed*((float)ctime-1f)+value)/(float)ctime;
                         else if(change==1)
@@ -110,7 +139,7 @@ public class LExecution implements Cloneable {
                         objects.speedx=objects.speed*(float)Math.cos(MathHelper.ToRadians(objects.speedd));
                         objects.speedy=objects.speed*(float)Math.sin(MathHelper.ToRadians(objects.speedd));
                         break;
-                    case 7:
+                    case 9:
                         if(change==0)
                             objects.speedd=(objects.speedd*((float)ctime-1f)+value)/(float)ctime;
                         else if(change==1)
@@ -120,7 +149,7 @@ public class LExecution implements Cloneable {
                         objects.speedx=objects.speed*(float)Math.cos(MathHelper.ToRadians(objects.speedd));
                         objects.speedy=objects.speed*(float)Math.sin(MathHelper.ToRadians(objects.speedd));
                         break;
-                    case 8:
+                    case 10:
                         if(change==0)
                             objects.aspeed=(objects.aspeed*((float)ctime-1f)+value)/(float)ctime;
                         else if(change==1)
@@ -130,9 +159,9 @@ public class LExecution implements Cloneable {
                         objects.aspeedx=objects.aspeed*(float)Math.cos(MathHelper.ToRadians(objects.aspeedd));
                         objects.aspeedy=objects.aspeed*(float)Math.sin(MathHelper.ToRadians(objects.aspeedd));
                         break;
-                    case 9:
+                    case 11:
                         if(change==0)
-                            objects.aspeedd=(float)(int)(((double)objects.aspeedd*((double)ctime-1.0)+(double)value)/(double)ctime);
+                            objects.aspeedd=(int)(((double)objects.aspeedd*((double)ctime-1.0)+(double)value)/(double)ctime);
                         else if(change==1)
                             objects.aspeedd+=value/(float)time;
                         else if(change==2)
@@ -140,7 +169,7 @@ public class LExecution implements Cloneable {
                         objects.aspeedx=objects.aspeed*(float)Math.cos(MathHelper.ToRadians(objects.aspeedd));
                         objects.aspeedy=objects.aspeed*(float)Math.sin(MathHelper.ToRadians(objects.aspeedd));
                         break;
-                    case 10:
+                    case 12:
                         if(change==0) {
                             objects.sonlife=(int)(((double)objects.sonlife*((double)ctime-1.0)+(double)value)/(double)ctime);
                             break;
@@ -154,7 +183,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 11:
+                    case 13:
                         if(change==0) {
                             objects.type=(objects.type*((float)ctime-1f)+value)/(float)ctime;
                             break;
@@ -168,7 +197,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 12:
+                    case 14:
                         if(change==0) {
                             objects.wscale=(objects.wscale*((float)ctime-1f)+value)/(float)ctime;
                             break;
@@ -182,21 +211,63 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 13:
+                    case 15:
                         if(change==0) {
-                            objects.longs=(objects.longs*((float)ctime-1f)+value)/(float)ctime;
+                            objects.hscale=(objects.hscale*((float)ctime-1f)+value)/(float)ctime;
                             break;
                         }
                         if(change==1) {
-                            objects.longs+=value/(float)time;
+                            objects.hscale+=value/(float)time;
                             break;
                         }
                         if(change==2) {
-                            objects.longs-=value/(float)time;
+                            objects.hscale-=value/(float)time;
                             break;
                         }
                         break;
-                    case 14:
+                    case 16:
+                        if(change==0) {
+                            objects.colorR=(int)(((double)objects.colorR*((double)ctime-1.0)+(double)value)/(double)ctime);
+                            break;
+                        }
+                        if(change==1) {
+                            objects.colorR+=value/(float)time;
+                            break;
+                        }
+                        if(change==2) {
+                            objects.colorR-=value/(float)time;
+                            break;
+                        }
+                        break;
+                    case 17:
+                        if(change==0) {
+                            objects.colorG=(int)(((double)objects.colorG*((double)ctime-1.0)+(double)value)/(double)ctime);
+                            break;
+                        }
+                        if(change==1) {
+                            objects.colorG+=value/(float)time;
+                            break;
+                        }
+                        if(change==2) {
+                            objects.colorG-=value/(float)time;
+                            break;
+                        }
+                        break;
+                    case 18:
+                        if(change==0) {
+                            objects.colorB=(int)(((double)objects.colorB*((double)ctime-1.0)+(double)value)/(double)ctime);
+                            break;
+                        }
+                        if(change==1) {
+                            objects.colorB+=value/(float)time;
+                            break;
+                        }
+                        if(change==2) {
+                            objects.colorB-=value/(float)time;
+                            break;
+                        }
+                        break;
+                    case 19:
                         if(change==0) {
                             objects.alpha=(objects.alpha*((float)ctime-1f)+value)/(float)ctime;
                             break;
@@ -210,91 +281,121 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 15:
-                        if(change==0) {
-                            objects.sonspeed=value;
-                            break;
-                        }
-                        if(change==1) {
-                            objects.sonspeed+=value;
-                            break;
-                        }
-                        if(change==2) {
-                            objects.sonspeed-=value;
-                            break;
-                        }
-                        break;
-                    case 16:
-                        if(change==0) {
-                            objects.sonspeedd=value;
-                            break;
-                        }
-                        if(change==1) {
-                            objects.sonspeedd+=value;
-                            break;
-                        }
-                        if(change==2) {
-                            objects.sonspeedd-=value;
-                            break;
-                        }
-                        break;
-                    case 17:
-                        if(change==0) {
-                            objects.sonaspeed=value;
-                            break;
-                        }
-                        if(change==1) {
-                            objects.sonaspeed+=value;
-                            break;
-                        }
-                        if(change==2) {
-                            objects.sonaspeed-=value;
-                            break;
-                        }
-                        break;
-                    case 18:
-                        if(change==0) {
-                            objects.sonaspeedd=value;
-                            break;
-                        }
-                        if(change==1) {
-                            objects.sonaspeedd+=value;
-                            break;
-                        }
-                        if(change==2) {
-                            objects.sonaspeedd-=value;
-                            break;
-                        }
-                        break;
-                    case 19:
-                        if(change==0) {
-                            objects.xscale=value;
-                            break;
-                        }
-                        if(change==1) {
-                            objects.xscale+=value;
-                            break;
-                        }
-                        if(change==2) {
-                            objects.xscale-=value;
-                            break;
-                        }
-                        break;
                     case 20:
                         if(change==0) {
-                            objects.yscale=value;
+                            objects.head=(objects.head*((float)ctime-1f)+value)/(float)ctime;
                             break;
                         }
                         if(change==1) {
-                            objects.yscale+=value;
+                            objects.head+=value/(float)time;
                             break;
                         }
                         if(change==2) {
-                            objects.yscale-=value;
+                            objects.head-=value/(float)time;
                             break;
                         }
                         break;
                     case 21:
+                        if(change==0) {
+                            objects.sonspeed=(objects.sonspeed*((float)ctime-1f)+value)/(float)ctime;
+                            break;
+                        }
+                        if(change==1) {
+                            objects.sonspeed+=value/(float)time;
+                            break;
+                        }
+                        if(change==2) {
+                            objects.sonspeed-=value/(float)time;
+                            break;
+                        }
+                        break;
+                    case 22:
+                        if(change==0) {
+                            objects.sonspeedd=(int)(((double)objects.sonspeedd*((double)ctime-1.0)+(double)value)/(double)ctime);
+                            break;
+                        }
+                        if(change==1) {
+                            objects.sonspeedd+=value/(float)time;
+                            break;
+                        }
+                        if(change==2) {
+                            objects.sonspeedd-=value/(float)time;
+                            break;
+                        }
+                        break;
+                    case 23:
+                        if(change==0) {
+                            objects.sonaspeed=(objects.sonaspeed*((float)ctime-1f)+value)/(float)ctime;
+                            break;
+                        }
+                        if(change==1) {
+                            objects.sonaspeed+=value/(float)time;
+                            break;
+                        }
+                        if(change==2) {
+                            objects.sonaspeed-=value/(float)time;
+                            break;
+                        }
+                        break;
+                    case 24:
+                        if(change==0) {
+                            objects.sonaspeedd=(int)(((double)objects.sonaspeedd*((double)ctime-1.0)+(double)value)/(double)ctime);
+                            break;
+                        }
+                        if(change==1) {
+                            objects.sonaspeedd+=value/(float)time;
+                            break;
+                        }
+                        if(change==2) {
+                            objects.sonaspeedd-=value/(float)time;
+                            break;
+                        }
+                        break;
+                    case 25:
+                        if(change==0) {
+                            objects.xscale=(objects.xscale*((float)ctime-1f)+value)/(float)ctime;
+                            break;
+                        }
+                        if(change==1) {
+                            objects.xscale+=value/(float)time;
+                            break;
+                        }
+                        if(change==2) {
+                            objects.xscale-=value/(float)time;
+                            break;
+                        }
+                        break;
+                    case 26:
+                        if(change==0) {
+                            objects.yscale=(objects.yscale*((float)ctime-1f)+value)/(float)ctime;
+                            break;
+                        }
+                        if(change==1) {
+                            objects.yscale+=value/(float)time;
+                            break;
+                        }
+                        if(change==2) {
+                            objects.yscale-=value/(float)time;
+                            break;
+                        }
+                        break;
+                    case 27:
+                        if((double)value>0.0)
+                            objects.Mist=true;
+                        if((double)value<=0.0) {
+                            objects.Mist=false;
+                            break;
+                        }
+                        break;
+                    case 28:
+                        if((double)value>0.0)
+                            objects.Dispel=true;
+                        if((double)value<=0.0) {
+                            objects.Dispel=false;
+                            break;
+                        }
+                        break;
+                    case 29:
                         if((double)value>0.0)
                             objects.Blend=true;
                         if((double)value<=0.0) {
@@ -302,7 +403,15 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 22:
+                    case 30:
+                        if((double)value>0.0)
+                            objects.Afterimage=true;
+                        if((double)value<=0.0) {
+                            objects.Afterimage=false;
+                            break;
+                        }
+                        break;
+                    case 31:
                         if((double)value>0.0)
                             objects.Outdispel=true;
                         if((double)value<=0.0) {
@@ -310,7 +419,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 23:
+                    case 32:
                         if((double)value>0.0)
                             objects.Invincible=true;
                         if((double)value<=0.0) {
@@ -322,6 +431,34 @@ public class LExecution implements Cloneable {
             } else if(changetype==1) {
                 switch(changevalue) {
                     case 0:
+                        if(change==0) {
+                            objects.fx=value;
+                            break;
+                        }
+                        if(change==1) {
+                            objects.fx+=value;
+                            break;
+                        }
+                        if(change==2) {
+                            objects.fx-=value;
+                            break;
+                        }
+                        break;
+                    case 1:
+                        if(change==0) {
+                            objects.fy=value;
+                            break;
+                        }
+                        if(change==1) {
+                            objects.fy+=value;
+                            break;
+                        }
+                        if(change==2) {
+                            objects.fy-=value;
+                            break;
+                        }
+                        break;
+                    case 2:
                         if(change==0) {
                             objects.r=value;
                             break;
@@ -335,7 +472,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 1:
+                    case 3:
                         if(change==0) {
                             objects.rdirection=value;
                             break;
@@ -349,7 +486,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 2:
+                    case 4:
                         if(change==0) {
                             objects.tiao=(int)value;
                             break;
@@ -363,7 +500,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 3:
+                    case 5:
                         if(change==0) {
                             objects.t=(int)value;
                             break;
@@ -377,7 +514,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 4:
+                    case 6:
                         if(change==0) {
                             objects.fdirection=value;
                             break;
@@ -391,7 +528,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 5:
+                    case 7:
                         if(change==0) {
                             objects.range=(int)value;
                             break;
@@ -405,7 +542,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 6:
+                    case 8:
                         if(change==0)
                             objects.speed=value;
                         else if(change==1)
@@ -415,7 +552,7 @@ public class LExecution implements Cloneable {
                         objects.speedx=objects.speed*(float)Math.cos(MathHelper.ToRadians(objects.speedd));
                         objects.speedy=objects.speed*(float)Math.sin(MathHelper.ToRadians(objects.speedd));
                         break;
-                    case 7:
+                    case 9:
                         if(change==0)
                             objects.speedd=value;
                         else if(change==1)
@@ -425,7 +562,7 @@ public class LExecution implements Cloneable {
                         objects.speedx=objects.speed*(float)Math.cos(MathHelper.ToRadians(objects.speedd));
                         objects.speedy=objects.speed*(float)Math.sin(MathHelper.ToRadians(objects.speedd));
                         break;
-                    case 8:
+                    case 10:
                         if(change==0)
                             objects.aspeed=value;
                         else if(change==1)
@@ -435,7 +572,7 @@ public class LExecution implements Cloneable {
                         objects.aspeedx=objects.aspeed*(float)Math.cos(MathHelper.ToRadians(objects.aspeedd));
                         objects.aspeedy=objects.aspeed*(float)Math.sin(MathHelper.ToRadians(objects.aspeedd));
                         break;
-                    case 9:
+                    case 11:
                         if(change==0)
                             objects.aspeedd=value;
                         else if(change==1)
@@ -445,7 +582,7 @@ public class LExecution implements Cloneable {
                         objects.aspeedx=objects.aspeed*(float)Math.cos(MathHelper.ToRadians(objects.aspeedd));
                         objects.aspeedy=objects.aspeed*(float)Math.sin(MathHelper.ToRadians(objects.aspeedd));
                         break;
-                    case 10:
+                    case 12:
                         if(change==0) {
                             objects.sonlife=(int)value;
                             break;
@@ -459,21 +596,21 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 11:
+                    case 13:
                         if(change==0) {
                             objects.type=(int)value;
                             break;
                         }
                         if(change==1) {
-                            objects.type+=(float)(int)value;
+                            objects.type+=(int)value;
                             break;
                         }
                         if(change==2) {
-                            objects.type-=(float)(int)value;
+                            objects.type-=(int)value;
                             break;
                         }
                         break;
-                    case 12:
+                    case 14:
                         if(change==0) {
                             objects.wscale=value;
                             break;
@@ -487,21 +624,63 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 13:
+                    case 15:
                         if(change==0) {
-                            objects.longs=value;
+                            objects.hscale=value;
                             break;
                         }
                         if(change==1) {
-                            objects.longs+=value;
+                            objects.hscale+=value;
                             break;
                         }
                         if(change==2) {
-                            objects.longs-=value;
+                            objects.hscale-=value;
                             break;
                         }
                         break;
-                    case 14:
+                    case 16:
+                        if(change==0) {
+                            objects.colorR=value;
+                            break;
+                        }
+                        if(change==1) {
+                            objects.colorR+=value;
+                            break;
+                        }
+                        if(change==2) {
+                            objects.colorR-=value;
+                            break;
+                        }
+                        break;
+                    case 17:
+                        if(change==0) {
+                            objects.colorG=value;
+                            break;
+                        }
+                        if(change==1) {
+                            objects.colorG+=value;
+                            break;
+                        }
+                        if(change==2) {
+                            objects.colorG-=value;
+                            break;
+                        }
+                        break;
+                    case 18:
+                        if(change==0) {
+                            objects.colorB=value;
+                            break;
+                        }
+                        if(change==1) {
+                            objects.colorB+=value;
+                            break;
+                        }
+                        if(change==2) {
+                            objects.colorB-=value;
+                            break;
+                        }
+                        break;
+                    case 19:
                         if(change==0) {
                             objects.alpha=value;
                             break;
@@ -515,7 +694,21 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 15:
+                    case 20:
+                        if(change==0) {
+                            objects.head=value;
+                            break;
+                        }
+                        if(change==1) {
+                            objects.head+=value;
+                            break;
+                        }
+                        if(change==2) {
+                            objects.head-=value;
+                            break;
+                        }
+                        break;
+                    case 21:
                         if(change==0) {
                             objects.sonspeed=value;
                             break;
@@ -529,7 +722,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 16:
+                    case 22:
                         if(change==0) {
                             objects.sonspeedd=value;
                             break;
@@ -543,7 +736,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 17:
+                    case 23:
                         if(change==0) {
                             objects.sonaspeed=value;
                             break;
@@ -557,7 +750,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 18:
+                    case 24:
                         if(change==0) {
                             objects.sonaspeedd=value;
                             break;
@@ -571,7 +764,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 19:
+                    case 25:
                         if(change==0) {
                             objects.xscale=value;
                             break;
@@ -585,7 +778,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 20:
+                    case 26:
                         if(change==0) {
                             objects.yscale=value;
                             break;
@@ -599,7 +792,23 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 21:
+                    case 27:
+                        if((double)value>0.0)
+                            objects.Mist=true;
+                        if((double)value<=0.0) {
+                            objects.Mist=false;
+                            break;
+                        }
+                        break;
+                    case 28:
+                        if((double)value>0.0)
+                            objects.Dispel=true;
+                        if((double)value<=0.0) {
+                            objects.Dispel=false;
+                            break;
+                        }
+                        break;
+                    case 29:
                         if((double)value>0.0)
                             objects.Blend=true;
                         if((double)value<=0.0) {
@@ -607,7 +816,15 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 22:
+                    case 30:
+                        if((double)value>0.0)
+                            objects.Afterimage=true;
+                        if((double)value<=0.0) {
+                            objects.Afterimage=false;
+                            break;
+                        }
+                        break;
+                    case 31:
                         if((double)value>0.0)
                             objects.Outdispel=true;
                         if((double)value<=0.0) {
@@ -615,7 +832,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 23:
+                    case 32:
                         if((double)value>0.0)
                             objects.Invincible=true;
                         if((double)value<=0.0) {
@@ -627,6 +844,34 @@ public class LExecution implements Cloneable {
             } else if(changetype==2) {
                 switch(changevalue) {
                     case 0:
+                        if(change==0) {
+                            objects.fx=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            break;
+                        }
+                        if(change==1) {
+                            objects.fx=Float.parseFloat(region)+value*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            break;
+                        }
+                        if(change==2) {
+                            objects.fx=Float.parseFloat(region)-value*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            break;
+                        }
+                        break;
+                    case 1:
+                        if(change==0) {
+                            objects.fy=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            break;
+                        }
+                        if(change==1) {
+                            objects.fy=Float.parseFloat(region)+value*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            break;
+                        }
+                        if(change==2) {
+                            objects.fy=Float.parseFloat(region)-value*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            break;
+                        }
+                        break;
+                    case 2:
                         if(change==0) {
                             objects.r=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
                             break;
@@ -640,7 +885,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 1:
+                    case 3:
                         if(change==0) {
                             objects.rdirection=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
                             break;
@@ -654,7 +899,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 2:
+                    case 4:
                         if(change==0) {
                             objects.tiao=(int)((double)Float.parseFloat(region)+((double)value-(double)Float.parseFloat(region))*Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime)))));
                             break;
@@ -668,7 +913,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 3:
+                    case 5:
                         if(change==0) {
                             objects.t=(int)((double)Float.parseFloat(region)+((double)value-(double)Float.parseFloat(region))*Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime)))));
                             break;
@@ -682,21 +927,21 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 4:
+                    case 6:
                         if(change==0) {
-                            objects.fdirection=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            objects.fdirection=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians(360f/(float)time*(float)(time-ctime)));
                             break;
                         }
                         if(change==1) {
-                            objects.fdirection=Float.parseFloat(region)+value*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            objects.fdirection=Float.parseFloat(region)+value*(float)Math.sin(MathHelper.ToRadians(360f/(float)time*(float)(time-ctime)));
                             break;
                         }
                         if(change==2) {
-                            objects.fdirection=Float.parseFloat(region)-value*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            objects.fdirection=Float.parseFloat(region)-value*(float)Math.sin(MathHelper.ToRadians(360f/(float)time*(float)(time-ctime)));
                             break;
                         }
                         break;
-                    case 5:
+                    case 7:
                         if(change==0) {
                             objects.range=(int)((double)Float.parseFloat(region)+((double)value-(double)Float.parseFloat(region))*Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime)))));
                             break;
@@ -710,7 +955,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 6:
+                    case 8:
                         if(change==0)
                             objects.speed=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
                         else if(change==1)
@@ -720,7 +965,7 @@ public class LExecution implements Cloneable {
                         objects.speedx=objects.speed*(float)Math.cos(MathHelper.ToRadians(objects.speedd));
                         objects.speedy=objects.speed*(float)Math.sin(MathHelper.ToRadians(objects.speedd));
                         break;
-                    case 7:
+                    case 9:
                         if(change==0)
                             objects.speedd=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
                         else if(change==1)
@@ -730,7 +975,7 @@ public class LExecution implements Cloneable {
                         objects.speedx=objects.speed*(float)Math.cos(MathHelper.ToRadians(objects.speedd));
                         objects.speedy=objects.speed*(float)Math.sin(MathHelper.ToRadians(objects.speedd));
                         break;
-                    case 8:
+                    case 10:
                         if(change==0)
                             objects.aspeed=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
                         else if(change==1)
@@ -740,7 +985,7 @@ public class LExecution implements Cloneable {
                         objects.aspeedx=objects.aspeed*(float)Math.cos(MathHelper.ToRadians(objects.aspeedd));
                         objects.aspeedy=objects.aspeed*(float)Math.sin(MathHelper.ToRadians(objects.aspeedd));
                         break;
-                    case 9:
+                    case 11:
                         if(change==0)
                             objects.aspeedd=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
                         else if(change==1)
@@ -750,7 +995,7 @@ public class LExecution implements Cloneable {
                         objects.aspeedx=objects.aspeed*(float)Math.cos(MathHelper.ToRadians(objects.aspeedd));
                         objects.aspeedy=objects.aspeed*(float)Math.sin(MathHelper.ToRadians(objects.aspeedd));
                         break;
-                    case 10:
+                    case 12:
                         if(change==0) {
                             objects.sonlife=(int)((double)Float.parseFloat(region)+((double)value-(double)Float.parseFloat(region))*Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime)))));
                             break;
@@ -764,7 +1009,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 11:
+                    case 13:
                         if(change==0) {
                             objects.type=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
                             break;
@@ -778,7 +1023,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 12:
+                    case 14:
                         if(change==0) {
                             objects.wscale=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
                             break;
@@ -792,21 +1037,63 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 13:
+                    case 15:
                         if(change==0) {
-                            objects.longs=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            objects.hscale=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
                             break;
                         }
                         if(change==1) {
-                            objects.longs=Float.parseFloat(region)+value*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            objects.hscale=Float.parseFloat(region)+value*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
                             break;
                         }
                         if(change==2) {
-                            objects.longs=Float.parseFloat(region)-value*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            objects.hscale=Float.parseFloat(region)-value*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
                             break;
                         }
                         break;
-                    case 14:
+                    case 16:
+                        if(change==0) {
+                            objects.colorR=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            break;
+                        }
+                        if(change==1) {
+                            objects.colorR=Float.parseFloat(region)+value*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            break;
+                        }
+                        if(change==2) {
+                            objects.colorR=Float.parseFloat(region)-value*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            break;
+                        }
+                        break;
+                    case 17:
+                        if(change==0) {
+                            objects.colorG=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            break;
+                        }
+                        if(change==1) {
+                            objects.colorG=Float.parseFloat(region)+value*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            break;
+                        }
+                        if(change==2) {
+                            objects.colorG=Float.parseFloat(region)-value*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            break;
+                        }
+                        break;
+                    case 18:
+                        if(change==0) {
+                            objects.colorB=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            break;
+                        }
+                        if(change==1) {
+                            objects.colorB=Float.parseFloat(region)+value*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            break;
+                        }
+                        if(change==2) {
+                            objects.colorB=Float.parseFloat(region)-value*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            break;
+                        }
+                        break;
+                    case 19:
                         if(change==0) {
                             objects.alpha=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
                             break;
@@ -820,7 +1107,21 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 15:
+                    case 20:
+                        if(change==0) {
+                            objects.head=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            break;
+                        }
+                        if(change==1) {
+                            objects.head=Float.parseFloat(region)+value*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            break;
+                        }
+                        if(change==2) {
+                            objects.head=Float.parseFloat(region)-value*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
+                            break;
+                        }
+                        break;
+                    case 21:
                         if(change==0) {
                             objects.sonspeed=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
                             break;
@@ -834,7 +1135,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 16:
+                    case 22:
                         if(change==0) {
                             objects.sonspeedd=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
                             break;
@@ -848,7 +1149,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 17:
+                    case 23:
                         if(change==0) {
                             objects.sonaspeed=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
                             break;
@@ -862,7 +1163,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 18:
+                    case 24:
                         if(change==0) {
                             objects.sonaspeedd=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
                             break;
@@ -876,7 +1177,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 19:
+                    case 25:
                         if(change==0) {
                             objects.xscale=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
                             break;
@@ -890,7 +1191,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 20:
+                    case 26:
                         if(change==0) {
                             objects.yscale=Float.parseFloat(region)+(value-Float.parseFloat(region))*(float)Math.sin(MathHelper.ToRadians((float)(360.0/(double)time*((double)time-(double)ctime))));
                             break;
@@ -904,7 +1205,23 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 21:
+                    case 27:
+                        if((double)value>0.0)
+                            objects.Mist=true;
+                        if((double)value<=0.0) {
+                            objects.Mist=false;
+                            break;
+                        }
+                        break;
+                    case 28:
+                        if((double)value>0.0)
+                            objects.Dispel=true;
+                        if((double)value<=0.0) {
+                            objects.Dispel=false;
+                            break;
+                        }
+                        break;
+                    case 29:
                         if((double)value>0.0)
                             objects.Blend=true;
                         if((double)value<=0.0) {
@@ -912,7 +1229,15 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 22:
+                    case 30:
+                        if((double)value>0.0)
+                            objects.Afterimage=true;
+                        if((double)value<=0.0) {
+                            objects.Afterimage=false;
+                            break;
+                        }
+                        break;
+                    case 31:
                         if((double)value>0.0)
                             objects.Outdispel=true;
                         if((double)value<=0.0) {
@@ -920,7 +1245,7 @@ public class LExecution implements Cloneable {
                             break;
                         }
                         break;
-                    case 23:
+                    case 32:
                         if((double)value>0.0)
                             objects.Invincible=true;
                         if((double)value<=0.0) {
@@ -939,10 +1264,10 @@ public class LExecution implements Cloneable {
                 NeedDelete=true;
             }
         }
-
-        public LExecution Clone() {
+		
+        public Execution Clone() {
             try {
-				return (LExecution)super.clone();
+				return (Execution)super.clone();
 			} catch (CloneNotSupportedException e) {
 				return null;
 			}

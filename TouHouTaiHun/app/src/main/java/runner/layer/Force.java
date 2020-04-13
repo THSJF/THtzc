@@ -68,10 +68,10 @@ public class Force implements Cloneable {
 			}
 		}
 		if (!Time.Playing) {
-			aspeedx = aspeed * (float)Math.cos((double)MathHelper.ToRadians(aspeedd));
-			aspeedy = aspeed * (float)Math.sin((double)MathHelper.ToRadians(aspeedd));
-			speedx = speed * (float)Math.cos((double)MathHelper.ToRadians(speedd));
-			speedy = speed * (float)Math.sin((double)MathHelper.ToRadians(speedd));
+			aspeedx = aspeed * (float)Math.cos(MathHelper.ToRadians(aspeedd));
+			aspeedy = aspeed * (float)Math.sin(MathHelper.ToRadians(aspeedd));
+			speedx = speed * (float)Math.cos(MathHelper.ToRadians(speedd));
+			speedy = speed * (float)Math.sin(MathHelper.ToRadians(speedd));
 			begin = (int)MathHelper.Clamp((float)begin, (float)Layer.LayerArray.get(parentid).begin, (float)(1 + Layer.LayerArray.get(parentid).end - Layer.LayerArray.get(parentid).begin));
 			life = (int)MathHelper.Clamp((float)life, 1f, (float)(Layer.LayerArray.get(parentid).end - Layer.LayerArray.get(parentid).begin + 2 - begin));
 		}
@@ -82,18 +82,18 @@ public class Force implements Cloneable {
 		x += speedx;
 		y += speedy;
 		if (Circle) {
-			if (Math.sqrt(((double)x - 4.0 - (double)Player.position.x) * ((double)x - 4.0 - (double)Player.position.x) + ((double)y + 16.0 - (double)Player.position.y) * ((double)y + 16.0 - (double)Player.position.y)) <= (double)Math.Max(halfw, halfh)) {
+			if (Math.sqrt(((double)x - 4.0 - (double)Player.position.x) * ((double)x - 4.0 - (double)Player.position.x) + ((double)y + 16.0 - (double)Player.position.y) * ((double)y + 16.0 - (double)Player.position.y)) <= (double)Math.max(halfw, halfh)) {
 				if (Suction) {
-					float degrees = MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, Player.position.x, Player.position.y));
-					Player.position.x += addspeed * (float)Math.cos((double)MathHelper.ToRadians(degrees));
-					Player.position.y += addspeed * (float)Math.sin((double)MathHelper.ToRadians(degrees));
+					float degrees = (float)MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, Player.position.x, Player.position.y));
+					Player.position.x += addspeed * (float)Math.cos(MathHelper.ToRadians(degrees));
+					Player.position.y += addspeed * (float)Math.sin(MathHelper.ToRadians(degrees));
 				} else if (Repulsion) {
-					float degrees = MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, Player.position.x, Player.position.y));
-					Player.position.x += addspeed * (float)Math.cos((double)MathHelper.ToRadians(180f + degrees));
-					Player.position.y += addspeed * (float)Math.sin((double)MathHelper.ToRadians(180f + degrees));
+					float degrees = (float)MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, Player.position.x, Player.position.y));
+					Player.position.x += addspeed * (float)Math.cos(MathHelper.ToRadians(180f + degrees));
+					Player.position.y += addspeed * (float)Math.sin(MathHelper.ToRadians(180f + degrees));
 				} else {
-					Player.position.x += addspeed * (float)Math.cos((double)MathHelper.ToRadians(addaspeedd));
-					Player.position.y += addspeed * (float)Math.sin((double)MathHelper.ToRadians(addaspeedd));
+					Player.position.x += addspeed * (float)Math.cos(MathHelper.ToRadians(addaspeedd));
+					Player.position.y += addspeed * (float)Math.sin(MathHelper.ToRadians(addaspeedd));
 				}
 				if (Player.position.x <= 4.5f)
 					Player.position.x = 4.5f;
@@ -106,16 +106,16 @@ public class Force implements Cloneable {
 			}
 		} else if ((double)Math.abs(x - 4f - Player.position.x) <= (double)halfw & (double)Math.abs(y + 16f - Player.position.y) <= (double)halfh) {
 			if (Suction) {
-				float degrees = MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, Player.position.x, Player.position.y));
-				Player.position.x += addspeed * (float)Math.cos((double)MathHelper.ToRadians(degrees));
-				Player.position.y += addspeed * (float)Math.sin((double)MathHelper.ToRadians(degrees));
+				float degrees = (float)MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, Player.position.x, Player.position.y));
+				Player.position.x += addspeed * (float)Math.cos(MathHelper.ToRadians(degrees));
+				Player.position.y += addspeed * (float)Math.sin(MathHelper.ToRadians(degrees));
 			} else if (Repulsion) {
-				float degrees = MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, Player.position.x, Player.position.y));
-				Player.position.x += addspeed * (float)Math.cos((double)MathHelper.ToRadians(180f + degrees));
-				Player.position.y += addspeed * (float)Math.sin((double)MathHelper.ToRadians(180f + degrees));
+				float degrees = (float)MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, Player.position.x, Player.position.y));
+				Player.position.x += addspeed * (float)Math.cos(MathHelper.ToRadians(180f + degrees));
+				Player.position.y += addspeed * (float)Math.sin(MathHelper.ToRadians(180f + degrees));
 			} else {
-				Player.position.x += addspeed * (float)Math.cos((double)MathHelper.ToRadians(addaspeedd));
-				Player.position.y += addspeed * (float)Math.sin((double)MathHelper.ToRadians(addaspeedd));
+				Player.position.x += addspeed * (float)Math.cos(MathHelper.ToRadians(addaspeedd));
+				Player.position.y += addspeed * (float)Math.sin(MathHelper.ToRadians(addaspeedd));
 			}
 			if (Player.position.x <= 4.5f)
 				Player.position.x = 4.5f;
@@ -130,61 +130,61 @@ public class Force implements Cloneable {
 			if (barrage.Force) {
 				if (Circle) {
 					if (type == 0) {
-						if (Math.sqrt(((double)x - 4.0 - (double)barrage.x) * ((double)x - 4.0 - (double)barrage.x) + ((double)y + 16.0 - (double)barrage.y) * ((double)y + 16.0 - (double)barrage.y)) <= (double)Math.Max(halfw, halfh)) {
+						if (Math.sqrt(((double)x - 4.0 - (double)barrage.x) * ((double)x - 4.0 - (double)barrage.x) + ((double)y + 16.0 - (double)barrage.y) * ((double)y + 16.0 - (double)barrage.y)) <= (double)Math.max(halfw, halfh)) {
 							if (Suction) {
-								float degrees = MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, barrage.x, barrage.y));
-								barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos((double)MathHelper.ToRadians(degrees));
-								barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin((double)MathHelper.ToRadians(degrees));
+								float degrees = (float)MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, barrage.x, barrage.y));
+								barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos(MathHelper.ToRadians(degrees));
+								barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin(MathHelper.ToRadians(degrees));
 							} else if (Repulsion) {
-								float degrees = MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, barrage.x, barrage.y));
-								barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos((double)MathHelper.ToRadians(180f + degrees));
-								barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin((double)MathHelper.ToRadians(180f + degrees));
+								float degrees = (float)MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, barrage.x, barrage.y));
+								barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos(MathHelper.ToRadians(180f + degrees));
+								barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin(MathHelper.ToRadians(180f + degrees));
 							} else {
-								barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos((double)MathHelper.ToRadians(addaspeedd));
-								barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin((double)MathHelper.ToRadians(addaspeedd));
+								barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos(MathHelper.ToRadians(addaspeedd));
+								barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin(MathHelper.ToRadians(addaspeedd));
 							}
 						}
-					} else if (type == 1 && barrage.parentid == controlid - 1 & Math.sqrt(((double)x - 4.0 - (double)barrage.x) * ((double)x - 4.0 - (double)barrage.x) + ((double)y + 16.0 - (double)barrage.y) * ((double)y + 16.0 - (double)barrage.y)) <= (double)Math.Max(halfw, halfh)) {
+					} else if (type == 1 && barrage.parentid == controlid - 1 & Math.sqrt(((double)x - 4.0 - (double)barrage.x) * ((double)x - 4.0 - (double)barrage.x) + ((double)y + 16.0 - (double)barrage.y) * ((double)y + 16.0 - (double)barrage.y)) <= (double)Math.max(halfw, halfh)) {
 						if (Suction) {
-							float degrees = MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, barrage.x, barrage.y));
-							barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos((double)MathHelper.ToRadians(degrees));
-							barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin((double)MathHelper.ToRadians(degrees));
+							float degrees = (float)MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, barrage.x, barrage.y));
+							barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos(MathHelper.ToRadians(degrees));
+							barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin(MathHelper.ToRadians(degrees));
 						} else if (Repulsion) {
-							float degrees = MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, barrage.x, barrage.y));
-							barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos((double)MathHelper.ToRadians(180f + degrees));
-							barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin((double)MathHelper.ToRadians(180f + degrees));
+							float degrees = (float)MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, barrage.x, barrage.y));
+							barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos(MathHelper.ToRadians(180f + degrees));
+							barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin(MathHelper.ToRadians(180f + degrees));
 						} else {
-							barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos((double)MathHelper.ToRadians(addaspeedd));
-							barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin((double)MathHelper.ToRadians(addaspeedd));
+							barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos(MathHelper.ToRadians(addaspeedd));
+							barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin(MathHelper.ToRadians(addaspeedd));
 						}
 					}
 				} else if (type == 0) {
 					if ((double)Math.abs(x - 4f - barrage.x) <= (double)halfw & (double)Math.abs(y + 16f - barrage.y) <= (double)halfh) {
 						if (Suction) {
-							float degrees = MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, barrage.x, barrage.y));
-							barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos((double)MathHelper.ToRadians(degrees));
-							barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin((double)MathHelper.ToRadians(degrees));
+							float degrees = (float)MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, barrage.x, barrage.y));
+							barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos(MathHelper.ToRadians(degrees));
+							barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin(MathHelper.ToRadians(degrees));
 						} else if (Repulsion) {
-							float degrees = MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, barrage.x, barrage.y));
-							barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos((double)MathHelper.ToRadians(180f + degrees));
-							barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin((double)MathHelper.ToRadians(180f + degrees));
+							float degrees = (float)MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, barrage.x, barrage.y));
+							barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos(MathHelper.ToRadians(180f + degrees));
+							barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin(MathHelper.ToRadians(180f + degrees));
 						} else {
-							barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos((double)MathHelper.ToRadians(addaspeedd));
-							barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin((double)MathHelper.ToRadians(addaspeedd));
+							barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos(MathHelper.ToRadians(addaspeedd));
+							barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin(MathHelper.ToRadians(addaspeedd));
 						}
 					}
 				} else if (type == 1 && barrage.parentid == controlid - 1 & (double)Math.abs(x - 4f - barrage.x) <= (double)halfw & (double)Math.abs(y + 16f - barrage.y) <= (double)halfh) {
 					if (Suction) {
-						float degrees = MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, barrage.x, barrage.y));
-						barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos((double)MathHelper.ToRadians(degrees));
-						barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin((double)MathHelper.ToRadians(degrees));
+						float degrees = (float)MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, barrage.x, barrage.y));
+						barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos(MathHelper.ToRadians(degrees));
+						barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin(MathHelper.ToRadians(degrees));
 					} else if (Repulsion) {
-						float degrees = MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, barrage.x, barrage.y));
-						barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos((double)MathHelper.ToRadians(180f + degrees));
-						barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin((double)MathHelper.ToRadians(180f + degrees));
+						float degrees = (float)MathHelper.ToDegrees(Main.Twopointangle(x - 4f, y + 16f, barrage.x, barrage.y));
+						barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos(MathHelper.ToRadians(180f + degrees));
+						barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin(MathHelper.ToRadians(180f + degrees));
 					} else {
-						barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos((double)MathHelper.ToRadians(addaspeedd));
-						barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin((double)MathHelper.ToRadians(addaspeedd));
+						barrage.speedx += barrage.xscale * addaspeed * (float)Math.cos(MathHelper.ToRadians(addaspeedd));
+						barrage.speedy += barrage.yscale * addaspeed * (float)Math.sin(MathHelper.ToRadians(addaspeedd));
 					}
 				}
 			}
