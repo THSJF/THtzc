@@ -13,8 +13,8 @@ public class GameMain extends Game {
     public String replayFileName = "replay/th_taihunBin.rpy";
     public boolean onReplay = false;
 
-    public int width = 386;//540;//386;
-    public int height = 600;//720;//450;
+    public int width = 386*2;//540;//386;
+    public int height = 600*2;//720;//450;
     public String charaFlag = "Reimu";
     public String difficultFlag = "Easy";
     public String stageFlag = "Stage1";

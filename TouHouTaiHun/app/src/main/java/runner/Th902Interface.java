@@ -1,3 +1,5 @@
+package runner;
+
 import com.badlogic.gdx.math.*;
 import java.util.*;
 import runner.*;
@@ -21,10 +23,8 @@ public class Th902Interface {
 	public static void OpenMbg(String mbgPath) {
 		try {
 			Main.OpenMbgFile(mbgPath);
-		} catch (IOException e) {
-
-		} catch (NumberFormatException e) {
-
+		} catch (Exception e) {
+			throw new RuntimeException(e.toString());
 		}
 	}
 

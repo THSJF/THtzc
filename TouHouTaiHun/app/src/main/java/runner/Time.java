@@ -1,5 +1,6 @@
 package runner;
 import java.util.*;
+import java.util.regex.*;
 import runner.layer.*;
 
 public class Time {
@@ -110,34 +111,34 @@ public class Time {
                                         str2=str2.split("或")[0];
                                     }
                                     if(str2.contains(">")) {
-                                        str4=str2.split(">")[0];
+                                        str4=str2.split(Pattern.quote(">"))[0];
                                         str5=">";
-                                        str2=str2.split(">")[1];
+                                        str2=str2.split(Pattern.quote(">"))[1];
                                     }
                                     if(str2.contains("=")) {
-                                        str4=str2.split("=")[0];
+                                        str4=str2.split(Pattern.quote("="))[0];
                                         str5="=";
-                                        str2=str2.split("=")[1];
+                                        str2=str2.split(Pattern.quote("="))[1];
                                     }
                                     if(str2.contains("<")) {
-                                        str4=str2.split("<")[0];
+                                        str4=str2.split(Pattern.quote("<"))[0];
                                         str5="<";
-                                        str2=str2.split("<")[1];
+                                        str2=str2.split(Pattern.quote("<"))[1];
                                     }
                                     if(str3.contains(">")) {
-                                        String str9 = str3.split(">")[0];
+                                        String str9 = str3.split(Pattern.quote(">"))[0];
                                         str6=">";
-                                        str3=str3.split(">")[1];
+                                        str3=str3.split(Pattern.quote(">"))[1];
                                     }
                                     if(str3.contains("=")) {
-                                        String str9 = str3.split("=")[0];
+                                        String str9 = str3.split(Pattern.quote("="))[0];
                                         str6="=";
-                                        str3=str3.split("=")[1];
+                                        str3=str3.split(Pattern.quote("="))[1];
                                     }
                                     if(str3.contains("<")) {
-                                        String str9 = str3.split("<")[0];
+                                        String str9 = str3.split(Pattern.quote("<"))[0];
                                         str6="<";
-                                        str3=str3.split("<")[1];
+                                        str3=str3.split(Pattern.quote("<"))[1];
                                     }
                                     if(str1.contains("变化到")) {
                                         int num7 = 0;
@@ -145,12 +146,12 @@ public class Time {
                                         int result = Main.results.get(str8.split("变")[0]);
                                         String str9 = str8.split("变")[0];
                                         if(strArray[0].replace("化到","").contains("+")) {
-                                            if(strArray[0].replace("化到","").split("+")[0].equals("自身"))
+                                            if(strArray[0].replace("化到","").split(Pattern.quote("+"))[0].equals("自身"))
                                                 num6=3;
-                                            else if(strArray[0].replace("化到","").split("+")[0].equals("自机"))
+                                            else if(strArray[0].replace("化到","").split(Pattern.quote("+"))[0].equals("自机"))
                                                 num6=4;
                                             else
-                                                num5=Float.parseFloat(strArray[0].replace("化到","").split("+")[0]);
+                                                num5=Float.parseFloat(strArray[0].replace("化到","").split(Pattern.quote("+"))[0]);
                                         } else if(strArray[0].replace("化到","").equals("自身"))
                                             num6=3;
                                         else if(strArray[0].replace("化到","").equals("自机"))
@@ -175,10 +176,10 @@ public class Time {
 										eventRead.res=num5;
 										eventRead.special=num6;
                                         if(strArray[0].replace("化到","").contains("+"))
-                                            eventRead.rand=Float.parseFloat(strArray[0].replace("化到","").split("+")[1]);
+                                            eventRead.rand=Float.parseFloat(strArray[0].replace("化到","").split(Pattern.quote("+"))[1]);
                                         eventRead.times=num8;
                                         if(strArray[2].contains("("))
-                                            eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
+                                            eventRead.time=Integer.parseInt(strArray[2].split(Pattern.quote("("))[1].split(Pattern.quote(")"))[0]);
                                         parentevent.results.add(eventRead);
                                     } else if(str1.contains("增加")) {
                                         int num7 = 1;
@@ -187,12 +188,12 @@ public class Time {
                                         int result = Main.results.get(str8.split("增")[0]);
                                         String str9 = str8.split("增")[0];
                                         if(strArray[0].contains("+")) {
-                                            if(strArray[0].split("+")[0].equals("自身"))
+                                            if(strArray[0].split(Pattern.quote("+"))[0].equals("自身"))
                                                 num6=3;
-                                            else if(strArray[0].split("+")[0].equals("自机"))
+                                            else if(strArray[0].split(Pattern.quote("+"))[0].equals("自机"))
                                                 num6=4;
                                             else
-                                                num5=Float.parseFloat(strArray[0].split("+")[0]);
+                                                num5=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[0]);
                                         } else if(strArray[0].equals("自身"))
                                             num6=3;
                                         else if(strArray[0].equals("自机"))
@@ -217,23 +218,23 @@ public class Time {
                                             eventRead.res=num5;
                                             eventRead.special=num6;
                                         if(strArray[0].contains("+"))
-                                            eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
+                                            eventRead.rand=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[1]);
                                         eventRead.times=num8;
                                         if(strArray[2].contains("("))
-                                            eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
+                                            eventRead.time=Integer.parseInt(strArray[2].split(Pattern.quote("("))[1].split(Pattern.quote(")"))[0]);
                                         parentevent.results.add(eventRead);
                                     } else if(str1.contains("减少")) {
                                         int num7 = 2;
-                                        String[] strArray = str8.split("减少")[2].split("，");
+                                        String[] strArray = str8.split("减少")[1].split("，");
                                         int result = Main.results.get(str8.split("减少")[0]);
                                         String str9 = str8.split("减少")[0];
                                         if(strArray[0].contains("+")) {
-                                            if(strArray[0].split("+")[0].equals("自身"))
+                                            if(strArray[0].split(Pattern.quote("+"))[0].equals("自身"))
                                                 num6=3;
-                                            else if(strArray[0].split("+")[0].equals("自机"))
+                                            else if(strArray[0].split(Pattern.quote("+"))[0].equals("自机"))
                                                 num6=4;
                                             else
-                                                num5=Float.parseFloat(strArray[0].split("+")[0]);
+                                                num5=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[0]);
                                         } else if(strArray[0].equals("自身"))
                                             num6=3;
                                         else if(strArray[0].equals("自机"))
@@ -258,10 +259,10 @@ public class Time {
                                             eventRead.res=num5;
                                             eventRead.special=num6;
                                         if(strArray[0].contains("+"))
-                                            eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
+                                            eventRead.rand=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[1]);
                                         eventRead.times=num8;
                                         if(strArray[2].contains("("))
-                                            eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
+                                            eventRead.time=Integer.parseInt(strArray[2].split(Pattern.quote("("))[1].split(Pattern.quote(")"))[0]);
                                         parentevent.results.add(eventRead);
                                     } else if(str1.contains("恢复")){
 										EventRead e=new EventRead();
@@ -310,34 +311,34 @@ public class Time {
                                         str2=str2.split("或")[0];
                                     }
                                     if(str2.contains(">")) {
-                                        str4=str2.split(">")[0];
+                                        str4=str2.split(Pattern.quote(">"))[0];
                                         str6=">";
-                                        str2=str2.split(">")[1];
+                                        str2=str2.split(Pattern.quote(">"))[1];
                                     }
                                     if(str2.contains("=")) {
-                                        str4=str2.split("=")[0];
+                                        str4=str2.split(Pattern.quote("="))[0];
                                         str6="=";
-                                        str2=str2.split("=")[1];
+                                        str2=str2.split(Pattern.quote("="))[1];
                                     }
                                     if(str2.contains("<")) {
-                                        str4=str2.split("<")[0];
+                                        str4=str2.split(Pattern.quote("<"))[0];
                                         str6="<";
-                                        str2=str2.split("<")[1];
+                                        str2=str2.split(Pattern.quote("<"))[1];
                                     }
                                     if(str3.contains(">")) {
-                                        str5=str3.split(">")[0];
+                                        str5=str3.split(Pattern.quote(">"))[0];
                                         str7=">";
-                                        str3=str3.split(">")[1];
+                                        str3=str3.split(Pattern.quote(">"))[1];
                                     }
                                     if(str3.contains("=")) {
-                                        str5=str3.split("=")[0];
+                                        str5=str3.split(Pattern.quote("="))[0];
                                         str7="=";
-                                        str3=str3.split("=")[1];
+                                        str3=str3.split(Pattern.quote("="))[1];
                                     }
                                     if(str3.contains("<")) {
-                                        str5=str3.split("<")[0];
+                                        str5=str3.split(Pattern.quote("<"))[0];
                                         str7="<";
-                                        str3=str3.split("<")[1];
+                                        str3=str3.split(Pattern.quote("<"))[1];
                                     }
                                     if(str1.contains("变化到")) {
                                         int num7 = 0;
@@ -345,15 +346,15 @@ public class Time {
                                         int num8 = Main.results2.get(str9.split("变")[0]);
                                         String str10 = str9.split("变")[0];
                                         if(strArray[0].replace("化到","").contains("+")) {
-                                            if(strArray[0].replace("化到","").split("+")[0].equals("自身"))
+                                            if(strArray[0].replace("化到","").split(Pattern.quote("+"))[0].equals("自身"))
                                                 num6=3;
-                                            else if(strArray[0].replace("化到","").split("+")[0].equals("自机"))
+                                            else if(strArray[0].replace("化到","").split(Pattern.quote("+"))[0].equals("自机"))
                                                 num6=4;
-                                            else if(strArray[0].replace("化到","").split("+")[0].equals("中心")) {
+                                            else if(strArray[0].replace("化到","").split(Pattern.quote("+"))[0].equals("中心")) {
                                                 num6=5;
                                                 str6="";
                                             } else
-                                                num5=Float.parseFloat(strArray[0].replace("化到","").split("+")[0]);
+                                                num5=Float.parseFloat(strArray[0].replace("化到","").split(Pattern.quote("+"))[0]);
                                         } else if(strArray[0].replace("化到","").equals("自身"))
                                             num6=3;
                                         else if(strArray[0].replace("化到","").equals("自机"))
@@ -381,10 +382,10 @@ public class Time {
 										eventRead.res=num5;
 										eventRead.special=num6;
                                         if(strArray[0].replace("化到","").contains("+"))
-                                            eventRead.rand=Float.parseFloat(strArray[0].replace("化到","").split("+")[1]);
+                                            eventRead.rand=Float.parseFloat(strArray[0].replace("化到","").split(Pattern.quote("+"))[1]);
                                         eventRead.times=num9;
                                         if(strArray[2].contains("("))
-                                            eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
+                                            eventRead.time=Integer.parseInt(strArray[2].split(Pattern.quote("("))[1].split(Pattern.quote(")"))[0]);
                                         sonevent.results.add(eventRead);
                                     } else if(str1.contains("增加")) {
                                         int num7 = 1;
@@ -393,15 +394,15 @@ public class Time {
                                         int num8 = Main.results2.get(str9.split("增")[0]);
                                         String str10 = str9.split("增")[0];
                                         if(strArray[0].contains("+")) {
-                                            if(strArray[0].split("+")[0].equals("自身"))
+                                            if(strArray[0].split(Pattern.quote("+"))[0].equals("自身"))
                                                 num6=3;
-                                            else if(strArray[0].split("+")[0].equals("自机"))
+                                            else if(strArray[0].split(Pattern.quote("+"))[0].equals("自机"))
                                                 num6=4;
-                                            else if(strArray[0].split("+")[0].equals("中心")) {
+                                            else if(strArray[0].split(Pattern.quote("+"))[0].equals("中心")) {
                                                 num6=5;
                                                 str6="";
                                             } else
-                                                num5=Float.parseFloat(strArray[0].split("+")[0]);
+                                                num5=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[0]);
                                         } else if(strArray[0].equals("自身"))
                                             num6=3;
                                         else if(strArray[0].equals("自机"))
@@ -429,10 +430,10 @@ public class Time {
 										eventRead.res=num5;
 										eventRead.special=num6;
                                         if(strArray[0].contains("+"))
-                                            eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
+                                            eventRead.rand=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[1]);
                                         eventRead.times=num9;
                                         if(strArray[2].contains("("))
-                                            eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
+                                            eventRead.time=Integer.parseInt(strArray[2].split(Pattern.quote("("))[1].split(Pattern.quote(")"))[0]);
                                         sonevent.results.add(eventRead);
                                     } else if(str1.contains("减少")) {
                                         int num7 = 2;
@@ -440,15 +441,15 @@ public class Time {
                                         int num8 = Main.results2.get(str9.split("减少")[0]);
                                         String str10 = str9.split("减少")[0];
                                         if(strArray[0].contains("+")) {
-                                            if(strArray[0].split("+")[0].equals("自身"))
+                                            if(strArray[0].split(Pattern.quote("+"))[0].equals("自身"))
                                                 num6=3;
-                                            else if(strArray[0].split("+")[0].equals("自机"))
+                                            else if(strArray[0].split(Pattern.quote("+"))[0].equals("自机"))
                                                 num6=4;
-                                            else if(strArray[0].split("+")[0].equals("中心")) {
+                                            else if(strArray[0].split(Pattern.quote("+"))[0].equals("中心")) {
                                                 num6=5;
                                                 str6="";
                                             } else
-                                                num5=Float.parseFloat(strArray[0].split("+")[0]);
+                                                num5=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[0]);
                                         } else if(strArray[0].equals("自身"))
                                             num6=3;
                                         else if(strArray[0].equals("自机"))
@@ -476,10 +477,10 @@ public class Time {
 										eventRead.res=num5;
 										eventRead.special=num6;
                                         if(strArray[0].contains("+"))
-                                            eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
+                                            eventRead.rand=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[1]);
                                         eventRead.times=num9;
                                         if(strArray[2].contains("("))
-                                            eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
+                                            eventRead.time=Integer.parseInt(strArray[2].split(Pattern.quote("("))[1].split(Pattern.quote(")"))[0]);
                                         sonevent.results.add(eventRead);
                                     }
                                 }
@@ -533,34 +534,34 @@ public class Time {
                                         str2=str2.split("或")[0];
                                     }
                                     if(str2.contains(">")) {
-                                        str4=str2.split(">")[0];
+                                        str4=str2.split(Pattern.quote(">"))[0];
                                         str6=">";
-                                        str2=str2.split(">")[1];
+                                        str2=str2.split(Pattern.quote(">"))[1];
                                     }
                                     if(str2.contains("=")) {
-                                        str4=str2.split("=")[0];
+                                        str4=str2.split(Pattern.quote("="))[0];
                                         str6="=";
-                                        str2=str2.split("=")[1];
+                                        str2=str2.split(Pattern.quote("="))[1];
                                     }
                                     if(str2.contains("<")) {
-                                        str4=str2.split("<")[0];
+                                        str4=str2.split(Pattern.quote("<"))[0];
                                         str6="<";
-                                        str2=str2.split("<")[1];
+                                        str2=str2.split(Pattern.quote("<"))[1];
                                     }
                                     if(str3.contains(">")) {
-                                        str5=str3.split(">")[0];
+                                        str5=str3.split(Pattern.quote(">"))[0];
                                         str7=">";
-                                        str3=str3.split(">")[1];
+                                        str3=str3.split(Pattern.quote(">"))[1];
                                     }
                                     if(str3.contains("=")) {
-                                        str5=str3.split("=")[0];
+                                        str5=str3.split(Pattern.quote("="))[0];
                                         str7="=";
-                                        str3=str3.split("=")[1];
+                                        str3=str3.split(Pattern.quote("="))[1];
                                     }
                                     if(str3.contains("<")) {
-                                        str5=str3.split("<")[0];
+                                        str5=str3.split(Pattern.quote("<"))[0];
                                         str7="<";
-                                        str3=str3.split("<")[1];
+                                        str3=str3.split(Pattern.quote("<"))[1];
                                     }
                                     if(str1.contains("变化到")) {
                                         int num7 = 0;
@@ -568,10 +569,10 @@ public class Time {
                                         int lresult = Main.lresults.get(str9.split("变化到")[0]);
                                         String str10 = str9.split("变化到")[0];
                                         if(strArray[0].contains("+")) {
-                                            if(strArray[0].split("+")[0].equals("自机"))
+                                            if(strArray[0].split(Pattern.quote("+"))[0].equals("自机"))
                                                 num6=4;
                                             else
-                                                num5=Float.parseFloat(strArray[0].split("+")[0]);
+                                                num5=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[0]);
                                         } else if(strArray[0].equals("自机"))
                                             num6=4;
                                         else
@@ -594,10 +595,10 @@ public class Time {
 										eventRead.res=num5;
 										eventRead.special=num6;
                                         if(strArray[0].contains("+"))
-                                            eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
+                                            eventRead.rand=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[1]);
                                         eventRead.times=num8;
                                         if(strArray[2].contains("("))
-                                            eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
+                                            eventRead.time=Integer.parseInt(strArray[2].split(Pattern.quote("("))[1].split(Pattern.quote(")"))[0]);
                                         parentevent.results.add(eventRead);
                                     } else if(str1.contains("增加")) {
                                         int num7 = 1;
@@ -606,10 +607,10 @@ public class Time {
                                         int lresult = Main.lresults.get(str9.split("增")[0]);
                                         String str10 = str9.split("增")[0];
                                         if(strArray[0].contains("+")) {
-                                            if(strArray[0].split("+")[0].equals("自机"))
+                                            if(strArray[0].split(Pattern.quote("+"))[0].equals("自机"))
                                                 num6=4;
                                             else
-                                                num5=Float.parseFloat(strArray[0].split("+")[0]);
+                                                num5=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[0]);
                                         } else if(strArray[0].equals("自机"))
                                             num6=4;
                                         else
@@ -632,10 +633,10 @@ public class Time {
 										eventRead.res=num5;
 										eventRead.special=num6;
                                         if(strArray[0].contains("+"))
-                                            eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
+                                            eventRead.rand=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[1]);
                                         eventRead.times=num8;
                                         if(strArray[2].contains("("))
-                                            eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
+                                            eventRead.time=Integer.parseInt(strArray[2].split(Pattern.quote("("))[1].split(Pattern.quote(")"))[0]);
                                         parentevent.results.add(eventRead);
                                     } else if(str1.contains("减少")) {
                                         int num7 = 2;
@@ -643,10 +644,10 @@ public class Time {
                                         int lresult = Main.lresults.get(str9.split("减少")[0]);
                                         String str10 = str9.split("减少")[0];
                                         if(strArray[0].contains("+")) {
-                                            if(strArray[0].split("+")[0].equals("自机"))
+                                            if(strArray[0].split(Pattern.quote("+"))[0].equals("自机"))
                                                 num6=4;
                                             else
-                                                num5=Float.parseFloat(strArray[0].split("+")[0]);
+                                                num5=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[0]);
                                         } else if(strArray[0].equals("自机"))
                                             num6=4;
                                         else
@@ -669,10 +670,10 @@ public class Time {
 										eventRead.res=num5;
 										eventRead.special=num6;
                                         if(strArray[0].contains("+"))
-                                            eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
+                                            eventRead.rand=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[1]);
                                         eventRead.times=num8;
                                         if(strArray[2].contains("("))
-                                            eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
+                                            eventRead.time=Integer.parseInt(strArray[2].split(Pattern.quote("("))[1].split(Pattern.quote(")"))[0]);
                                         parentevent.results.add(eventRead);
                                     } else if(str1.contains("恢复")){
 										EventRead e=new EventRead();
@@ -721,34 +722,34 @@ public class Time {
                                         str2=str2.split("或")[0];
                                     }
                                     if(str2.contains(">")) {
-                                        str4=str2.split(">")[0];
+                                        str4=str2.split(Pattern.quote(">"))[0];
                                         str6=">";
-                                        str2=str2.split(">")[1];
+                                        str2=str2.split(Pattern.quote(">"))[1];
                                     }
                                     if(str2.contains("=")) {
-                                        str4=str2.split("=")[0];
+                                        str4=str2.split(Pattern.quote("="))[0];
                                         str6="=";
-                                        str2=str2.split("=")[1];
+                                        str2=str2.split(Pattern.quote("="))[1];
                                     }
                                     if(str2.contains("<")) {
-                                        str4=str2.split("<")[0];
+                                        str4=str2.split(Pattern.quote("<"))[0];
                                         str6="<";
-                                        str2=str2.split("<")[1];
+                                        str2=str2.split(Pattern.quote("<"))[1];
                                     }
                                     if(str3.contains(">")) {
-                                        str5=str3.split(">")[0];
+                                        str5=str3.split(Pattern.quote(">"))[0];
                                         str7=">";
-                                        str3=str3.split(">")[1];
+                                        str3=str3.split(Pattern.quote(">"))[1];
                                     }
                                     if(str3.contains("=")) {
-                                        str5=str3.split("=")[0];
+                                        str5=str3.split(Pattern.quote("="))[0];
                                         str7="=";
-                                        str3=str3.split("=")[1];
+                                        str3=str3.split(Pattern.quote("="))[1];
                                     }
                                     if(str3.contains("<")) {
-                                        str5=str3.split("<")[0];
+                                        str5=str3.split(Pattern.quote("<"))[0];
                                         str7="<";
-                                        str3=str3.split("<")[1];
+                                        str3=str3.split(Pattern.quote("<"))[1];
                                     }
                                     if(str1.contains("变化到")) {
                                         int num7 = 0;
@@ -756,13 +757,13 @@ public class Time {
                                         int num8 = Main.lresults2.get(str9.split("变化到")[0]);
                                         String str10 = str9.split("变化到")[0];
                                         if(strArray[0].contains("+")) {
-                                            if(strArray[0].split("+")[0].equals("自机"))
+                                            if(strArray[0].split(Pattern.quote("+"))[0].equals("自机"))
                                                 num6=4;
-                                            else if(strArray[0].split("+")[0].equals("中心")) {
+                                            else if(strArray[0].split(Pattern.quote("+"))[0].equals("中心")) {
                                                 num6=5;
                                                 str6="";
                                             } else
-                                                num5=Float.parseFloat(strArray[0].split("+")[0]);
+                                                num5=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[0]);
                                         } else if(strArray[0].equals("自机"))
                                             num6=4;
                                         else if(strArray[0].equals("中心")) {
@@ -788,10 +789,10 @@ public class Time {
 										eventRead.res=num5;
 										eventRead.special=num6;
                                         if(strArray[0].contains("+"))
-                                            eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
+                                            eventRead.rand=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[1]);
                                         eventRead.times=num9;
                                         if(strArray[2].contains("("))
-                                            eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
+                                            eventRead.time=Integer.parseInt(strArray[2].split(Pattern.quote("("))[1].split(Pattern.quote(")"))[0]);
                                         sonevent.results.add(eventRead);
                                     } else if(str1.contains("增加")) {
                                         int num7 = 1;
@@ -800,13 +801,13 @@ public class Time {
                                         int num8 = Main.lresults2.get(str9.split("增")[0]);
                                         String str10 = str9.split("增")[0];
                                         if(strArray[0].contains("+")) {
-                                            if(strArray[0].split("+")[0].equals("自机"))
+                                            if(strArray[0].split(Pattern.quote("+"))[0].equals("自机"))
                                                 num6=4;
-                                            else if(strArray[0].split("+")[0].equals("中心")) {
+                                            else if(strArray[0].split(Pattern.quote("+"))[0].equals("中心")) {
                                                 num6=5;
                                                 str6="";
                                             } else
-                                                num5=Float.parseFloat(strArray[0].split("+")[0]);
+                                                num5=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[0]);
                                         } else if(strArray[0].equals("自机"))
                                             num6=4;
                                         else if(strArray[0].equals("中心")) {
@@ -832,10 +833,10 @@ public class Time {
 										eventRead.res=num5;
 										eventRead.special=num6;
                                         if(strArray[0].contains("+"))
-                                            eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
+                                            eventRead.rand=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[1]);
                                         eventRead.times=num9;
                                         if(strArray[2].contains("("))
-                                            eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
+                                            eventRead.time=Integer.parseInt(strArray[2].split(Pattern.quote("("))[1].split(Pattern.quote(")"))[0]);
                                         sonevent.results.add(eventRead);
                                     } else if(str1.contains("减少")) {
                                         int num7 = 2;
@@ -843,13 +844,13 @@ public class Time {
                                         int num8 = Main.lresults2.get(str9.split("减少")[0]);
                                         String str10 = str9.split("减少")[0];
                                         if(strArray[0].contains("+")) {
-                                            if(strArray[0].split("+")[0].equals("自机"))
+                                            if(strArray[0].split(Pattern.quote("+"))[0].equals("自机"))
                                                 num6=4;
-                                            else if(strArray[0].split("+")[0].equals("中心")) {
+                                            else if(strArray[0].split(Pattern.quote("+"))[0].equals("中心")) {
                                                 num6=5;
                                                 str6="";
                                             } else
-                                                num5=Float.parseFloat(strArray[0].split("+")[0]);
+                                                num5=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[0]);
                                         } else if(strArray[0].equals("自机"))
                                             num6=4;
                                         else if(strArray[0].equals("中心")) {
@@ -875,10 +876,10 @@ public class Time {
 										eventRead.res=num5;
 										eventRead.special=num6;
                                         if(strArray[0].contains("+"))
-                                            eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
+                                            eventRead.rand=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[1]);
                                         eventRead.times=num9;
                                         if(strArray[2].contains("("))
-                                            eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
+                                            eventRead.time=Integer.parseInt(strArray[2].split(Pattern.quote("("))[1].split(Pattern.quote(")"))[0]);
                                         sonevent.results.add(eventRead);
                                     }
                                 }
@@ -922,34 +923,34 @@ public class Time {
                                         str2=str2.split("或")[0];
                                     }
                                     if(str2.contains(">")) {
-                                        str4=str2.split(">")[0];
+                                        str4=str2.split(Pattern.quote(">"))[0];
                                         str6=">";
-                                        str2=str2.split(">")[1];
+                                        str2=str2.split(Pattern.quote(">"))[1];
                                     }
                                     if(str2.contains("=")) {
-                                        str4=str2.split("=")[0];
+                                        str4=str2.split(Pattern.quote("="))[0];
                                         str6="=";
-                                        str2=str2.split("=")[1];
+                                        str2=str2.split(Pattern.quote("="))[1];
                                     }
                                     if(str2.contains("<")) {
-                                        str4=str2.split("<")[0];
+                                        str4=str2.split(Pattern.quote("<"))[0];
                                         str6="<";
-                                        str2=str2.split("<")[1];
+                                        str2=str2.split(Pattern.quote("<"))[1];
                                     }
                                     if(str3.contains(">")) {
-                                        str5=str3.split(">")[0];
+                                        str5=str3.split(Pattern.quote(">"))[0];
                                         str7=">";
-                                        str3=str3.split(">")[1];
+                                        str3=str3.split(Pattern.quote(">"))[1];
                                     }
                                     if(str3.contains("=")) {
-                                        str5=str3.split("=")[0];
+                                        str5=str3.split(Pattern.quote("="))[0];
                                         str7="=";
-                                        str3=str3.split("=")[1];
+                                        str3=str3.split(Pattern.quote("="))[1];
                                     }
                                     if(str3.contains("<")) {
-                                        str5=str3.split("<")[0];
+                                        str5=str3.split(Pattern.quote("<"))[0];
                                         str7="<";
-                                        str3=str3.split("<")[1];
+                                        str3=str3.split(Pattern.quote("<"))[1];
                                     }
                                     if(str1.contains("变化到")) {
                                         int num7 = 0;
@@ -957,10 +958,10 @@ public class Time {
                                         int cresult = Main.cresults.get(str9.split("变化到")[0]);
                                         String str10 = str9.split("变化到")[0];
                                         if(strArray[0].contains("+")) {
-                                            if(strArray[0].split("+")[0].equals("自机"))
+                                            if(strArray[0].split(Pattern.quote("+"))[0].equals("自机"))
                                                 num6=4;
                                             else
-                                                num5=Float.parseFloat(strArray[0].split("+")[0]);
+                                                num5=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[0]);
                                         } else if(strArray[0].equals("自机"))
                                             num6=4;
                                         else
@@ -983,10 +984,10 @@ public class Time {
 										eventRead.res=num5;
 										eventRead.special=num6;
 										if(strArray[0].contains("+"))
-                                            eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
+                                            eventRead.rand=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[1]);
                                         eventRead.times=num8;
                                         if(strArray[2].contains("("))
-                                            eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
+                                            eventRead.time=Integer.parseInt(strArray[2].split(Pattern.quote("("))[1].split(Pattern.quote(")"))[0]);
                                         parentevent.results.add(eventRead);
                                     } else if(str1.contains("增加")) {
                                         int num7 = 1;
@@ -995,10 +996,10 @@ public class Time {
                                         int cresult = Main.cresults.get(str9.split("增")[0]);
                                         String str10 = str9.split("增")[0];
                                         if(strArray[0].contains("+")) {
-                                            if(strArray[0].split("+")[0].equals("自机"))
+                                            if(strArray[0].split(Pattern.quote("+"))[0].equals("自机"))
                                                 num6=4;
                                             else
-                                                num5=Float.parseFloat(strArray[0].split("+")[0]);
+                                                num5=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[0]);
                                         } else if(strArray[0].equals("自机"))
                                             num6=4;
                                         else
@@ -1021,10 +1022,10 @@ public class Time {
 										eventRead.res=num5;
 										eventRead.special=num6;
                                         if(strArray[0].contains("+"))
-                                            eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
+                                            eventRead.rand=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[1]);
                                         eventRead.times=num8;
                                         if(strArray[2].contains("("))
-                                            eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
+                                            eventRead.time=Integer.parseInt(strArray[2].split(Pattern.quote("("))[1].split(Pattern.quote(")"))[0]);
                                         parentevent.results.add(eventRead);
                                     } else if(str1.contains("减少")) {
                                         int num7 = 2;
@@ -1032,10 +1033,10 @@ public class Time {
                                         int cresult = Main.cresults.get(str9.split("减少")[0]);
                                         String str10 = str9.split("减少")[0];
                                         if(strArray[0].contains("+")) {
-                                            if(strArray[0].split("+")[0].equals("自机"))
+                                            if(strArray[0].split(Pattern.quote("+"))[0].equals("自机"))
                                                 num6=4;
                                             else
-                                                num5=Float.parseFloat(strArray[0].split("+")[0]);
+                                                num5=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[0]);
                                         } else if(strArray[0].equals("自机"))
                                             num6=4;
                                         else
@@ -1058,10 +1059,10 @@ public class Time {
 										eventRead.res=num5;
 										eventRead.special=num6;
                                         if(strArray[0].contains("+"))
-                                            eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
+                                            eventRead.rand=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[1]);
                                         eventRead.times=num8;
                                         if(strArray[2].contains("("))
-                                            eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
+                                            eventRead.time=Integer.parseInt(strArray[2].split(Pattern.quote("("))[1].split(Pattern.quote(")"))[0]);
                                         parentevent.results.add(eventRead);
                                     }
                                 }
@@ -1088,34 +1089,34 @@ public class Time {
                                         str2=str2.split("或")[0];
                                     }
                                     if(str2.contains(">")) {
-                                        str4=str2.split(">")[0];
+                                        str4=str2.split(Pattern.quote(">"))[0];
                                         str6=">";
-                                        str2=str2.split(">")[1];
+                                        str2=str2.split(Pattern.quote(">"))[1];
                                     }
                                     if(str2.contains("=")) {
-                                        str4=str2.split("=")[0];
+                                        str4=str2.split(Pattern.quote("="))[0];
                                         str6="=";
-                                        str2=str2.split("=")[1];
+                                        str2=str2.split(Pattern.quote("="))[1];
                                     }
                                     if(str2.contains("<")) {
-                                        str4=str2.split("<")[0];
+                                        str4=str2.split(Pattern.quote("<"))[0];
                                         str6="<";
-                                        str2=str2.split("<")[1];
+                                        str2=str2.split(Pattern.quote("<"))[1];
                                     }
                                     if(str3.contains(">")) {
-                                        str5=str3.split(">")[0];
+                                        str5=str3.split(Pattern.quote(">"))[0];
                                         str7=">";
-                                        str3=str3.split(">")[1];
+                                        str3=str3.split(Pattern.quote(">"))[1];
                                     }
                                     if(str3.contains("=")) {
-                                        str5=str3.split("=")[0];
+                                        str5=str3.split(Pattern.quote("="))[0];
                                         str7="=";
-                                        str3=str3.split("=")[1];
+                                        str3=str3.split(Pattern.quote("="))[1];
                                     }
                                     if(str3.contains("<")) {
-                                        str5=str3.split("<")[0];
+                                        str5=str3.split(Pattern.quote("<"))[0];
                                         str7="<";
-                                        str3=str3.split("<")[1];
+                                        str3=str3.split(Pattern.quote("<"))[1];
                                     }
                                     if(str1.contains("变化到")) {
                                         int num7 = 0;
@@ -1123,15 +1124,15 @@ public class Time {
                                         int num8 = Main.results2.get(str9.split("变化到")[0]);
                                         String str10 = str9.split("变化到")[0];
                                         if(strArray[0].contains("+")) {
-                                            if(strArray[0].split("+")[0].equals("自身"))
+                                            if(strArray[0].split(Pattern.quote("+"))[0].equals("自身"))
                                                 num6=3;
-                                            else if(strArray[0].split("+")[0].equals("自机"))
+                                            else if(strArray[0].split(Pattern.quote("+"))[0].equals("自机"))
                                                 num6=4;
-                                            else if(strArray[0].split("+")[0].equals("中心")) {
+                                            else if(strArray[0].split(Pattern.quote("+"))[0].equals("中心")) {
                                                 num6=5;
                                                 str6="";
                                             } else
-                                                num5=Float.parseFloat(strArray[0].split("+")[0]);
+                                                num5=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[0]);
                                         } else if(strArray[0].equals("自身"))
                                             num6=3;
                                         else if(strArray[0].equals("自机"))
@@ -1160,10 +1161,10 @@ public class Time {
 										eventRead.special=num6;
 										eventRead.special2=1;
                                         if(strArray[0].contains("+"))
-                                            eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
+                                            eventRead.rand=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[1]);
                                         eventRead.times=num9;
                                         if(strArray[2].contains("("))
-                                            eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
+                                            eventRead.time=Integer.parseInt(strArray[2].split(Pattern.quote("("))[1].split(Pattern.quote(")"))[0]);
                                         sonevent.results.add(eventRead);
                                     } else if(str1.contains("增加")) {
                                         int num7 = 1;
@@ -1172,15 +1173,15 @@ public class Time {
                                         int num8 = Main.results2.get(str9.split("增")[0]);
                                         String str10 = str9.split("增")[0];
                                         if(strArray[0].contains("+")) {
-                                            if(strArray[0].split("+")[0].equals("自身"))
+                                            if(strArray[0].split(Pattern.quote("+"))[0].equals("自身"))
                                                 num6=3;
-                                            else if(strArray[0].split("+")[0].equals("自机"))
+                                            else if(strArray[0].split(Pattern.quote("+"))[0].equals("自机"))
                                                 num6=4;
-                                            else if(strArray[0].split("+")[0].equals("中心")) {
+                                            else if(strArray[0].split(Pattern.quote("+"))[0].equals("中心")) {
                                                 num6=5;
                                                 str6="";
                                             } else
-                                                num5=Float.parseFloat(strArray[0].split("+")[0]);
+                                                num5=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[0]);
                                         } else if(strArray[0].equals("自身"))
                                             num6=3;
                                         else if(strArray[0].equals("自机"))
@@ -1209,10 +1210,10 @@ public class Time {
 										eventRead.special=num6;
 										eventRead.special2=1;
                                         if(strArray[0].contains("+"))
-                                            eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
+                                            eventRead.rand=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[1]);
                                         eventRead.times=num9;
                                         if(strArray[2].contains("("))
-                                            eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
+                                            eventRead.time=Integer.parseInt(strArray[2].split(Pattern.quote("("))[1].split(Pattern.quote(")"))[0]);
                                         sonevent.results.add(eventRead);
                                     } else if(str1.contains("减少")) {
                                         int num7 = 2;
@@ -1220,15 +1221,15 @@ public class Time {
                                         int num8 = Main.results2.get(str9.split("减少")[0]);
                                         String str10 = str9.split("减少")[0];
                                         if(strArray[0].contains("+")) {
-                                            if(strArray[0].split("+")[0].equals("自身"))
+                                            if(strArray[0].split(Pattern.quote("+"))[0].equals("自身"))
                                                 num6=3;
-                                            else if(strArray[0].split("+")[0].equals("自机"))
+                                            else if(strArray[0].split(Pattern.quote("+"))[0].equals("自机"))
                                                 num6=4;
-                                            else if(strArray[0].split("+")[0].equals("中心")) {
+                                            else if(strArray[0].split(Pattern.quote("+"))[0].equals("中心")) {
                                                 num6=5;
                                                 str6="";
                                             } else
-                                                num5=Float.parseFloat(strArray[0].split("+")[0]);
+                                                num5=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[0]);
                                         } else if(strArray[0].equals("自身"))
                                             num6=3;
                                         else if(strArray[0].equals("自机"))
@@ -1257,10 +1258,10 @@ public class Time {
 										eventRead.special=num6;
 										eventRead.special2=1;
                                         if(strArray[0].contains("+"))
-                                            eventRead.rand=Float.parseFloat(strArray[0].split("+")[1]);
+                                            eventRead.rand=Float.parseFloat(strArray[0].split(Pattern.quote("+"))[1]);
                                         eventRead.times=num9;
                                         if(strArray[2].contains("("))
-                                            eventRead.time=Integer.parseInt(strArray[2].split("(")[1].split(")")[0]);
+                                            eventRead.time=Integer.parseInt(strArray[2].split(Pattern.quote("("))[1].split(Pattern.quote(")"))[0]);
                                         sonevent.results.add(eventRead);
                                     }
                                 }

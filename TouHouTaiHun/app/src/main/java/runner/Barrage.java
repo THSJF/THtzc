@@ -210,9 +210,9 @@ public class Barrage {
                             if(result.special2==1) {
                                 conditions[0]=Time.now;
                             }
-                            if(result.opreator==">") {
-                                if(result.opreator2==">") {
-                                    if(result.collector=="且") {
+                            if(result.opreator.equals(">")) {
+                                if(result.opreator2.equals(">")) {
+                                    if(result.collector.equals("且")) {
                                         if(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==10) {
@@ -241,7 +241,7 @@ public class Barrage {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==10) {
                                                 result.res=(float) MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
@@ -269,8 +269,8 @@ public class Barrage {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="=") {
-                                    if(result.collector=="且") {
+                                } else if(result.opreator2.equals("=")) {
+                                    if(result.collector.equals("且")) {
                                         if(conditions[result.contype]>(double)Float.parseFloat(result.condition)+_event.loop*_event.addtime&conditions[result.contype2]==(double)Float.parseFloat(result.condition2)+_event.loop*_event.addtime) {
                                             if(result.special==4) {
                                                 if(result.changevalue==10) {
@@ -299,7 +299,7 @@ public class Barrage {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]>(double)Float.parseFloat(result.condition)+_event.loop*_event.addtime||conditions[result.contype2]==(double)Float.parseFloat(result.condition2)+_event.loop*_event.addtime)) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]>(double)Float.parseFloat(result.condition)+_event.loop*_event.addtime||conditions[result.contype2]==(double)Float.parseFloat(result.condition2)+_event.loop*_event.addtime)) {
                                         if(result.special==4) {
                                             if(result.changevalue==10) {
                                                 result.res=(float) MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
@@ -327,8 +327,8 @@ public class Barrage {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="<") {
-                                    if(result.collector=="且") {
+                                } else if(result.opreator2.equals("<")) {
+                                    if(result.collector.equals("且")) {
                                         if(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==10) {
@@ -357,7 +357,7 @@ public class Barrage {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==10) {
                                                 result.res=(float) MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
@@ -414,9 +414,9 @@ public class Barrage {
                                     }
                                 }
                             }
-                            if(result.opreator=="=") {
-                                if(result.opreator2==">") {
-                                    if(result.collector=="且") {
+                            if(result.opreator.equals("=")) {
+                                if(result.opreator2.equals(">")) {
+                                    if(result.collector.equals("且")) {
                                         if(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==10) {
@@ -445,7 +445,7 @@ public class Barrage {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==10) {
                                                 result.res=(float) MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
@@ -473,8 +473,8 @@ public class Barrage {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="=") {
-                                    if(result.collector=="且") {
+                                } else if(result.opreator2.equals("=")) {
+                                    if(result.collector.equals("且")) {
                                         if(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==10) {
@@ -503,7 +503,7 @@ public class Barrage {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==10) {
                                                 result.res=(float) MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
@@ -531,8 +531,8 @@ public class Barrage {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="<") {
-                                    if(result.collector=="且") {
+                                } else if(result.opreator2.equals("<")) {
+                                    if(result.collector.equals("且")) {
                                         if(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==10) {
@@ -561,7 +561,7 @@ public class Barrage {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==10) {
                                                 result.res=(float) MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
@@ -618,9 +618,9 @@ public class Barrage {
                                     }
                                 }
                             }
-                            if(result.opreator=="<") {
-                                if(result.opreator2==">") {
-                                    if(result.collector=="且") {
+                            if(result.opreator.equals("<")) {
+                                if(result.opreator2.equals(">")) {
+                                    if(result.collector.equals("且")) {
                                         if(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==10) {
@@ -649,7 +649,7 @@ public class Barrage {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==10) {
                                                 result.res=(float) MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
@@ -677,8 +677,8 @@ public class Barrage {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="=") {
-                                    if(result.collector=="且") {
+                                } else if(result.opreator2.equals("=")) {
+                                    if(result.collector.equals("且")) {
                                         if(conditions[result.contype]<(double)Float.parseFloat(result.condition)+_event.loop*_event.addtime&conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==10) {
@@ -707,7 +707,7 @@ public class Barrage {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==10) {
                                                 result.res=(float) MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
@@ -735,8 +735,8 @@ public class Barrage {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="<") {
-                                    if(result.collector=="且") {
+                                } else if(result.opreator2.equals("<")) {
+                                    if(result.collector.equals("且")) {
                                         if(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==10) {
@@ -765,7 +765,7 @@ public class Barrage {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==10) {
                                                 result.res=(float) MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
@@ -901,9 +901,9 @@ public class Barrage {
                         if(time%_event.t==0)
                             ++_event.loop;
                         for(EventRead result : _event.results) {
-                            if(result.opreator==">") {
-                                if(result.opreator2==">") {
-                                    if(result.collector=="且") {
+                            if(result.opreator.equals(">")) {
+                                if(result.opreator2.equals(">")) {
+                                    if(result.collector.equals("且")) {
                                         if(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==6)
@@ -930,7 +930,7 @@ public class Barrage {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==6)
                                                 result.res=(float) MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
@@ -956,8 +956,8 @@ public class Barrage {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="=") {
-                                    if(result.collector=="且") {
+                                } else if(result.opreator2.equals("=")) {
+                                    if(result.collector.equals("且")) {
                                         if(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==6)
@@ -984,7 +984,7 @@ public class Barrage {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==6)
                                                 result.res=(float) MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
@@ -1010,8 +1010,8 @@ public class Barrage {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="<") {
-                                    if(result.collector=="且") {
+                                } else if(result.opreator2.equals("<")) {
+                                    if(result.collector.equals("且")) {
                                         if(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==6)
@@ -1038,7 +1038,7 @@ public class Barrage {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]>Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==6)
                                                 result.res=(float) MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
@@ -1091,9 +1091,9 @@ public class Barrage {
                                     }
                                 }
                             }
-                            if(result.opreator=="=") {
-                                if(result.opreator2==">") {
-                                    if(result.collector=="且") {
+                            if(result.opreator.equals("=")) {
+                                if(result.opreator2.equals(">")) {
+                                    if(result.collector.equals("且")) {
                                         if(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==6)
@@ -1120,7 +1120,7 @@ public class Barrage {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==6)
                                                 result.res=(float) MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
@@ -1146,8 +1146,8 @@ public class Barrage {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="=") {
-                                    if(result.collector=="且") {
+                                } else if(result.opreator2.equals("=")) {
+                                    if(result.collector.equals("且")) {
                                         if(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==6)
@@ -1174,7 +1174,7 @@ public class Barrage {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==6)
                                                 result.res=(float) MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
@@ -1200,8 +1200,8 @@ public class Barrage {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="<") {
-                                    if(result.collector=="且") {
+                                } else if(result.opreator2.equals("<")) {
+                                    if(result.collector.equals("且")) {
                                         if(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==6)
@@ -1228,7 +1228,7 @@ public class Barrage {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]==Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==6)
                                                 result.res=(float) MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
@@ -1281,9 +1281,9 @@ public class Barrage {
                                     }
                                 }
                             }
-                            if(result.opreator=="<") {
-                                if(result.opreator2==">") {
-                                    if(result.collector=="且") {
+                            if(result.opreator.equals("<")) {
+                                if(result.opreator2.equals(">")) {
+                                    if(result.collector.equals("且")) {
                                         if(conditions[result.contype]<(double)Float.parseFloat(result.condition)+_event.loop*_event.addtime&conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==6)
@@ -1310,7 +1310,7 @@ public class Barrage {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]>Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==6)
                                                 result.res=(float) MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
@@ -1336,8 +1336,8 @@ public class Barrage {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="=") {
-                                    if(result.collector=="且") {
+                                } else if(result.opreator2.equals("=")) {
+                                    if(result.collector.equals("且")) {
                                         if(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==6)
@@ -1364,7 +1364,7 @@ public class Barrage {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]==Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==6)
                                                 result.res=(float) MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));
@@ -1390,8 +1390,8 @@ public class Barrage {
                                             continue;
                                         }
                                     }
-                                } else if(result.opreator2=="<") {
-                                    if(result.collector=="且") {
+                                } else if(result.opreator2.equals("<")) {
+                                    if(result.collector.equals("且")) {
                                         if(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)&conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime)) {
                                             if(result.special==4) {
                                                 if(result.changevalue==6)
@@ -1418,7 +1418,7 @@ public class Barrage {
                                                 continue;
                                             }
                                         }
-                                    } else if(result.collector=="或"&&(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
+                                    } else if(result.collector.equals("或")&&(conditions[result.contype]<Float.parseFloat(result.condition)+(double)(_event.loop*_event.addtime)||conditions[result.contype2]<Float.parseFloat(result.condition2)+(double)(_event.loop*_event.addtime))) {
                                         if(result.special==4) {
                                             if(result.changevalue==6)
                                                 result.res=(float) MathHelper.ToDegrees(Main.Twopointangle(Player.position.x,Player.position.y,x,y));

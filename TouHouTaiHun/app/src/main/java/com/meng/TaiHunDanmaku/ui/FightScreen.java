@@ -17,6 +17,8 @@ import com.meng.TaiHunDanmaku.control.*;
 import com.meng.TaiHunDanmaku.helpers.*;
 import com.meng.TaiHunDanmaku.stage.*;
 import java.util.*;
+import runner.*;
+import java.io.*;
 
 public class FightScreen extends ScreenAdapter {
     public static FightScreen instence;
@@ -37,6 +39,7 @@ public class FightScreen extends ScreenAdapter {
     public LaserManager laserManager;
     private Image spellBackground;
     private Image normalBackground;
+	Main main=new Main();
     private Actor changeBlend1 = new Actor() {
         public void draw(Batch batch, float parentAlpha) {
             gameMain.spriteBatch.end();
@@ -78,6 +81,7 @@ public class FightScreen extends ScreenAdapter {
     public void render(float delta) {
         nowFps = Gdx.graphics.getFramesPerSecond();
         ReplayManager.update(gameTimeFlag);
+		Th902Interface.Update();
         ++gameTimeFlag;
         if (sleep > 0) {
             try {
@@ -107,10 +111,16 @@ public class FightScreen extends ScreenAdapter {
 		 + "memory:" + (Runtime.getRuntime().totalMemory() * 1.0 / (1024 * 1024))
 		 + isKilled()
 		 , 10, 590);*/
+		for(Layer ly:Layer.LayerArray){
+			for(Barrage b:ly.Barrages){
+				gameMain.bitmapFont.draw(gameMain.spriteBatch,"台",gameMain.width-(b.x+gameMain.width/2),gameMain.height-(b.y+gameMain.height/2));
+			}
+		}
         gameMain.bitmapFont.draw(gameMain.spriteBatch,
 								 "FPS:" + nowFps +
 								 (ReplayManager.onReplay ? "\nreplay FPS:" + replayFPS : "") +
-								 "\nmiss:" + gameMain.miss
+								 "\nmiss:" + gameMain.miss+
+								 "\nsize:"+Th902Interface.GetBulletCount()
 								 , 10, 590);
         gameMain.bitmapFont.draw(gameMain.spriteBatch,
 								 "Player:未实装\nBomb:未实装\nGraze:未实装\n最大得点:未实装\nScore:未实装\nHiScore:未实装", 190, 590);
@@ -119,9 +129,10 @@ public class FightScreen extends ScreenAdapter {
             reflexAndThrough.update();
         }
         laserManager.draw();
-        if (!onBoss) {
-            gameStage.addEnemy(++enemyTimeFlag);
-        }
+     //   if (!onBoss) {
+     //       gameStage.addEnemy(++enemyTimeFlag);
+     //   }
+	 
         super.render(delta);
     }
 
@@ -137,6 +148,14 @@ public class FightScreen extends ScreenAdapter {
 
     private void init() {
         instence = this;
+		main.Initialize("");
+		try {
+			Main.OpenMbgFile("/storage/emulated/0/AppProjects/TH902Android/resources/Danmaku/21315.mbg");
+		} catch (IOException e) {
+			
+		} catch (NumberFormatException e) {
+			
+		}
         BaseEnemyBullet.instances.clear();
         BaseEnemyBullet.toAdd.clear();
         BaseEnemyBullet.toDelete.clear();
